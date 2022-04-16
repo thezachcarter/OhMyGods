@@ -13,12 +13,16 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+//included components
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+
+//added components
+import Battle from '../Battle/Battle';
 
 import './App.css';
 
@@ -59,7 +63,7 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
-
+          {/* INFO Page */}
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
@@ -67,7 +71,14 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
-
+          {/* BATTLE! */}
+          <Route
+            
+            path="/battle"
+          >
+            <Battle />
+          </Route>
+          {/* USER?LOGIN Page */}
           <Route
             exact
             path="/login"
@@ -81,7 +92,7 @@ function App() {
               <LoginPage />
             }
           </Route>
-
+          {/* REGISTRATION Page */}
           <Route
             exact
             path="/registration"
@@ -95,7 +106,7 @@ function App() {
               <RegisterPage />
             }
           </Route>
-
+          {/* HOME Page */}
           <Route
             exact
             path="/home"
@@ -115,7 +126,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
