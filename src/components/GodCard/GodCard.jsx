@@ -13,9 +13,7 @@ function GodCard(props) {
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Functional Component');
 
-  const gods = store.gods;
-
-  console.log(gods);
+  const godArray = store.gods;
 
   useEffect(() => {
     dispatch({ type: 'GET_GODS' });
@@ -23,7 +21,7 @@ function GodCard(props) {
 
   return (
     <div>
-      {gods.map(god => {
+      {godArray.map(god => {
         return (
           <div className="godCard" key={god.id} >
             <p>{god.name}</p>

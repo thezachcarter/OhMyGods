@@ -15,9 +15,7 @@ function MonsterCard(props) {
 
 //   const monsterObj = store.monster;
 //   const monster = monsterObj[0];
-const monsterObj = store.monster;
-
-  console.log('in MonsterCard component', monsterObj);
+const monsterArray = store.monster;
 
   useEffect(() => {
     dispatch({ type: 'GET_MONSTER' });
@@ -25,7 +23,7 @@ const monsterObj = store.monster;
 
   return (
     <>
-    {monsterObj.map(monster => {
+    {monsterArray.map(monster => {
         return (
         <div className="monsterCard" key={monster.id} >
         <p>{monster.name}</p>
