@@ -14,7 +14,6 @@ function Battle(props) {
 
   return (
     <div>
-      <h2>Battle</h2>
       <MonsterCard />
       <GodCard />
     </div>

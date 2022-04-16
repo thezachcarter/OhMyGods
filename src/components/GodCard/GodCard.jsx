@@ -33,6 +33,7 @@ function GodCard(props) {
               alt={god.name}
             /> 
             <p>{god.culture}</p>
+            <p>{god.element}</p>
             <p>{god.power}</p>
           </div>
         );

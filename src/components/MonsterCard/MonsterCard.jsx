@@ -35,6 +35,7 @@ const monsterObj = store.monster;
             alt={monster.name}
         /> 
         <p>{monster.culture}</p>
+        <p>{monster.element}</p>
         <p>{monster.power}</p>
         </div>
     )})};
