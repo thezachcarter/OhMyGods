@@ -25,7 +25,7 @@ function GodCard(props) {
     <div>
       {gods.map(god => {
         return (
-          <div className="card" key={god.id} >
+          <div className="godCard" key={god.id} >
             <p>{god.name}</p>
             <img
               className="godImg"
@@ -33,6 +33,7 @@ function GodCard(props) {
               alt={god.name}
             /> 
             <p>{god.culture}</p>
+            <p>{god.element}</p>
             <p>{god.power}</p>
           </div>
         );
