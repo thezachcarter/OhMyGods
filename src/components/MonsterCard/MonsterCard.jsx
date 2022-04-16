@@ -1,44 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import './GodCard.css'
+import './MonsterCard.css'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function GodCard(props) {
+function MonsterCard(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Functional Component');
 
-  const gods = store.gods;
+//   const monsterObj = store.monster;
+//   const monster = monsterObj[0];
+const monsterObj = store.monster;
 
-  console.log(gods);
+  console.log('in MonsterCard component', monsterObj);
 
   useEffect(() => {
-    dispatch({ type: 'GET_GODS' });
+    dispatch({ type: 'GET_MONSTER' });
   }, []);
 
   return (
-    <div>
-      {gods.map(god => {
+    <>
+    {monsterObj.map(monster => {
         return (
-          <div className="godCard" key={god.id} >
-            <p>{god.name}</p>
-            <img
-              className="godImg"
-              src={god.image}
-              alt={god.name}
-            /> 
-            <p>{god.culture}</p>
-            <p>{god.power}</p>
-          </div>
-        );
-      })}
-    </div>
+        <div className="monsterCard" key={monster.id} >
+        <p>{monster.name}</p>
+        <img
+            className="monsterImg"
+            src={monster.image}
+            alt={monster.name}
+        /> 
+        <p>{monster.culture}</p>
+        <p>{monster.power}</p>
+        </div>
+    )})};
+    </>
   );
 }
 
-export default GodCard;
+export default MonsterCard;
