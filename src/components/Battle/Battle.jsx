@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
+import GodCard from '../GodCard/GodCard';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,6 +14,7 @@ function Battle(props) {
   return (
     <div>
       <h2>Battle</h2>
+      <GodCard />
     </div>
   );
 }
