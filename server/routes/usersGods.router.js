@@ -45,8 +45,8 @@ router.post('/', (req, res) => {
     
 
     //id is the id in "users_gods" join table
-    const id = req.params.id;
     const power = req.params.power;
+    const id = req.params.id;
 
     const queryText = `
         UPDATE "users_gods" 

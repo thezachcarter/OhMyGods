@@ -15,7 +15,13 @@ function* getUsersGods (){
 
 function* updateUserGodPower(action) {
     console.log('updateUserGodPower', action.action, action.updatedGodPower);
-
+    try {
+        yield axios.put(`api/usersGods/${action.updatedGodPower}/${action.action}`)
+        yield put({ type: 'GET_USERS_GODS'});
+    }
+    catch(err){
+        console.log(err);    
+    }
 }
 
 function* getUsersGodsWatcher() {
