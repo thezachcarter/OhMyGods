@@ -12,7 +12,7 @@ function Battle(props) {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
 
-  const monsterArray = store.monster;
+  const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
 
   console.log('in BATTLE', monsterArray, godArray);

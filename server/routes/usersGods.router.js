@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
         res.send(result.rows);
       })
     .catch((err) => {
-      console.log('god.router GET results failed: ', err);
+      console.log('usersGods.router GET results failed: ', err);
       res.sendStatus(500);
     });
 

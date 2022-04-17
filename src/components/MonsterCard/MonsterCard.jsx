@@ -15,10 +15,15 @@ function MonsterCard(props) {
 
 //   const monsterObj = store.monster;
 //   const monster = monsterObj[0];
-const monsterArray = store.monster;
+const monsterArray = store.usersMonsters;
 
-  useEffect(() => {
-    dispatch({ type: 'GET_MONSTER' });
+console.log(monsterArray);
+    
+
+
+    useEffect(() => {
+    dispatch({ type: 'GET_USERS_MONSTERS' });
+    
   }, []);
 
   return (
