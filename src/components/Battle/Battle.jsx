@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import GodCard from '../GodCard/GodCard';
 import MonsterCard from '../MonsterCard/MonsterCard';
 
@@ -10,7 +10,7 @@ function Battle(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const monsterArray = store.monster;
   const godArray = store.usersGods;
@@ -26,41 +26,41 @@ function Battle(props) {
     const godPower = godArray.reduce((accumulator, object) => {
       return accumulator + object.power;
     }, 0);
-    
+
     //determine victory status by checking power of monster and ALL gods 
-    if(monsterPower === 0){
-      console.log('Monster:', monsterPower,'Gods:', godPower, 'Victory');
-    } else if (godPower === 0)
-      {console.log('Monster:', monsterPower,'Gods:', godPower,'Defeat')
+    if (monsterPower === 0) {
+      console.log('Monster:', monsterPower, 'Gods:', godPower, 'Victory');
+    } else if (godPower === 0) {
+      console.log('Monster:', monsterPower, 'Gods:', godPower, 'Defeat')
     } else {
-      console.log('Monster:', monsterPower,'Gods:', godPower, 'The battle continues!');
+      console.log('Monster:', monsterPower, 'Gods:', godPower, 'The battle continues!');
     };
-    
+
     //base damageToMonster, before checking element or culture = 2
     let damageToMonster = 2;
     let damageToGod = 2;
-    
+
     //for loop to set damageToMonsterToMonster based on element comparison
-    for(let i = 0; i < godArray.length; i++){
+    for (let i = 0; i < godArray.length; i++) {
       console.log(godArray[i]);
       //check if individual god is defeated
-      if(godArray[i].power === 0){
-        console.log(godArray[i].name,'DEFEATED');
+      if (godArray[i].power === 0) {
+        console.log(godArray[i].name, 'DEFEATED');
       } else {
         console.log('ELEMENTS, God:', godArray[i].element, 'Monster:', monsterArray[0].element);
         switch (godArray[i].element) {
           case 'Earth':
-            if(monsterArray[0].element == 'Earth'){
+            if (monsterArray[0].element == 'Earth') {
               damageToMonster = 2;
-              damageToGod = 2; 
-            } else if(monsterArray[0].element == 'Sky'){
+              damageToGod = 2;
+            } else if (monsterArray[0].element == 'Sky') {
               damageToMonster = 3;
-              damageToGod = 1; 
-            }else if(monsterArray[0].element == 'Fire'){
+              damageToGod = 1;
+            } else if (monsterArray[0].element == 'Fire') {
               damageToMonster = 1;
-              damageToGod = 3; 
-            }else if(monsterArray[0].element == 'Water'){
-              damageToMonster = 2; 
+              damageToGod = 3;
+            } else if (monsterArray[0].element == 'Water') {
+              damageToMonster = 2;
               damageToGod = 2;
             } else {
               damageToMonster = 2;
@@ -68,69 +68,74 @@ function Battle(props) {
             };
             break;
           case 'Sky':
-            if(monsterArray[0].element == 'Sky'){
-              damageToMonster = 2; 
-              damageToGod = 2;
-            } else if(monsterArray[0].element == 'Water'){
-              damageToMonster = 3; 
-              damageToGod = 1;
-            }else if(monsterArray[0].element == 'Earth'){
-              damageToMonster = 1; 
-              damageToGod = 3;
-            }else if(monsterArray[0].element == 'Fire'){
+            if (monsterArray[0].element == 'Sky') {
               damageToMonster = 2;
-              damageToGod = 2; 
+              damageToGod = 2;
+            } else if (monsterArray[0].element == 'Water') {
+              damageToMonster = 3;
+              damageToGod = 1;
+            } else if (monsterArray[0].element == 'Earth') {
+              damageToMonster = 1;
+              damageToGod = 3;
+            } else if (monsterArray[0].element == 'Fire') {
+              damageToMonster = 2;
+              damageToGod = 2;
             } else {
               damageToMonster = 2;
               damageToGod = 2;
             };
             break;
           case 'Fire':
-            if(monsterArray[0].element == 'Fire'){
-              damageToMonster = 2; 
-              damageToGod = 2;
-            } else if(monsterArray[0].element == 'Earth'){
-              damageToMonster = 3; 
-              damageToGod = 1;
-            }else if(monsterArray[0].element == 'Water'){
-              damageToMonster = 1; 
-              damageToGod = 3;
-            }else if(monsterArray[0].element == 'Sky'){
+            if (monsterArray[0].element == 'Fire') {
               damageToMonster = 2;
-              damageToGod = 2; 
+              damageToGod = 2;
+            } else if (monsterArray[0].element == 'Earth') {
+              damageToMonster = 3;
+              damageToGod = 1;
+            } else if (monsterArray[0].element == 'Water') {
+              damageToMonster = 1;
+              damageToGod = 3;
+            } else if (monsterArray[0].element == 'Sky') {
+              damageToMonster = 2;
+              damageToGod = 2;
             } else {
               damageToMonster = 2
               damageToGod = 2;
             };
             break;
           case 'Water':
-            if(monsterArray[0].element == 'Water'){
+            if (monsterArray[0].element == 'Water') {
               damageToMonster = 2;
-              damageToGod = 2; 
-            } else if(monsterArray[0].element == 'Fire'){
-              damageToMonster = 3; 
+              damageToGod = 2;
+            } else if (monsterArray[0].element == 'Fire') {
+              damageToMonster = 3;
               damageToGod = 1;
-            }else if(monsterArray[0].element == 'Sky'){
+            } else if (monsterArray[0].element == 'Sky') {
               damageToMonster = 1;
-              damageToGod = 3; 
-            }else if(monsterArray[0].element == 'Earth'){
+              damageToGod = 3;
+            } else if (monsterArray[0].element == 'Earth') {
               damageToMonster = 2;
-              damageToGod = 2; 
+              damageToGod = 2;
             } else {
               damageToMonster = 2
               damageToGod = 2;
             };
-            break;   
+            break;
           default:
             damageToMonster = 2;
             damageToGod = 2;
         }//end switch statement checking god element
 
-      //damage multiplier for culture match
-      if(godArray[i].culture == monsterArray[0].culture){
-        damageToMonster *= 2;
-        damageToGod *= 2;
+        //damage multiplier for culture match
+        if (godArray[i].culture == monsterArray[0].culture) {
+          damageToMonster *= 2;
+          damageToGod *= 2;
         }
+        //prevent negative power rating for gods
+        if (damageToGod > godArray[i].power) { damageToGod = godArray[i].power }
+
+
+
         console.log(godArray[i].name, 'Damage To Monster', damageToMonster, 'Damage To God', damageToGod);
         // monsterPower -= damageToMonster;
         let updatedGodPower = godArray[i].power - damageToGod;
@@ -141,8 +146,8 @@ function Battle(props) {
       }//end if else checking god disabled/enabled
     }//end for loop of godArray
   }
-  
-  
+
+
 
   return (
     <div>
