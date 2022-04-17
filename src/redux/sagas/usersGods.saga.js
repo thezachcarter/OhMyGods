@@ -3,7 +3,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 //get user's gods from the DB 
 function* getUsersGods (){
-    
     try {
         const usersGods = yield axios.get('/api/usersGods');
         console.log('get all:', usersGods.data);
@@ -14,8 +13,14 @@ function* getUsersGods (){
     }   
 }
 
-function* getUsersGodsWatcher() {
-    yield takeLatest('GET_USERS_GODS', getUsersGods);
+function* updateUserGodPower(action) {
+    console.log('updateUserGodPower', action.action, action.updatedGodPower);
+
 }
 
-export default getUsersGods;
+function* getUsersGodsWatcher() {
+    yield takeLatest('GET_USERS_GODS', getUsersGods);
+    yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
+}
+
+export default getUsersGodsWatcher;

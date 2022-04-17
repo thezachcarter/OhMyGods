@@ -133,9 +133,10 @@ function Battle(props) {
         }
         console.log(godArray[i].name, 'Damage To Monster', damageToMonster, 'Damage To God', damageToGod);
         // monsterPower -= damageToMonster;
-        // godPower -= damageToGod;
-        dispatch({ type: 'SET_USER_GOD_POWER', action: godArray[i].id})
-        dispatch({ type: 'UPDATE_USER_GOD', action: godArray[i].id })
+        let updatedGodPower = godArray[i].power - damageToGod;
+        console.log('End of attack. godId =', godArray[i].id, 'updatedGodPower =', updatedGodPower);
+        // dispatch({ type: 'SET_USER_GOD_POWER', action: godPower})
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', action: godArray[i].id, updatedGodPower })
 
       }//end if else checking god disabled/enabled
     }//end for loop of godArray

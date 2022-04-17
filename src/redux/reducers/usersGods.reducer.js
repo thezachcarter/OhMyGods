@@ -6,15 +6,6 @@ const usersGodsReducer = (state = [], action) => {
         return state;
     }
   };
-
-
-
-// const userGodsPowerReducer = (state = 0, action) =>{
-//     switch (action.type){
-//         case 'SET_USERS_GOD_POWER'
-
-//     }}
-
   
   // user will be on the redux state at:
   // state.user
