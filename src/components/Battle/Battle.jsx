@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import GodCard from '../GodCard/GodCard';
 import MonsterCard from '../MonsterCard/MonsterCard';
 
@@ -10,18 +10,18 @@ function Battle(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Functional Component');
+  const dispatch = useDispatch(); 
 
   const monsterArray = store.monster;
-  const godArray = store.gods;
+  const godArray = store.usersGods;
 
   console.log('in BATTLE', monsterArray, godArray);
 
   const attack = () => {
     console.log('attack clicked');
 
-    //power level of monster
-    const monsterPower = monsterArray[0].power
+    //power level of monster, value will change on client side, not in db
+    let monsterPower = monsterArray[0].power
     //total power level of all gods
     const godPower = godArray.reduce((accumulator, object) => {
       return accumulator + object.power;
@@ -129,8 +129,14 @@ function Battle(props) {
       //damage multiplier for culture match
       if(godArray[i].culture == monsterArray[0].culture){
         damageToMonster *= 2;
+        damageToGod *= 2;
         }
         console.log(godArray[i].name, 'Damage To Monster', damageToMonster, 'Damage To God', damageToGod);
+        // monsterPower -= damageToMonster;
+        // godPower -= damageToGod;
+        dispatch({ type: 'SET_USER_GOD_POWER', action: godArray[i].id})
+        dispatch({ type: 'UPDATE_USER_GOD', action: godArray[i].id })
+
       }//end if else checking god disabled/enabled
     }//end for loop of godArray
   }

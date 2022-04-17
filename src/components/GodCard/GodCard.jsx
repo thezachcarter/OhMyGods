@@ -13,10 +13,10 @@ function GodCard(props) {
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Functional Component');
 
-  const godArray = store.gods;
+  const godArray = store.usersGods;
 
   useEffect(() => {
-    dispatch({ type: 'GET_GODS' });
+    dispatch({ type: 'GET_USERS_GODS' });
   }, []);
 
   return (
