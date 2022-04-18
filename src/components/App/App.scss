@@ -8,26 +8,53 @@
     font-family: sans-serif;
 }
 
+.battleBtn{
+    height: 50px;
+    width: 100px;
+    align-self: center;
+}
+
 .battleGrid {
 
-    display: auto-grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
     width: 100vw;
     height: 100vh;
 
-
-    .currentMonsterCard {
-        width: 400px;
-        height: 300px;
-        margin: 16px;
-        padding: 16px;
-        background-color: gray;
-        text-align: center;
+    .positionBtn{
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
     }
 
+    .attackBtn{
+        grid-column: 9 / 10;
+        grid-row: 1 / 2;
+    }
+
+    .monsterCardContainer {
+        display: flex;
+        justify-content: center;
+        grid-column: 4 / 8;
+        grid-row: 1 / 2;
+        
+        .currentMonsterCard {
+            width: 400px;
+            height: 300px;
+            margin: 16px;
+            padding: 16px;
+            background-color: gray;
+            text-align: center;
+        }
+    };
+
     .godCardContainer{
-        height: 400px;
+        display: flex;
+        grid-row: 3 / 5 ;
+        grid-column: 2 / 10;
+        justify-content: center;
     }
 
     .godCard {

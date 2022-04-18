@@ -22,7 +22,7 @@ function MonsterCard({ currentMonster }) {
     }, []);
 
     return (
-        <>
+        <div className="monsterCardContainer">
             {/* {monsterArray.map(monster => {
         return ( */}
             <div className="currentMonsterCard" key={currentMonster.id} >
@@ -37,7 +37,7 @@ function MonsterCard({ currentMonster }) {
                 <p>{currentMonster.power}</p>
             </div>
             {/* )})}; */}
-        </>
+        </div>
     );
 }
 

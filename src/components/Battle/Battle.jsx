@@ -167,8 +167,8 @@ function Battle(props) {
   return (
     <div className="battleGrid">
       <MonsterCard currentMonster={currentMonster} />
-      <button>Change Position</button>
-      <button onClick={attack}>Attack!</button>
+      <button className="positionBtn battleBtn">Change Position</button>
+      <button className="attackBtn battleBtn" onClick={attack}>Attack!</button>
       <GodCard />
     </div>
   );
