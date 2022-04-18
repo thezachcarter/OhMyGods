@@ -25,6 +25,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Battle from '../Battle/Battle';
 
 import './App.css';
+import './App.scss'
 
 function App() {
   const dispatch = useDispatch();

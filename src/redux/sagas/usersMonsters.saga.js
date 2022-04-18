@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-//get user's gods from the DB 
+//get user's Monsters from the DB 
 function* getUsersMonsters (){
     
     try {
@@ -14,8 +14,20 @@ function* getUsersMonsters (){
     }   
 }
 
+function* updateUserMonsterPower(action) {
+    console.log('updateUserMonsterPower', action.action, action.updatedMonsterPower);
+    try {
+        yield axios.put(`api/usersMonsters/${action.updatedMonsterPower}/${action.action}`)
+        yield put({ type: 'GET_USERS_MONSTERS'});
+    }
+    catch(err){
+        console.log(err);    
+    }
+}
+
 function* getUsersMonstersWatcher() {
     yield takeLatest('GET_USERS_MONSTERS', getUsersMonsters);
+    yield takeLatest('UPDATE_USER_MONSTER_POWER', updateUserMonsterPower);
 }
 
 export default getUsersMonstersWatcher;

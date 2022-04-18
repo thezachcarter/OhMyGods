@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import GodCard from '../GodCard/GodCard';
 import MonsterCard from '../MonsterCard/MonsterCard';
+
+
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -9,32 +11,38 @@ import MonsterCard from '../MonsterCard/MonsterCard';
 function Battle(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
+
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
 
+  // const [monsterArray, setMonsterArray ]= useState(store.usersMonsters);
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
+  console.log('in BATTLE', monsterArray, godArray)
 
-  console.log('in BATTLE', monsterArray, godArray);
+  //checks array for first monster, by id, that has not been defeated
+  //also resets to beginning of monsters if order gets messed up in testing
+  const [currentMonster, setCurrentMonster] = useState('')
+  monsterArray.map(monster => {
+    // console.log('MONSTER IN BATTLE', monster.power);
+    if (currentMonster == '' && monster.power > 0) {
+      setCurrentMonster(monster);
+    } else if (currentMonster.id > monster.id && monster.power > 0) {
+      setCurrentMonster(monster);
+    }
+  })
+  console.log('CURRENT MONSTER', currentMonster);
+
 
   const attack = () => {
-    console.log('attack clicked');
+    console.log('ATTACK clicked');
 
     //power level of monster, value will change on client side, not in db
-    let monsterPower = monsterArray[0].power
+    let monsterPower = currentMonster.power
     //total power level of all gods
     const godPower = godArray.reduce((accumulator, object) => {
       return accumulator + object.power;
     }, 0);
-
-    //determine victory status by checking power of monster and ALL gods 
-    if (monsterPower === 0) {
-      console.log('Monster:', monsterPower, 'Gods:', godPower, 'Victory');
-    } else if (godPower === 0) {
-      console.log('Monster:', monsterPower, 'Gods:', godPower, 'Defeat')
-    } else {
-      console.log('Monster:', monsterPower, 'Gods:', godPower, 'The battle continues!');
-    };
 
     //base damageToMonster, before checking element or culture = 2
     let damageToMonster = 2;
@@ -47,19 +55,19 @@ function Battle(props) {
       if (godArray[i].power === 0) {
         console.log(godArray[i].name, 'DEFEATED');
       } else {
-        console.log('ELEMENTS, God:', godArray[i].element, 'Monster:', monsterArray[0].element);
+        console.log('ELEMENTS, God:', godArray[i].element, 'Monster:', currentMonster.element);
         switch (godArray[i].element) {
           case 'Earth':
-            if (monsterArray[0].element == 'Earth') {
+            if (currentMonster.element == 'Earth') {
               damageToMonster = 2;
               damageToGod = 2;
-            } else if (monsterArray[0].element == 'Sky') {
+            } else if (currentMonster.element == 'Sky') {
               damageToMonster = 3;
               damageToGod = 1;
-            } else if (monsterArray[0].element == 'Fire') {
+            } else if (currentMonster.element == 'Fire') {
               damageToMonster = 1;
               damageToGod = 3;
-            } else if (monsterArray[0].element == 'Water') {
+            } else if (currentMonster.element == 'Water') {
               damageToMonster = 2;
               damageToGod = 2;
             } else {
@@ -68,16 +76,16 @@ function Battle(props) {
             };
             break;
           case 'Sky':
-            if (monsterArray[0].element == 'Sky') {
+            if (currentMonster.element == 'Sky') {
               damageToMonster = 2;
               damageToGod = 2;
-            } else if (monsterArray[0].element == 'Water') {
+            } else if (currentMonster.element == 'Water') {
               damageToMonster = 3;
               damageToGod = 1;
-            } else if (monsterArray[0].element == 'Earth') {
+            } else if (currentMonster.element == 'Earth') {
               damageToMonster = 1;
               damageToGod = 3;
-            } else if (monsterArray[0].element == 'Fire') {
+            } else if (currentMonster.element == 'Fire') {
               damageToMonster = 2;
               damageToGod = 2;
             } else {
@@ -86,16 +94,16 @@ function Battle(props) {
             };
             break;
           case 'Fire':
-            if (monsterArray[0].element == 'Fire') {
+            if (currentMonster.element == 'Fire') {
               damageToMonster = 2;
               damageToGod = 2;
-            } else if (monsterArray[0].element == 'Earth') {
+            } else if (currentMonster.element == 'Earth') {
               damageToMonster = 3;
               damageToGod = 1;
-            } else if (monsterArray[0].element == 'Water') {
+            } else if (currentMonster.element == 'Water') {
               damageToMonster = 1;
               damageToGod = 3;
-            } else if (monsterArray[0].element == 'Sky') {
+            } else if (currentMonster.element == 'Sky') {
               damageToMonster = 2;
               damageToGod = 2;
             } else {
@@ -104,16 +112,16 @@ function Battle(props) {
             };
             break;
           case 'Water':
-            if (monsterArray[0].element == 'Water') {
+            if (currentMonster.element == 'Water') {
               damageToMonster = 2;
               damageToGod = 2;
-            } else if (monsterArray[0].element == 'Fire') {
+            } else if (currentMonster.element == 'Fire') {
               damageToMonster = 3;
               damageToGod = 1;
-            } else if (monsterArray[0].element == 'Sky') {
+            } else if (currentMonster.element == 'Sky') {
               damageToMonster = 1;
               damageToGod = 3;
-            } else if (monsterArray[0].element == 'Earth') {
+            } else if (currentMonster.element == 'Earth') {
               damageToMonster = 2;
               damageToGod = 2;
             } else {
@@ -127,21 +135,28 @@ function Battle(props) {
         }//end switch statement checking god element
 
         //damage multiplier for culture match
-        if (godArray[i].culture == monsterArray[0].culture) {
+        if (godArray[i].culture == currentMonster.culture) {
           damageToMonster *= 2;
           damageToGod *= 2;
         }
         //prevent negative power rating for gods
         if (damageToGod > godArray[i].power) { damageToGod = godArray[i].power }
 
-
-
         console.log(godArray[i].name, 'Damage To Monster', damageToMonster, 'Damage To God', damageToGod);
-        // monsterPower -= damageToMonster;
         let updatedGodPower = godArray[i].power - damageToGod;
-        console.log('End of attack. godId =', godArray[i].id, 'updatedGodPower =', updatedGodPower);
-        // dispatch({ type: 'SET_USER_GOD_POWER', action: godPower})
+        let updatedMonsterPower = currentMonster.power -= damageToMonster;
         dispatch({ type: 'UPDATE_USER_GOD_POWER', action: godArray[i].id, updatedGodPower })
+        dispatch({ type: 'UPDATE_USER_MONSTER_POWER', action: currentMonster.id, updatedMonsterPower })
+
+
+        //determine victory status by checking power of monster and ALL gods 
+        if (monsterPower <= 0) {
+          console.log('Monster:', updatedMonsterPower, 'Gods:', updatedGodPower, 'Victory');
+        } else if (godPower <= 0) {
+          console.log('Monster:', updatedMonsterPower, 'Gods:', updatedGodPower, 'Defeat')
+        } else {
+          console.log('Monster:', updatedMonsterPower, 'Gods:', updatedGodPower, 'The battle continues!');
+        };
 
       }//end if else checking god disabled/enabled
     }//end for loop of godArray
@@ -150,8 +165,8 @@ function Battle(props) {
 
 
   return (
-    <div>
-      <MonsterCard />
+    <div className="battleGrid">
+      <MonsterCard currentMonster={currentMonster} />
       <button>Change Position</button>
       <button onClick={attack}>Attack!</button>
       <GodCard />

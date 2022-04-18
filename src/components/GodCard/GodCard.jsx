@@ -20,7 +20,7 @@ function GodCard(props) {
   }, []);
 
   return (
-    <div>
+    <div className="godCardContainer">
       {godArray.map(god => {
         return (
           <div className="godCard" key={god.id} >
