@@ -24,8 +24,15 @@ function* fetchUser() {
   }
 }
 
-function* updateDevotion() {
-  
+function* updateDevotion(action) {
+  console.log('updateDevotion', action);
+  try {
+      yield axios.put(`api/user/${action.updatedDevotion}/${action.payload}`)
+      yield put({ type: 'FETCH_USER'});
+  }
+  catch(err){
+      console.log(err);    
+  }
 }
 
 function* userSaga() {

@@ -16,6 +16,7 @@ function GodCard({attack}) {
   const [inBattle, setInBattle] = useState(false);
 
   const godArray = store.usersGods;
+  const user = useSelector((store) => store.user);
   
   const checkInBattle = () => {
     if(location.pathname === '/battle'){
@@ -33,9 +34,14 @@ function GodCard({attack}) {
     updatedGodPower += 1;
     console.log('increasePower', godId, updatedGodPower);
     dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: godId, updatedGodPower})
-    // dispatch({ })
-  }
+    decreaseDevotion(user.id, user.devotion);
+  };
 
+  const decreaseDevotion = (userId, updatedDevotion) => {
+    updatedDevotion -= 1;
+    console.log('decreaseDevotion', userId, updatedDevotion);
+    dispatch({ type: 'UPDATE_DEVOTION', payload: userId, updatedDevotion})
+  };
   
   return (
     <>
