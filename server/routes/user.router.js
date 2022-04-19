@@ -47,4 +47,31 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+/**
+ * PUT route template
+//  */
+router.put('/:devotion/:id', (req, res) => {
+  // PUT route code here
+  console.log('user.router PUT devotion:', req.params);
+
+  //id is the id in "users_gods" join table
+  const devotion = req.params.devotion;
+  const id = req.params.id;
+
+  const queryText = `
+      UPDATE "user"
+      SET "devotion" = $1
+      WHERE "id" = $2
+      ;`
+  // console.log('god.router GET User ID ', req.user.id);
+  pool.query(queryText, [devotion, id])
+  .then((result) => {
+      res.send(result.rows);
+    })
+  .catch((err) => {
+    console.log('user.router PUT results failed: ', err);
+    res.sendStatus(500);
+  });
+});
+
 module.exports = router;

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {useLocation} from 'react-router-dom'
 import GodCard from '../GodCard/GodCard';
 import MonsterCard from '../MonsterCard/MonsterCard';
 
 //styling
 import './Battle.scss';
 
-
-
 function Battle() {
 
 
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [display, setDisplay] = useState('Click a God to attack!')
 
@@ -49,6 +49,10 @@ function Battle() {
   }
 
   const attack = (event) => {
+
+    if(location.pathname !== '/battle'){
+      return 'false';
+    }
 
     const id = event;
     const attackingGod = godArray.find(god => {
@@ -158,7 +162,7 @@ function Battle() {
         //set and update power level for god and monster
         let updatedGodPower = attackingGod.power - damageToGod;
         let updatedMonsterPower = currentMonster.power -= damageToMonster;
-        dispatch({ type: 'UPDATE_USER_GOD_POWER', action: attackingGod.id, updatedGodPower })
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod.id, updatedGodPower })
         dispatch({ type: 'UPDATE_USER_MONSTER_POWER', action: currentMonster.id, updatedMonsterPower })
 
         //display damage to DOM
