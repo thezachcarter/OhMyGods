@@ -6,12 +6,12 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    
 }
 
-.battleBtn{
-    height: 50px;
-    width: 100px;
-    align-self: center;
+.app {
+    width: 100vw;
+    height: 100vh;
 }
 
 .battleGrid {
@@ -22,7 +22,14 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+    
+
+    .battleBtn{
+        height: 50px;
+        width: 1fr;
+        align-self: center;
+    }
 
     .positionBtn{
         grid-column: 2 / 3;
@@ -33,6 +40,8 @@
         grid-column: 9 / 10;
         grid-row: 1 / 2;
     }
+    
+    
 
     .monsterCardContainer {
         display: flex;

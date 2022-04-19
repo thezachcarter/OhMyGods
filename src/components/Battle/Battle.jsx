@@ -15,10 +15,18 @@ function Battle(props) {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch({ type: 'GET_USERS_GODS' });
+  //   dispatch({ type: 'GET_USERS_MONSTERS' });
+  // }, []);
+
   // const [monsterArray, setMonsterArray ]= useState(store.usersMonsters);
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
-  console.log('in BATTLE', monsterArray, godArray)
+  
+  //set gods to swap
+  const [god1, setGod1] = useState('');
+  const [god2, setGod2] = useState('');
 
   //checks array for first monster, by id, that has not been defeated
   //also resets to beginning of monsters if order gets messed up in testing
@@ -31,9 +39,7 @@ function Battle(props) {
       setCurrentMonster(monster);
     }
   })
-  console.log('CURRENT MONSTER', currentMonster);
-
-
+  
   const attack = () => {
     console.log('ATTACK clicked');
 
@@ -50,7 +56,7 @@ function Battle(props) {
 
     //for loop to set damageToMonsterToMonster based on element comparison
     for (let i = 0; i < godArray.length; i++) {
-      console.log(godArray[i]);
+      console.log('GOD ARRAY', godArray);
       //check if individual god is defeated
       if (godArray[i].power === 0) {
         console.log(godArray[i].name, 'DEFEATED');
@@ -162,14 +168,42 @@ function Battle(props) {
     }//end for loop of godArray
   }
 
+  const toggleSelect = (event) => {
+    
+    let i = event-1;
+    console.log(event, 'selected', godArray);
+
+    if( god1 === godArray[i].name){
+      setGod1('')
+    } else if( god1 === ''){
+      setGod1(godArray[i].name)
+    } else if( god2 === godArray[i].name){
+      setGod2('')
+    } else{
+      setGod2(godArray[i].name)
+    }
+  }
+
+  const swapPosition = (godArray, god1, god2) => {
+
+  }
 
 
+
+  console.log('CURRENT MONSTER', currentMonster);
+  console.log('GOD ARRAY', godArray[0]?.name);
   return (
     <div className="battleGrid">
       <MonsterCard currentMonster={currentMonster} />
-      <button className="positionBtn battleBtn">Change Position</button>
+      <button className="positionBtn battleBtn" onClick={swapPosition}>Change Position</button>
       <button className="attackBtn battleBtn" onClick={attack}>Attack!</button>
-      <GodCard />
+
+      <div className="infoDisplay">
+        <p>GOD 1: {god1}</p>
+        <p>GOD 2: {god2}</p>
+      </div>
+
+      <GodCard toggleSelect={toggleSelect}/>
     </div>
   );
 }
