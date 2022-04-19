@@ -41,8 +41,14 @@ function Battle(props) {
     }
   })
   
-  const attack = () => {
-    console.log('ATTACK clicked');
+  const attack = (event) => {
+
+    const id = event;
+    const attackingGod = godArray.find(god => {
+      return god.id === id
+    });
+
+    console.log('ATTACK clicked', attackingGod);
 
     //power level of monster, value will change on client side, not in db
     let monsterPower = currentMonster.power
@@ -56,14 +62,14 @@ function Battle(props) {
     let damageToGod = 2;
 
     //for loop to set damageToMonsterToMonster based on element comparison
-    for (let i = 0; i < godArray.length; i++) {
+    // for (let i = 0; i < godArray.length; i++) {
       console.log('GOD ARRAY', godArray);
       //check if individual god is defeated
-      if (godArray[i].power === 0) {
-        console.log(godArray[i].name, 'DEFEATED');
+      if (attackingGod.power === 0) {
+        console.log(attackingGod.name, 'DEFEATED');
       } else {
-        console.log('ELEMENTS, God:', godArray[i].element, 'Monster:', currentMonster.element);
-        switch (godArray[i].element) {
+        console.log('ELEMENTS, God:', attackingGod.element, 'Monster:', currentMonster.element);
+        switch (attackingGod.element) {
           case 'Earth':
             if (currentMonster.element == 'Earth') {
               damageToMonster = 2;
@@ -142,17 +148,17 @@ function Battle(props) {
         }//end switch statement checking god element
 
         //damage multiplier for culture match
-        if (godArray[i].culture == currentMonster.culture) {
+        if (attackingGod.culture == currentMonster.culture) {
           damageToMonster *= 2;
           damageToGod *= 2;
         }
         //prevent negative power rating for gods
-        if (damageToGod > godArray[i].power) { damageToGod = godArray[i].power }
+        if (damageToGod > attackingGod.power) { damageToGod = attackingGod.power }
 
-        console.log(godArray[i].name, 'Damage To Monster', damageToMonster, 'Damage To God', damageToGod);
-        let updatedGodPower = godArray[i].power - damageToGod;
+        console.log(attackingGod.name, 'Damage To Monster', damageToMonster, 'Damage To God', damageToGod);
+        let updatedGodPower = attackingGod.power - damageToGod;
         let updatedMonsterPower = currentMonster.power -= damageToMonster;
-        dispatch({ type: 'UPDATE_USER_GOD_POWER', action: godArray[i].id, updatedGodPower })
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', action: attackingGod.id, updatedGodPower })
         dispatch({ type: 'UPDATE_USER_MONSTER_POWER', action: currentMonster.id, updatedMonsterPower })
 
 
@@ -166,33 +172,33 @@ function Battle(props) {
         };
 
       }//end if else checking god disabled/enabled
-    }//end for loop of godArray
+    // }//end for loop of godArray
   }
 
-  const toggleSelect = (event) => {
+  // const toggleSelect = (event) => {
     
-    let i = event-1;
-    console.log(event, 'selected', godArray[i]);
+  //   let i = event-1;
+  //   console.log(event, 'selected', godArray[i]);
 
-    if( god1 === godArray[i]){
-      setGod1('')
-    } else if( god1 === ''){
-      setGod1(i)
-    } else if( god2 === godArray[i]){
-      setGod2('')
-    } else{
-      setGod2(i)
-    }
-  }
+  //   if( god1 === godArray[i]){
+  //     setGod1('')
+  //   } else if( god1 === ''){
+  //     setGod1(i)
+  //   } else if( god2 === godArray[i]){
+  //     setGod2('')
+  //   } else{
+  //     setGod2(i)
+  //   }
+  // }
 
-  const swapPosition = () => {
-    console.log('swapPosition:', godArray, god1, god2)
-    let tempArray = godArray[god1];
-      godArray[god1] = godArray[god2];
-      godArray[god2] = tempArray;
-      console.log(godArray);
-      dispatch({ type: 'GET_UPDATED_GODS_ORDER', payload: godArray })
-    };
+  // const swapPosition = () => {
+  //   console.log('swapPosition:', godArray, god1, god2)
+  //   let tempArray = godArray[god1];
+  //     godArray[god1] = godArray[god2];
+  //     godArray[god2] = tempArray;
+  //     console.log(godArray);
+  //     dispatch({ type: 'GET_UPDATED_GODS_ORDER', payload: godArray })
+  //   };
   
 
 
@@ -202,7 +208,7 @@ function Battle(props) {
   return (
     <div className="battleGrid">
       <MonsterCard currentMonster={currentMonster} />
-      <button className="positionBtn battleBtn" onClick={swapPosition}>Change Position</button>
+      {/* <button className="positionBtn battleBtn" onClick={swapPosition}>Change Position</button> */}
       <button className="attackBtn battleBtn" onClick={attack}>Attack!</button>
 
       <div className="infoDisplay">
@@ -210,7 +216,7 @@ function Battle(props) {
         <p>GOD 2: {godArray[god2]?.name}</p>
       </div>
 
-      <GodCard toggleSelect={toggleSelect}/>
+      <GodCard attack={attack}/>
     </div>
   );
 }
