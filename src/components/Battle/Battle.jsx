@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import GodCard from '../GodCard/GodCard';
 import MonsterCard from '../MonsterCard/MonsterCard';
 
+//styling
+import './Battle.scss';
+
+
 
 function Battle() {
 
