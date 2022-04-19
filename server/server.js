@@ -12,7 +12,9 @@ const userRouter = require('./routes/user.router');
 const godRouter = require('./routes/gods.router');
 const monsterRouter = require('./routes/monster.router');
 const usersGodsRouter = require('./routes/usersGods.router');
-const usersMonstersRouter = require('./routes/usersMonsters.router')
+const usersMonstersRouter = require('./routes/usersMonsters.router');
+const adminGodsRouter = require('./routes/adminGods.router');
+const adminMonstersRouter = require('./routes/adminMonsters.router');
 
 
 // Body parser middleware
