@@ -209,11 +209,11 @@ function Battle(props) {
     <div className="battleGrid">
       <MonsterCard currentMonster={currentMonster} />
       {/* <button className="positionBtn battleBtn" onClick={swapPosition}>Change Position</button> */}
-      <button className="attackBtn battleBtn" onClick={attack}>Attack!</button>
+      {/* <button className="attackBtn battleBtn" onClick={attack}>Attack!</button> */}
 
       <div className="infoDisplay">
-        <p>GOD 1: {godArray[god1]?.name}</p>
-        <p>GOD 2: {godArray[god2]?.name}</p>
+        {/* <p>GOD 1: {godArray[god1]?.name}</p>
+        <p>GOD 2: {godArray[god2]?.name}</p> */}
       </div>
 
       <GodCard attack={attack}/>
