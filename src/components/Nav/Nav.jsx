@@ -16,29 +16,41 @@ function Nav() {
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links
+          <>
           <Link className="navLink" to="/login">
             Login / Register
           </Link>
+
+          <Link className="navLink" to="/about">
+          About
+          </Link>
+          </>
         )}
 
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            {/* <Link className="navLink" to="/user">
-              Home
+
+            <h2 className="navLink" >{user.username}</h2>
+
+            <Link className="navLink" to="/user">
+              How To Play
+            </Link>
+
+            <Link className="navLink" to="/about">
+            About
             </Link>
 
             <Link className="navLink" to="/info">
-              Info Page
-            </Link> */}
+              Conquered Monsters
+            </Link>
 
             <LogOutButton className="navLink" />
+
+            <h2 className="navLink" >Devotion:{user.devotion}</h2>
           </>
         )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
       </div>
     </div>
   );
