@@ -6,8 +6,11 @@ import MonsterCard from '../MonsterCard/MonsterCard';
 
 function Battle() {
 
+
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
+
+  const [display, setDisplay] = useState('Click a God to attack!')
 
   // const [monsterArray, setMonsterArray ]= useState(store.usersMonsters);
   const monsterArray = store.usersMonsters;
@@ -25,21 +28,28 @@ function Battle() {
     }
   })
   
+  //power level of monster, value will change on client side, not in db
+  const monsterPower = currentMonster.power
+  //total power level of all gods
+  const totalGodPower = godArray.reduce((accumulator, object) => {
+    return accumulator + object.power;
+  }, 0);
+
+  //determine victory status by checking power of monster and ALL gods 
+  const battleStatus = () => {
+    if (monsterPower <= 0) {
+      setDisplay('Victory!');
+    } else if (totalGodPower <= 0) {
+      setDisplay('Defeat')
+    };
+  }
+
   const attack = (event) => {
 
     const id = event;
     const attackingGod = godArray.find(god => {
       return god.id === id
     });
-
-    console.log('ATTACK clicked', attackingGod);
-
-    //power level of monster, value will change on client side, not in db
-    let monsterPower = currentMonster.power
-    //total power level of all gods
-    const godPower = godArray.reduce((accumulator, object) => {
-      return accumulator + object.power;
-    }, 0);
 
     //base damageToMonster, before checking element or culture = 2
     let damageToMonster = 2;
@@ -48,7 +58,11 @@ function Battle() {
       console.log('GOD ARRAY', godArray);
       //check if individual god is defeated
       if (attackingGod.power === 0) {
-        console.log(attackingGod.name, 'DEFEATED');
+        console.log(attackingGod.name, 'THIS GOD IS DEFEATED');
+        setDisplay(`${attackingGod.name} has been defeated.`)
+      } else if (attackingGod.id == store.lastAttack && attackingGod.power !== totalGodPower){
+          console.log('THIS GOD CANNOT REPEAT ATTACKS');
+          setDisplay(`${attackingGod.name} just attacked. Choose another God.`)
       } else {
         console.log('ELEMENTS, God:', attackingGod.element, 'Monster:', currentMonster.element);
         switch (attackingGod.element) {
@@ -143,20 +157,20 @@ function Battle() {
         dispatch({ type: 'UPDATE_USER_GOD_POWER', action: attackingGod.id, updatedGodPower })
         dispatch({ type: 'UPDATE_USER_MONSTER_POWER', action: currentMonster.id, updatedMonsterPower })
 
+        //display damage to DOM
+        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster}
+           Damage to ${attackingGod.name} = ${damageToGod}
+          `);
+
         dispatch({ type: 'SET_LAST_ATTACK', action: attackingGod})
         console.log('LAST ATTACK:', store.lastAttack);
 
-        //determine victory status by checking power of monster and ALL gods 
-        if (monsterPower <= 0) {
-          console.log('Monster:', updatedMonsterPower, 'Gods:', updatedGodPower, 'Victory');
-        } else if (godPower <= 0) {
-          console.log('Monster:', updatedMonsterPower, 'Gods:', updatedGodPower, 'Defeat')
-        } else {
-          console.log('Monster:', updatedMonsterPower, 'Gods:', updatedGodPower, 'The battle continues!');
-        };
+        battleStatus();
 
       }//end if else checking god disabled/enabled
-  }
+  }//end attack function
+
+  
   
   console.log('CURRENT MONSTER', currentMonster);
   console.log('GOD ARRAY', godArray[0]?.name);
@@ -166,9 +180,10 @@ function Battle() {
       {/* <button className="positionBtn battleBtn" onClick={swapPosition}>Change Position</button> */}
       {/* <button className="attackBtn battleBtn" onClick={attack}>Attack!</button> */}
 
-      <div className="infoDisplay">
-        {/* <p>GOD 1: {godArray[god1]?.name}</p>
-        <p>GOD 2: {godArray[god2]?.name}</p> */}
+      <div className="infoDisplayContainer">
+        <div className="infoDisplay">
+          {display}   
+        </div>
       </div>
 
       <GodCard attack={attack}/>
