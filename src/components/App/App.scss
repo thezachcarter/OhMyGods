@@ -11,7 +11,11 @@
 
 .app {
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
+}
+
+.nav {
+    height: 10%;
 }
 
 .battleGrid {
@@ -22,7 +26,7 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     width: 100vw;
-    height: 90vw;
+    height: 90%;
     
     .monsterCardContainer {
         display: flex;
