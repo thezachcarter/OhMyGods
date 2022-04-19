@@ -15,9 +15,10 @@ function* getUsersGods (){
 }
 
 function* updateUserGodPower(action) {
-    console.log('updateUserGodPower', action.action, action.updatedGodPower);
+
+    console.log('updateUserGodPower', action);
     try {
-        yield axios.put(`api/usersGods/${action.updatedGodPower}/${action.action}`)
+        yield axios.put(`api/usersGods/${action.updatedGodPower}/${action.payload}`)
         yield put({ type: 'GET_USERS_GODS'});
     }
     catch(err){
@@ -35,22 +36,22 @@ function* setLastAttack(action) {
     }
 }
 
-function* addGodPower(action) {
-    console.log('addGodPower', action);
-    try{
-        yield axios.put(`api/usersGods/${action.payload}`)
-    }
-    catch(err){
-        console.log(err);
+// function* addGodPower(action) {
+//     console.log('addGodPower', action);
+//     try{
+//         yield axios.put(`api/usersGods/${action.payload}`)
+//     }
+//     catch(err){
+//         console.log(err);
         
-    }
-}
+//     }
+// }
 
 function* getUsersGodsWatcher() {
     yield takeLatest('GET_USERS_GODS', getUsersGods);
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
     yield takeLatest('SET_LAST_ATTACK', setLastAttack);
-    yield takeLatest('ADD_GOD_POWER', addGodPower);
+    // yield takeLatest('ADD_GOD_POWER', addGodPower);
 
 }
 

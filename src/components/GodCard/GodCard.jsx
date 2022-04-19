@@ -29,8 +29,10 @@ function GodCard({attack}) {
     dispatch({ type: 'GET_USERS_GODS' });
   }, []);
 
-  const increasePower = (god) => {
-    dispatch({ type: 'ADD_GOD_POWER', payload: god})
+  const increasePower = (godId, updatedGodPower) => {
+    updatedGodPower += 1;
+    console.log('increasePower', godId, updatedGodPower);
+    dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: godId, updatedGodPower})
     // dispatch({ })
   }
 
@@ -75,7 +77,7 @@ function GodCard({attack}) {
             /> 
             <p>{god.culture}</p>
             <p>{god.element}</p>
-            <button onClick={(() => increasePower(god.id))}>⬆</button>
+            <button onClick={(() => increasePower(god.id, god.power))}>⬆</button>
             <p>{god.power}</p>
           </div>
         );
