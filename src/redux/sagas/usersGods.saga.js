@@ -25,10 +25,20 @@ function* updateUserGodPower(action) {
     }
 }
 
+function* setLastAttack(action) {
+    console.log('setLastAttack', action);
+    try{
+        yield put({type: 'SET_LAST_ATTACK_STATE', payload: action})
+    }
+    catch(err){
+        console.log(err); 
+    }
+}
+
 function* getUsersGodsWatcher() {
     yield takeLatest('GET_USERS_GODS', getUsersGods);
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
-    // yield takeLatest('GET_UPDATED_GODS_ORDER')
+    yield takeLatest('SET_LAST_ATTACK', setLastAttack);
 }
 
 export default getUsersGodsWatcher;

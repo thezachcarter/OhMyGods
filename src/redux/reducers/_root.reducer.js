@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import usersGods from './usersGods.reducer';
 import usersMonsters from './usersMonsters.reducer';
+import lastAttack from './lastAttack.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   usersGods,
   usersMonsters,
+  lastAttack,
 });
 
 export default rootReducer;

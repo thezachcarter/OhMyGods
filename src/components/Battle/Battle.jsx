@@ -4,30 +4,14 @@ import GodCard from '../GodCard/GodCard';
 import MonsterCard from '../MonsterCard/MonsterCard';
 
 
-
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
-function Battle(props) {
-  // Using hooks we're creating local state for a "heading" variable with
-  // a default value of 'Functional Component'
+function Battle() {
 
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch({ type: 'GET_USERS_GODS' });
-  //   dispatch({ type: 'GET_USERS_MONSTERS' });
-  // }, []);
-
   // const [monsterArray, setMonsterArray ]= useState(store.usersMonsters);
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
-  
-  
-  //set gods to swap
-  const [god1, setGod1] = useState('');
-  const [god2, setGod2] = useState('');
 
   //checks array for first monster, by id, that has not been defeated
   //also resets to beginning of monsters if order gets messed up in testing
@@ -61,8 +45,6 @@ function Battle(props) {
     let damageToMonster = 2;
     let damageToGod = 2;
 
-    //for loop to set damageToMonsterToMonster based on element comparison
-    // for (let i = 0; i < godArray.length; i++) {
       console.log('GOD ARRAY', godArray);
       //check if individual god is defeated
       if (attackingGod.power === 0) {
@@ -145,7 +127,7 @@ function Battle(props) {
           default:
             damageToMonster = 2;
             damageToGod = 2;
-        }//end switch statement checking god element
+        }//end switch statement checking elements
 
         //damage multiplier for culture match
         if (attackingGod.culture == currentMonster.culture) {
@@ -155,12 +137,14 @@ function Battle(props) {
         //prevent negative power rating for gods
         if (damageToGod > attackingGod.power) { damageToGod = attackingGod.power }
 
-        console.log(attackingGod.name, 'Damage To Monster', damageToMonster, 'Damage To God', damageToGod);
+        //set and update power level for god and monster
         let updatedGodPower = attackingGod.power - damageToGod;
         let updatedMonsterPower = currentMonster.power -= damageToMonster;
         dispatch({ type: 'UPDATE_USER_GOD_POWER', action: attackingGod.id, updatedGodPower })
         dispatch({ type: 'UPDATE_USER_MONSTER_POWER', action: currentMonster.id, updatedMonsterPower })
 
+        dispatch({ type: 'SET_LAST_ATTACK', action: attackingGod})
+        console.log('LAST ATTACK:', store.lastAttack);
 
         //determine victory status by checking power of monster and ALL gods 
         if (monsterPower <= 0) {
@@ -172,37 +156,8 @@ function Battle(props) {
         };
 
       }//end if else checking god disabled/enabled
-    // }//end for loop of godArray
   }
-
-  // const toggleSelect = (event) => {
-    
-  //   let i = event-1;
-  //   console.log(event, 'selected', godArray[i]);
-
-  //   if( god1 === godArray[i]){
-  //     setGod1('')
-  //   } else if( god1 === ''){
-  //     setGod1(i)
-  //   } else if( god2 === godArray[i]){
-  //     setGod2('')
-  //   } else{
-  //     setGod2(i)
-  //   }
-  // }
-
-  // const swapPosition = () => {
-  //   console.log('swapPosition:', godArray, god1, god2)
-  //   let tempArray = godArray[god1];
-  //     godArray[god1] = godArray[god2];
-  //     godArray[god2] = tempArray;
-  //     console.log(godArray);
-  //     dispatch({ type: 'GET_UPDATED_GODS_ORDER', payload: godArray })
-  //   };
   
-
-
-
   console.log('CURRENT MONSTER', currentMonster);
   console.log('GOD ARRAY', godArray[0]?.name);
   return (
