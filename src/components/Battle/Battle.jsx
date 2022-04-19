@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {useLocation} from 'react-router-dom'
 import GodCard from '../GodCard/GodCard';
 import MonsterCard from '../MonsterCard/MonsterCard';
 
 //styling
 import './Battle.scss';
 
-
-
 function Battle() {
 
 
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [display, setDisplay] = useState('Click a God to attack!')
 
@@ -49,6 +49,10 @@ function Battle() {
   }
 
   const attack = (event) => {
+
+    if(location.pathname !== '/battle'){
+      return 'false';
+    }
 
     const id = event;
     const attackingGod = godArray.find(god => {

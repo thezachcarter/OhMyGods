@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {useHistory, useLocation} from 'react-router-dom';
 import { attack } from '../Battle/Battle';
 import './GodCard.css'
 
@@ -11,19 +12,35 @@ function GodCard({attack}) {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
-  const [heading, setHeading] = useState('Functional Component');
+  const location = useLocation();
+  const [inBattle, setInBattle] = useState(false);
 
   const godArray = store.usersGods;
+  
+  const checkInBattle = () => {
+    if(location.pathname === '/battle'){
+      setInBattle(true);
+      console.log('inBattle?', inBattle);
+    }
+  };
 
   useEffect(() => {
+    checkInBattle();
     dispatch({ type: 'GET_USERS_GODS' });
   }, []);
 
+  const increasePower = (god) => {
+    dispatch({ type: 'ADD_GOD_POWER', payload: god})
+    // dispatch({ })
+  }
+
+  
   return (
     <div className="godCardContainer">
       {godArray.map(god => {
         return (
-          <div className="godCard" onClick={((event) => attack(god.id))} key={god.id} >
+
+          <div className="godCard" onClick={((event) => attack(god.id))} key={god.id}>
             <p>{god.name}</p>
             <img
               className="godImg"
@@ -32,6 +49,7 @@ function GodCard({attack}) {
             /> 
             <p>{god.culture}</p>
             <p>{god.element}</p>
+            <button onClick={(() => increasePower(god.id))}>⬆</button>
             <p>{god.power}</p>
           </div>
         );

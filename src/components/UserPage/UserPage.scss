@@ -1,0 +1,40 @@
+.userPageGrid {
+
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100vw;
+    height: 90%;
+
+    .title {
+        grid-column: 4 / 8;
+        justify-self: center;
+        align-self: center;
+    }
+    
+    .battleBtn {
+        grid-column: 4 / 8;
+        justify-self: center;
+        align-self: bottom;
+        width: 200px;
+    }
+
+    .godCardContainer{
+        display: flex;
+        grid-row: 4 / 6 ;
+        grid-column: 2 / 10;
+        justify-content: center;
+    }
+
+    .godCard {
+        width: 200px;
+        height: 300px;
+        margin: 16px;
+        padding: 16px;
+        background-color: gray;
+        text-align: center;    
+    }
+    
+}

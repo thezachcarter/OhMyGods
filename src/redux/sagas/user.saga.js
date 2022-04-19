@@ -24,8 +24,13 @@ function* fetchUser() {
   }
 }
 
+function* updateDevotion() {
+  
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('UPDATE_DEVOTION', updateDevotion);
 }
 
 export default userSaga;

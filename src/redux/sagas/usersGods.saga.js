@@ -35,10 +35,23 @@ function* setLastAttack(action) {
     }
 }
 
+function* addGodPower(action) {
+    console.log('addGodPower', action);
+    try{
+        yield axios.put(`api/usersGods/${action.payload}`)
+    }
+    catch(err){
+        console.log(err);
+        
+    }
+}
+
 function* getUsersGodsWatcher() {
     yield takeLatest('GET_USERS_GODS', getUsersGods);
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
     yield takeLatest('SET_LAST_ATTACK', setLastAttack);
+    yield takeLatest('ADD_GOD_POWER', addGodPower);
+
 }
 
 export default getUsersGodsWatcher;
