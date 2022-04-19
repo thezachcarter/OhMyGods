@@ -36,11 +36,37 @@ function GodCard({attack}) {
 
   
   return (
-    <div className="godCardContainer">
+    <>
+    {/* ternary to check for battle and render cards accordingly */}
+    {inBattle ?
+      
+      <div className="godCardContainer">
       {godArray.map(god => {
         return (
 
           <div className="godCard" onClick={((event) => attack(god.id))} key={god.id}>
+            <p>{god.name}</p>
+            <img
+              className="godImg"
+              src={god.image}
+              alt={god.name}
+            /> 
+            <p>{god.culture}</p>
+            <p>{god.element}</p>
+            
+            <p>{god.power}</p>
+          </div>
+        );
+      })}
+    </div>
+
+    :
+
+    <div className="godCardContainer">
+      {godArray.map(god => {
+        return (
+
+          <div className="godCard" key={god.id}>
             <p>{god.name}</p>
             <img
               className="godImg"
@@ -55,7 +81,13 @@ function GodCard({attack}) {
         );
       })}
     </div>
-  );
+
+    }
+    {/* end inBattle ternary  */}
+
+  </>
+  );//end return
+  
 }
 
 export default GodCard;
