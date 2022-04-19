@@ -24,6 +24,7 @@ function Battle(props) {
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
   
+  
   //set gods to swap
   const [god1, setGod1] = useState('');
   const [god2, setGod2] = useState('');
@@ -171,22 +172,28 @@ function Battle(props) {
   const toggleSelect = (event) => {
     
     let i = event-1;
-    console.log(event, 'selected', godArray);
+    console.log(event, 'selected', godArray[i]);
 
-    if( god1 === godArray[i].name){
+    if( god1 === godArray[i]){
       setGod1('')
     } else if( god1 === ''){
-      setGod1(godArray[i].name)
-    } else if( god2 === godArray[i].name){
+      setGod1(i)
+    } else if( god2 === godArray[i]){
       setGod2('')
     } else{
-      setGod2(godArray[i].name)
+      setGod2(i)
     }
   }
 
-  const swapPosition = (godArray, god1, god2) => {
-
-  }
+  const swapPosition = () => {
+    console.log('swapPosition:', godArray, god1, god2)
+    let tempArray = godArray[god1];
+      godArray[god1] = godArray[god2];
+      godArray[god2] = tempArray;
+      console.log(godArray);
+      dispatch({ type: 'GET_UPDATED_GODS_ORDER', payload: godArray })
+    };
+  
 
 
 
@@ -199,8 +206,8 @@ function Battle(props) {
       <button className="attackBtn battleBtn" onClick={attack}>Attack!</button>
 
       <div className="infoDisplay">
-        <p>GOD 1: {god1}</p>
-        <p>GOD 2: {god2}</p>
+        <p>GOD 1: {godArray[god1]?.name}</p>
+        <p>GOD 2: {godArray[god2]?.name}</p>
       </div>
 
       <GodCard toggleSelect={toggleSelect}/>
