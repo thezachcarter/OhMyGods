@@ -1,6 +1,6 @@
-const godsReducer = (state = [], action) => {
+const usersGods = (state = [], action) => {
     switch (action.type) {
-      case 'SET_GODS':
+      case 'SET_USERS_GODS':
         return action.payload;
       default:
         return state;
@@ -9,5 +9,5 @@ const godsReducer = (state = [], action) => {
   
   // user will be on the redux state at:
   // state.user
-  export default godsReducer;
+  export default usersGods;
   

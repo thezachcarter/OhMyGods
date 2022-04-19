@@ -24,7 +24,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 //added components
 import Battle from '../Battle/Battle';
 
-import './App.css';
+// import './App.css';
+import './App.scss'
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className="app">
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
