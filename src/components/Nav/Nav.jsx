@@ -47,7 +47,7 @@ function Nav() {
 
             <LogOutButton className="navLink" />
 
-            <h2 className="navLink" >Devotion:{user.devotion}</h2>
+            <h2 className="navLink" >Devotion: {user.devotion}</h2>
           </>
         )}
 
