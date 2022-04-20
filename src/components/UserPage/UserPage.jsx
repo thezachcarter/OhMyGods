@@ -1,5 +1,5 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import GodCard from '../GodCard/GodCard';
 
@@ -8,9 +8,12 @@ import './UserPage.scss'
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch()
+  const store = useSelector((store) => store);
+  const user = store.user;
   const history = useHistory();
   const location = useLocation();
+
 
   console.log(location);
   return (

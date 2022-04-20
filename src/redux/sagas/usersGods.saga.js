@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-import { useSelector } from 'react-redux';
-
 
 //get user's gods from the DB 
 function* getUsersGods (action){
@@ -52,8 +50,6 @@ function* getUsersGodsWatcher() {
     yield takeLatest('GET_USERS_GODS', getUsersGods);
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
     yield takeLatest('SET_LAST_ATTACK', setLastAttack);
-    // yield takeLatest('ADD_GOD_POWER', addGodPower);
-
 }
 
 export default getUsersGodsWatcher;
