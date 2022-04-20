@@ -42,11 +42,11 @@ function Battle() {
   }, 0);
 
   //determine victory status by checking power of monster and ALL gods 
-  const battleStatus = () => {
+  const checkBattleStatus = () => {
     if (monsterPower <= 0) {
       setDisplay('Victory!');
     } else if (totalGodPower <= 0) {
-      setDisplay('Defeat')
+      setDisplay('Defeat!')
     };
   }
 
@@ -175,7 +175,7 @@ function Battle() {
         dispatch({ type: 'SET_LAST_ATTACK', action: attackingGod})
         console.log('LAST ATTACK:', store.lastAttack);
 
-        battleStatus();
+        checkBattleStatus();
 
       }//end if else checking god disabled/enabled
   }//end attack function

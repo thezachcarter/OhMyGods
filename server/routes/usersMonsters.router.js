@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/:user', (req, res) => {
+router.get('/', (req, res) => {
 
     const id = req.user.id
 
@@ -39,14 +39,12 @@ router.post('/', (req, res) => {
 /**
  * PUT route template
 //  */
-router.put('/:power/:id', (req, res) => {
+router.put('/:power', (req, res) => {
     // PUT route code here
-    console.log('usersMonsters.router PUT params', req.params);
-    
 
     //id is the id in "users_monsters" join table
     const power = req.params.power;
-    const id = req.params.id;
+    const id = req.user.id;
 
     const queryText = `
         UPDATE "users_monsters" 

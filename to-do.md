@@ -9,6 +9,7 @@ where power != 0
 [ ] ADMIN MODE!
 [ ] admin authorization
 [ ] prevent devotion going negative
-[ ] fix bug where gods disappear on refresh of battle page - submit ticket!
+[x] fix bug where gods disappear on refresh of battle page - submit ticket!
 [ ] clean up SQL add to database.sql
 [ ] remove all user info from URLs in router, replace w/ req.user
+[ ] Victory/Defeat Alerts, add devotion, click to continue

@@ -5,7 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* getUsersMonsters (action){
     
     try {
-        const usersMonsters = yield axios.get(`/api/usersMonsters/${action.payload}`);
+        const usersMonsters = yield axios.get(`/api/usersMonsters`);
         console.log('get all users monsters:', usersMonsters.data);
         yield put({ type: 'SET_USERS_MONSTERS', payload: usersMonsters.data });
         
@@ -16,8 +16,8 @@ function* getUsersMonsters (action){
 
 function* updateUserMonsterPower(action) {
     try {
-        yield axios.put(`api/usersMonsters/${action.updatedMonsterPower}/${action.payload.id}`)
-        yield put({ type: 'GET_USERS_MONSTERS', payload: action.payload.user});
+        yield axios.put(`api/usersMonsters/${action.updatedMonsterPower}`)
+        yield put({ type: 'GET_USERS_MONSTERS'});
     }
     catch(err){
         console.log(err);    

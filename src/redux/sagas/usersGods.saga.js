@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 //get user's gods from the DB 
 function* getUsersGods (action){
     try {
-        const usersGods = yield axios.get(`/api/usersGods/${action.payload}`);
+        const usersGods = yield axios.get(`/api/usersGods`);
         console.log('get all:', usersGods.data);
         yield put({ type: 'SET_USERS_GODS', payload: usersGods.data });
 
@@ -17,8 +17,8 @@ function* updateUserGodPower(action) {
 
     console.log('updateUserGodPower', action);
     try {
-        yield axios.put(`api/usersGods/${action.updatedGodPower}/${action.payload.id}`)
-        yield put({ type: 'GET_USERS_GODS', payload: action.payload.user});
+        yield axios.put(`api/usersGods/${action.updatedGodPower}`)
+        yield put({ type: 'GET_USERS_GODS'});
     }
     catch(err){
         console.log(err);    
