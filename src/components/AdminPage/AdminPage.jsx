@@ -15,6 +15,13 @@ function Admin() {
   }, []);
 
   const [table, setTable] = useState('gods');
+  const [godObj, setGodObj] = useState({
+    name: '',
+    culture: '',
+    element: '',
+    image: '',
+    info: '',
+  });
 
   const toggleTable = () => {
     table === 'gods' ? setTable('monsters') : setTable('gods');
@@ -23,8 +30,8 @@ function Admin() {
 
   const submitGod = (event) => {
     event.preventDefault;
-    console.log('submitGod clicked', god);
-    dispatch({type: 'POST_GOD', payload: god})
+    console.log('submitGod clicked', godObj);
+    // dispatch({type: 'POST_GOD', payload: god})
   }
 
   const submitMonster = (event) => {
@@ -32,6 +39,28 @@ function Admin() {
     console.log('submitMonster clicked', monster);
     dispatch({type: 'POST_MONSTER', payload: monster})
   }
+
+  const handleGodObj = (event) => {
+    switch (event.target.placeholder) {
+      case 'name':
+        setGodObj({...godObj, name : event.target.value,}) 
+      case 'culture':
+        setGodObj({...godObj, culture : event.target.value});
+      case 'element':
+        setGodObj({...godObj, element : event.target.value});
+      case 'image':
+        setGodObj({...godObj, image : event.target.value});
+      case 'info':
+        setGodObj({...godObj, info : event.target.value});
+    }
+    console.log('%%%%%%%%%%%%%%%%', godObj, event.target.value);
+  }
+
+  const handleGodEdit = (props) => {
+    console.log('%%%%%%%%%%%%%%%% handleGodEdit', props.godProp);
+    // dispatch({ type: 'SET_EDIT_GOD', payload: props.god })
+  }
+
 
   return (
     <div>
@@ -45,11 +74,11 @@ function Admin() {
       //GOD FORM
       <div>
       <form>
-        <input type="text" placeholder="name" />
-        <input type="text" placeholder="culture"/>
-        <input type="text" placeholder="element"/>
-        <input type="text" placeholder="image"/>
-        <input type="text" placeholder="info"/>
+        <input type="text" placeholder="name" onChange={handleGodObj}/>
+        <input type="text" placeholder="culture" onChange={handleGodObj}/>
+        <input type="text" placeholder="element" onChange={handleGodObj}/>
+        <input type="text" placeholder="image" onChange={handleGodObj}/>
+        <input type="text" placeholder="info" onChange={handleGodObj}/>
         <button type="submit" onClick={(event) => submitGod(event)}>Submit God</button>
       </form>
       </div>
@@ -95,7 +124,7 @@ function Admin() {
                     <td>{god.image}</td>
                     <td>{god.info}</td>
                     <td></td>
-                    <td><button>edit</button></td>
+                    <td><button onClick={handleGodEdit}>edit</button></td>
                     <td><button>delete</button></td>
                   </tr>
                 );
