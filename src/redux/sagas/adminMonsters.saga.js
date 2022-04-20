@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* getAdminMonsters (){
     try {
         const adminMonsters = yield axios.get(`/api/adminMonsters`);
-        console.log('get all:', adminMonsters.data);
+        console.log('---------get all:', adminMonsters.data);
         yield put({ type: 'SET_ADMIN_MONSTERS', payload: adminMonsters.data });
 
     } catch (err){
