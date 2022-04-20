@@ -6,9 +6,9 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/:id', (req, res) => {
+router.get('/:user', (req, res) => {
 
-  const id = req.params.id
+  const id = req.user.id
 
   const queryText = `
   SELECT * FROM "users_gods"
@@ -20,6 +20,7 @@ router.get('/:id', (req, res) => {
     // console.log('god.router GET User ID ', req.user.id);
     pool.query(queryText, [id])
     .then((result) => {
+        console.log('----------- req:', req.user);
         res.send(result.rows);
       })
     .catch((err) => {

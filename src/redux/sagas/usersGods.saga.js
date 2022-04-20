@@ -18,7 +18,7 @@ function* updateUserGodPower(action) {
     console.log('updateUserGodPower', action);
     try {
         yield axios.put(`api/usersGods/${action.updatedGodPower}/${action.payload.id}`)
-        yield put({ type: 'GET_USERS_GODS', payload: action.payload.user_id});
+        yield put({ type: 'GET_USERS_GODS', payload: action.payload.user});
     }
     catch(err){
         console.log(err);    

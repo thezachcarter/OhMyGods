@@ -17,7 +17,7 @@ function* getUsersMonsters (action){
 function* updateUserMonsterPower(action) {
     try {
         yield axios.put(`api/usersMonsters/${action.updatedMonsterPower}/${action.payload.id}`)
-        yield put({ type: 'GET_USERS_MONSTERS', payload: action.payload.user_id});
+        yield put({ type: 'GET_USERS_MONSTERS', payload: action.payload.user});
     }
     catch(err){
         console.log(err);    

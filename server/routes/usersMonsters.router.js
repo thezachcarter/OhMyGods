@@ -5,9 +5,9 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/:id', (req, res) => {
+router.get('/:user', (req, res) => {
 
-    const id = req.params.id
+    const id = req.user.id
 
     const queryText = `
     SELECT * FROM "users_monsters"
