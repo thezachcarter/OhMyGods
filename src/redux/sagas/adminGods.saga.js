@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { actionChannel, put, takeLatest } from 'redux-saga/effects';
 
-function* getAdminGods (){
+function* getAdminGods(){
     try {
         const adminGods = yield axios.get(`/api/adminGods`);
         console.log('get all:', adminGods.data);
@@ -12,8 +12,21 @@ function* getAdminGods (){
     }   
 }
 
+function* postGod(action){
+    try {
+        console.log('&&&&&&&& POST GOD:', action.payload);
+        yield axios.post('/api/adminGods', action.payload);
+        yield put({ type: 'GET_ADMIN_GODS'})
+    } catch (err){
+        console.log(err);
+        
+    }
+
+}
+
 function* getAdminGodsWatcher() {
     yield takeLatest('GET_ADMIN_GODS', getAdminGods);
+    yield takeLatest('POST_GOD', postGod)
 }
 
 export default getAdminGodsWatcher;

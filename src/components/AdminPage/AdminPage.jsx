@@ -30,8 +30,7 @@ function Admin() {
 
   const submitGod = (event) => {
     event.preventDefault;
-    console.log('submitGod clicked', godObj);
-    // dispatch({type: 'POST_GOD', payload: god})
+    dispatch({type: 'POST_GOD', payload: godObj})
   }
 
   const submitMonster = (event) => {
@@ -43,17 +42,22 @@ function Admin() {
   const handleGodObj = (event) => {
     switch (event.target.placeholder) {
       case 'name':
-        setGodObj({...godObj, name : event.target.value,}) 
+        setGodObj({...godObj, name: event.target.value,});
+        break; 
       case 'culture':
-        setGodObj({...godObj, culture : event.target.value});
+        setGodObj({...godObj, culture: event.target.value,});
+        break; 
       case 'element':
-        setGodObj({...godObj, element : event.target.value});
+        setGodObj({...godObj, element: event.target.value,});
+        break; 
       case 'image':
-        setGodObj({...godObj, image : event.target.value});
+        setGodObj({...godObj, image: event.target.value,});
+        break; 
       case 'info':
-        setGodObj({...godObj, info : event.target.value});
+        setGodObj({...godObj, info: event.target.value,});
+        break; 
     }
-    console.log('%%%%%%%%%%%%%%%%', godObj, event.target.value);
+    console.log('%%%%%%%%%%%%%%%%', godObj);
   }
 
   const handleGodEdit = (props) => {
