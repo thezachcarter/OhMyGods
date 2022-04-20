@@ -16,7 +16,7 @@ function GodCard({attack}) {
   const [inBattle, setInBattle] = useState(false);
 
   const godArray = store.usersGods;
-  const user = useSelector((store) => store.user);
+  const user = store.user;
   
   const checkInBattle = () => {
     if(location.pathname === '/battle'){

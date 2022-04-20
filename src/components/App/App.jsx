@@ -20,6 +20,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AdminPage from '../AdminPage/AdminPage'
 
 //added components
 import Battle from '../Battle/Battle';
@@ -63,6 +64,14 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+          {/* ADMIN Page */}
+          <ProtectedRoute
+            
+            exact
+            path="/admin"
+          >
+            <AdminPage />
           </ProtectedRoute>
           {/* INFO Page */}
           <ProtectedRoute
