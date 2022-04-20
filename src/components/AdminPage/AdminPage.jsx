@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
-function Admin(props) {
-  // Using hooks we're creating local state for a "heading" variable with
-  // a default value of 'Functional Component'
+function Admin() {
+  
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
 
@@ -23,7 +19,19 @@ function Admin(props) {
   const toggleTable = () => {
     table === 'gods' ? setTable('monsters') : setTable('gods');
     console.log(table);
-  };
+  }
+
+  const submitGod = (event) => {
+    event.preventDefault;
+    console.log('submitGod clicked', god);
+    dispatch({type: 'POST_GOD', payload: god})
+  }
+
+  const submitMonster = (event) => {
+    event.preventDefault;
+    console.log('submitMonster clicked', monster);
+    dispatch({type: 'POST_MONSTER', payload: monster})
+  }
 
   return (
     <div>
@@ -42,7 +50,7 @@ function Admin(props) {
         <input type="text" placeholder="element"/>
         <input type="text" placeholder="image"/>
         <input type="text" placeholder="info"/>
-        <button type="submit">Submit God</button>
+        <button type="submit" onClick={(event) => submitGod(event)}>Submit God</button>
       </form>
       </div>
 
@@ -56,7 +64,7 @@ function Admin(props) {
           <input type="text" placeholder="image"/>
           <input type="text" placeholder="info"/>
           <input type="text" placeholder="power"/>
-          <button type="submit">Submit Monster</button>
+          <button type="submit" onClick={(event) => submitMonster(event)}>Submit Monster</button>
         </form>
       </div>
       }
