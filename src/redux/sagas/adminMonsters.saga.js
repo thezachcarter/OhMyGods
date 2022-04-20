@@ -12,8 +12,19 @@ function* getAdminMonsters (){
     }   
 }
 
+function* postMonster(action){
+    try {
+        console.log('&&&&&&&& POST MONSTER:', action.payload);
+        yield axios.post('/api/adminMonsters', action.payload);
+        yield put({ type: 'GET_ADMIN_MONSTERS'})
+    } catch (err){
+        console.log(err); 
+    }
+}
+
 function* getAdminMonstersWatcher() {
     yield takeLatest('GET_ADMIN_MONSTERS', getAdminMonsters);
+    yield takeLatest('POST_MONSTER', postMonster)
 }
 
 export default getAdminMonstersWatcher;

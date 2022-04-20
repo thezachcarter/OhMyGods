@@ -28,6 +28,19 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  const queryText = `
+  INSERT INTO "monsters"
+  ("name", "culture", "element", "image", "info", "starting_power")
+  VALUES ($1, $2, $3, $4, $5, $6)
+  `
+  pool.query(queryText, [req.body.name, req.body.culture, req.body.element, req.body.image, req.body.info, req.body.starting_power])
+  .then(result => {
+    res.sendStatus(201)
+  }).catch(err => {
+    console.log('error in adminGod.router POST', err);
+    sendStatus(500)
+  });
+
 });
 
 module.exports = router;

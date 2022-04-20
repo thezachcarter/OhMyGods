@@ -42,14 +42,14 @@ router.post('/', (req, res) => {
 /**
  * PUT route template
 //  */
- router.put('/:power', (req, res) => {
-    // PUT route code here
+ router.put('/:power/:id', (req, res) => {
+    // ID refers to user_monster id NOT user id
     console.log('usersGods.router PUT params', req.params);
     
 
     //id is the id in "users_gods" join table
     const power = req.params.power;
-    const id = req.user.id;
+    const id = req.params.id;
 
     const queryText = `
         UPDATE "users_gods" 

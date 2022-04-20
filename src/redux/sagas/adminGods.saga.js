@@ -18,10 +18,8 @@ function* postGod(action){
         yield axios.post('/api/adminGods', action.payload);
         yield put({ type: 'GET_ADMIN_GODS'})
     } catch (err){
-        console.log(err);
-        
+        console.log(err); 
     }
-
 }
 
 function* getAdminGodsWatcher() {

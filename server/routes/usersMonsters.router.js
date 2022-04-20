@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     JOIN "monsters"
     ON "monster_id" = "monsters".id
     WHERE "user_id" = $1
-    ORDER BY "users_monsters"."id" ASC
+    ORDER BY "monsters"."starting_power" ASC
     ;
     `
 
@@ -39,12 +39,11 @@ router.post('/', (req, res) => {
 /**
  * PUT route template
 //  */
-router.put('/:power', (req, res) => {
-    // PUT route code here
-
+router.put('/:power/:id', (req, res) => {
+    // ID refers to user_monster id NOT user id
     //id is the id in "users_monsters" join table
     const power = req.params.power;
-    const id = req.user.id;
+    const id = req.params.id;
 
     const queryText = `
         UPDATE "users_monsters" 

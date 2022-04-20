@@ -14,13 +14,24 @@ function Admin() {
     dispatch({ type: 'GET_ADMIN_MONSTERS' });
   }, []);
 
+  //used to toggle between tables
   const [table, setTable] = useState('gods');
+
   const [godObj, setGodObj] = useState({
     name: '',
     culture: '',
     element: '',
     image: '',
     info: '',
+  });
+
+  const [monsterObj, setMonsterObj] = useState({
+    name: '',
+    culture: '',
+    element: '',
+    image: '',
+    info: '',
+    starting_power: '',
   });
 
   const toggleTable = () => {
@@ -35,8 +46,8 @@ function Admin() {
 
   const submitMonster = (event) => {
     event.preventDefault;
-    console.log('submitMonster clicked', monster);
-    dispatch({type: 'POST_MONSTER', payload: monster})
+    console.log('submitMonster clicked', monsterObj);
+    dispatch({type: 'POST_MONSTER', payload: monsterObj})
   }
 
   const handleGodObj = (event) => {
@@ -55,6 +66,30 @@ function Admin() {
         break; 
       case 'info':
         setGodObj({...godObj, info: event.target.value,});
+        break; 
+    }
+    console.log('%%%%%%%%%%%%%%%%', godObj);
+  }
+
+  const handleMonsterObj = (event) => {
+    switch (event.target.placeholder) {
+      case 'name':
+        setMonsterObj({...monsterObj, name: event.target.value,});
+        break; 
+      case 'culture':
+        setMonsterObj({...monsterObj, culture: event.target.value,});
+        break; 
+      case 'element':
+        setMonsterObj({...monsterObj, element: event.target.value,});
+        break; 
+      case 'image':
+        setMonsterObj({...monsterObj, image: event.target.value,});
+        break; 
+      case 'info':
+        setMonsterObj({...monsterObj, info: event.target.value,});
+        break; 
+      case 'power':
+        setMonsterObj({...monsterObj, starting_power: event.target.value,});
         break; 
     }
     console.log('%%%%%%%%%%%%%%%%', godObj);
@@ -91,12 +126,12 @@ function Admin() {
       //MONSTER FORM
       <div>
         <form>
-          <input type="text" placeholder="name" />
-          <input type="text" placeholder="culture"/>
-          <input type="text" placeholder="element"/>
-          <input type="text" placeholder="image"/>
-          <input type="text" placeholder="info"/>
-          <input type="text" placeholder="power"/>
+          <input type="text" placeholder="name" onChange={handleMonsterObj}/>
+          <input type="text" placeholder="culture" onChange={handleMonsterObj}/>
+          <input type="text" placeholder="element" onChange={handleMonsterObj}/>
+          <input type="text" placeholder="image" onChange={handleMonsterObj}/>
+          <input type="text" placeholder="info" onChange={handleMonsterObj}/>
+          <input type="text" placeholder="power" onChange={handleMonsterObj}/>
           <button type="submit" onClick={(event) => submitMonster(event)}>Submit Monster</button>
         </form>
       </div>
