@@ -16,7 +16,13 @@ function GodCard({attack}) {
   const [inBattle, setInBattle] = useState(false);
 
   const godArray = store.usersGods;
-  const user = useSelector((store) => store.user);
+  const user = store.user;
+
+  useEffect(() => {
+    console.log('**********************GOD CARD USE EFFECT! user:', user);
+    checkInBattle();
+    dispatch({ type: 'GET_USERS_GODS', payload: user.id });
+  }, []);
   
   const checkInBattle = () => {
     if(location.pathname === '/battle'){
@@ -24,11 +30,6 @@ function GodCard({attack}) {
       console.log('inBattle?', inBattle);
     }
   };
-
-  useEffect(() => {
-    checkInBattle();
-    dispatch({ type: 'GET_USERS_GODS' });
-  }, []);
 
   const increasePower = (godId, updatedGodPower) => {
     updatedGodPower += 1;

@@ -14,11 +14,13 @@ function MonsterCard({ currentMonster }) {
     const dispatch = useDispatch();
 
     const monsterArray = store.usersMonsters;
+    const user = store.user;
+
 
     console.log(monsterArray);
 
     useEffect(() => {
-        dispatch({ type: 'GET_USERS_MONSTERS' });
+        dispatch({ type: 'GET_USERS_MONSTERS', payload: user.id });
     }, []);
 
     return (

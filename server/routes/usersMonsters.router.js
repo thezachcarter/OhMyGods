@@ -7,19 +7,19 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
 
+    const id = req.user.id
+
     const queryText = `
-    
     SELECT * FROM "users_monsters"
     JOIN "monsters"
     ON "monster_id" = "monsters".id
-    WHERE "user_id" = 2
-    ORDER BY "users_monsters"."id" ASC
+    WHERE "user_id" = $1
+    ORDER BY "monsters"."starting_power" ASC
     ;
     `
 
-    pool.query(queryText)
+    pool.query(queryText, [id])
         .then((result) => {
-            console.log('users monsters GET: ', result.rows);
             res.send(result.rows);
         })
         .catch((err) => {
@@ -40,10 +40,7 @@ router.post('/', (req, res) => {
  * PUT route template
 //  */
 router.put('/:power/:id', (req, res) => {
-    // PUT route code here
-    console.log('usersMonsters.router PUT params', req.params);
-    
-
+    // ID refers to user_monster id NOT user id
     //id is the id in "users_monsters" join table
     const power = req.params.power;
     const id = req.params.id;

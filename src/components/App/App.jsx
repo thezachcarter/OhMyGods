@@ -20,6 +20,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AdminPage from '../AdminPage/AdminPage'
 
 //added components
 import Battle from '../Battle/Battle';
@@ -64,6 +65,14 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+          {/* ADMIN Page */}
+          <ProtectedRoute
+            
+            exact
+            path="/admin"
+          >
+            <AdminPage />
+          </ProtectedRoute>
           {/* INFO Page */}
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -77,6 +86,14 @@ function App() {
             
             path="/battle"
           >
+            {user.id ?
+              // If the user is already logged in, 
+              // redirect to the /user page
+              <Redirect to="/battle" />
+              :
+              // Otherwise, show the login page
+              <LoginPage />
+            }
             <Battle />
           </Route>
           {/* USER?LOGIN Page */}

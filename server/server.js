@@ -9,8 +9,6 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const godRouter = require('./routes/gods.router');
-const monsterRouter = require('./routes/monster.router');
 const usersGodsRouter = require('./routes/usersGods.router');
 const usersMonstersRouter = require('./routes/usersMonsters.router');
 const adminGodsRouter = require('./routes/adminGods.router');
@@ -30,10 +28,10 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/gods', godRouter);
-app.use('/api/monster', monsterRouter);
 app.use('/api/usersGods', usersGodsRouter);
-app.use('/api/usersMonsters', usersMonstersRouter)
+app.use('/api/usersMonsters', usersMonstersRouter);
+app.use('/api/adminGods', adminGodsRouter);
+app.use('/api/adminMonsters', adminMonstersRouter);
 
 // Serve static files
 app.use(express.static('build'));
