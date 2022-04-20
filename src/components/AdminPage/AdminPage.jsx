@@ -29,13 +29,41 @@ function Admin(props) {
     <div>
 
       <h2>ADMIN</h2> 
-
-      <div>
+      
       <button onClick={toggleTable}>Toggle Gods / Monsters</button>
+
+      {/* FORMS, form rendered changes based on god/monster toggle */}
+      {table === 'gods' ?
+      //GOD FORM
+      <div>
+      <form>
+        <input type="text" placeholder="name" />
+        <input type="text" placeholder="culture"/>
+        <input type="text" placeholder="element"/>
+        <input type="text" placeholder="image"/>
+        <input type="text" placeholder="info"/>
+        <button type="submit">Submit God</button>
+      </form>
       </div>
 
-      {table === 'god' ?
+      :
+      //MONSTER FORM
+      <div>
+        <form>
+          <input type="text" placeholder="name" />
+          <input type="text" placeholder="culture"/>
+          <input type="text" placeholder="element"/>
+          <input type="text" placeholder="image"/>
+          <input type="text" placeholder="info"/>
+          <input type="text" placeholder="power"/>
+          <button type="submit">Submit Monster</button>
+        </form>
+      </div>
+      }
 
+      {/* TABLES, table rendered changes based on god/monster toggle */}
+      {table === 'gods' ?
+      // GOD TABLE
       <div>
         <table>
           <thead>
@@ -58,6 +86,7 @@ function Admin(props) {
                     <td>{god.element}</td>
                     <td>{god.image}</td>
                     <td>{god.info}</td>
+                    <td></td>
                     <td><button>edit</button></td>
                     <td><button>delete</button></td>
                   </tr>
@@ -69,7 +98,7 @@ function Admin(props) {
         </div>
 
         :
-
+        //MONSTER TABLE 
         <div>
         <table>
           <thead>
@@ -80,6 +109,7 @@ function Admin(props) {
               <th>element</th>
               <th>image</th>
               <th>info</th>
+              <th>power</th>
             </tr>
           </thead>
           <tbody>
@@ -92,6 +122,7 @@ function Admin(props) {
                     <td>{monster.element}</td>
                     <td>{monster.image}</td>
                     <td>{monster.info}</td>
+                    <td>{monster.starting_power}</td>
                     <td><button>edit</button></td>
                     <td><button>delete</button></td>
                   </tr>
