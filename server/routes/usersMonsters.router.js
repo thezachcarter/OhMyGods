@@ -5,21 +5,21 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
+
+    const id = req.params.id
 
     const queryText = `
-    
     SELECT * FROM "users_monsters"
     JOIN "monsters"
     ON "monster_id" = "monsters".id
-    WHERE "user_id" = 2
+    WHERE "user_id" = $1
     ORDER BY "users_monsters"."id" ASC
     ;
     `
 
-    pool.query(queryText)
+    pool.query(queryText, [id])
         .then((result) => {
-            console.log('users monsters GET: ', result.rows);
             res.send(result.rows);
         })
         .catch((err) => {

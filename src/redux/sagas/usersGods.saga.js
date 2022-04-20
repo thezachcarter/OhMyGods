@@ -2,10 +2,11 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 import { useSelector } from 'react-redux';
 
+
 //get user's gods from the DB 
-function* getUsersGods (){
+function* getUsersGods (action){
     try {
-        const usersGods = yield axios.get('/api/usersGods');
+        const usersGods = yield axios.get(`/api/usersGods/${action.payload}`);
         console.log('get all:', usersGods.data);
         yield put({ type: 'SET_USERS_GODS', payload: usersGods.data });
 
@@ -18,8 +19,8 @@ function* updateUserGodPower(action) {
 
     console.log('updateUserGodPower', action);
     try {
-        yield axios.put(`api/usersGods/${action.updatedGodPower}/${action.payload}`)
-        yield put({ type: 'GET_USERS_GODS'});
+        yield axios.put(`api/usersGods/${action.updatedGodPower}/${action.payload.id}`)
+        yield put({ type: 'GET_USERS_GODS', payload: action.payload.user_id});
     }
     catch(err){
         console.log(err);    

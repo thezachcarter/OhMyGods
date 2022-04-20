@@ -26,8 +26,9 @@ function GodCard({attack}) {
   };
 
   useEffect(() => {
+    console.log('GOD CARD USE EFFECT! user.id:', user);
     checkInBattle();
-    dispatch({ type: 'GET_USERS_GODS' });
+    dispatch({ type: 'GET_USERS_GODS', payload: user.id });
   }, []);
 
   const increasePower = (godId, updatedGodPower) => {

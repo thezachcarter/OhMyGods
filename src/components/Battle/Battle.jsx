@@ -19,6 +19,8 @@ function Battle() {
   // const [monsterArray, setMonsterArray ]= useState(store.usersMonsters);
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
+  const user = store.user;
+
 
   //checks array for first monster, by id, that has not been defeated
   //also resets to beginning of monsters if order gets messed up in testing
@@ -158,12 +160,12 @@ function Battle() {
         }
         //prevent negative power rating for gods
         if (damageToGod > attackingGod.power) { damageToGod = attackingGod.power }
-
+        console.log('USER ID IN ATTACK FUNCTION', attackingGod);
         //set and update power level for god and monster
         let updatedGodPower = attackingGod.power - damageToGod;
         let updatedMonsterPower = currentMonster.power -= damageToMonster;
-        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod.id, updatedGodPower })
-        dispatch({ type: 'UPDATE_USER_MONSTER_POWER', action: currentMonster.id, updatedMonsterPower })
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod, updatedGodPower  })
+        dispatch({ type: 'UPDATE_USER_MONSTER_POWER', action: currentMonster, updatedMonsterPower })
 
         //display damage to DOM
         setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster}

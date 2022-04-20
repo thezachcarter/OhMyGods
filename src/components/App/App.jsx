@@ -77,6 +77,14 @@ function App() {
             
             path="/battle"
           >
+            {user.id ?
+              // If the user is already logged in, 
+              // redirect to the /user page
+              <Redirect to="/battle" />
+              :
+              // Otherwise, show the login page
+              <LoginPage />
+            }
             <Battle />
           </Route>
           {/* USER?LOGIN Page */}

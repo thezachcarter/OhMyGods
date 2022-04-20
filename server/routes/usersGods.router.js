@@ -6,17 +6,19 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
-  // GET route code here
+router.get('/:id', (req, res) => {
+
+  const id = req.params.id
+
   const queryText = `
   SELECT * FROM "users_gods"
   JOIN "gods"
   ON "god_id" = "gods".id
-  WHERE "user_id" = 2
+  WHERE "user_id" = $1
   ORDER BY "users_gods"."id" ASC
   `
     // console.log('god.router GET User ID ', req.user.id);
-    pool.query(queryText)
+    pool.query(queryText, [id])
     .then((result) => {
         res.send(result.rows);
       })
