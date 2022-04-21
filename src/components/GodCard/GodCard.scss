@@ -1,18 +1,22 @@
+$Water: rgb(62,140,165);
+$Earth: rgb(78,163,91);
+$Fire: rgb(182,47,40);
+$Sky: rgb(241,156,66);
 
 .Water {
-    background: rgb(62,140,165);
+    background: $Water;
 }
 
 .Earth {
-    background: rgb(78,163,91);
+    background: $Earth;
 }
 
 .Fire {
-    background: rgb(182,47,40);
+    background: $Fire;
 }
 
 .Sky {
-    background: rgb(241,156,66);
+    background: $Sky;
 }
 
 .godCard {

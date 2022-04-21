@@ -168,7 +168,7 @@ function Battle() {
         dispatch({ type: 'UPDATE_USER_MONSTER_POWER', payload: currentMonster, updatedMonsterPower })
 
         //display damage to DOM
-        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster}
+        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster} - 
            Damage to ${attackingGod.name} = ${damageToGod}
           `);
 
@@ -186,9 +186,58 @@ function Battle() {
   console.log('GOD ARRAY', godArray[0]?.name);
   return (
     <div className="battleGrid">
+
+      <table className="strong tbl">
+        <tbody>
+          <tr>
+            <td className="earthTxt">Earth</td>
+            <td>&gt;</td>
+            <td className="skyTxt">Sky</td>
+          </tr>
+          <tr>
+            <td className="fireTxt">Fire</td>
+            <td>&gt;</td>
+            <td className="earthTxt">Earth</td>
+          </tr>
+          <tr>
+            <td className="skyTxt">Sky</td>
+            <td>&gt;</td>
+            <td className="waterTxt">Water</td>
+          </tr>
+          <tr>
+            <td className="waterTxt">Water</td>
+            <td>&gt;</td>
+            <td className="fireTxt">Fire</td>
+          </tr>
+        </tbody>
+      </table>
+
       <MonsterCard currentMonster={currentMonster} />
-      {/* <button className="positionBtn battleBtn" onClick={swapPosition}>Change Position</button> */}
-      {/* <button className="attackBtn battleBtn" onClick={attack}>Attack!</button> */}
+      
+      <table className="weak tbl">
+        <tbody>
+          <tr>
+            <td className="earthTxt">Earth</td>
+            <td>&lt;</td>
+            <td className="fireTxt">Fire</td>
+          </tr>
+          <tr>
+            <td className="fireTxt">Fire</td>
+            <td>&lt;</td>
+            <td className="waterTxt">Water</td>
+          </tr>
+          <tr>
+            <td className="skyTxt">Sky</td>
+            <td>&lt;</td>
+            <td className="earthTxt">Earth</td>
+          </tr>
+          <tr>
+            <td className="waterTxt">Water</td>
+            <td>&lt;</td>
+            <td className="skyTxt">Sky</td>
+          </tr>
+        </tbody>
+      </table>
 
       <div className="infoDisplayContainer">
         <div className="infoDisplay">
