@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import { attack } from '../Battle/Battle';
-import './GodCard.css'
+
+import './GodCard.scss'
+
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -49,21 +51,20 @@ function GodCard({attack}) {
     {/* ternary to check for battle and render cards accordingly */}
     {inBattle ?
       
-      <div className="godCardContainer">
+      <div className="godCardContainer ">
       {godArray.map(god => {
         return (
 
-          <div className="godCard" onClick={((event) => attack(god.id))} key={god.id}>
-            <p>{god.name}</p>
+          <div className={`godCard ${god.element}`} onClick={((event) => attack(god.id))} key={god.id}>
+            <h2 className="godName">{god.name}</h2>
             <img
               className="godImg"
               src={god.image}
               alt={god.name}
             /> 
-            <p>{god.culture}</p>
-            <p>{god.element}</p>
-            
-            <p>{god.power}</p>
+            <h2 className="godCulture">{god.culture}</h2>
+            <h2 className="godPower">{god.power}</h2>
+            <p></p>
           </div>
         );
       })}
@@ -75,17 +76,18 @@ function GodCard({attack}) {
       {godArray.map(god => {
         return (
 
-          <div className="godCard" key={god.id}>
-            <p>{god.name}</p>
+          <div className={`godCard ${god.element}`}key={god.id}>
+            <h2 className="godName">{god.name}</h2>
             <img
               className="godImg"
               src={god.image}
               alt={god.name}
             /> 
-            <p>{god.culture}</p>
-            <p>{god.element}</p>
-            <button onClick={(() => increasePower(god.id, god.power))}>⬆</button>
-            <p>{god.power}</p>
+            <h2 className="godCulture">{god.culture}</h2>
+            <h2 className="godPower">{god.power}</h2>
+            <button className="godCardBtn">X</button>
+            <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
+            <button className="godCardBtn">?</button>
           </div>
         );
       })}

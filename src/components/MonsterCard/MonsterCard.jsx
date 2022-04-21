@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentMonster } from '../Battle/Battle'
 
-import './MonsterCard.css'
+import './MonsterCard.scss'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -27,16 +27,16 @@ function MonsterCard({ currentMonster }) {
         <div className="monsterCardContainer">
             {/* {monsterArray.map(monster => {
         return ( */}
-            <div className="currentMonsterCard" key={currentMonster.id} >
-                <p>{currentMonster.name}</p>
+            <div className={`currentMonsterCard ${currentMonster.element}`} 
+                    key={currentMonster.id} >
+                <h2 className="monsterName">{currentMonster.name}</h2>
                 <img
-                    className="currentMonsterImg"
+                    className="monsterImg"
                     src={currentMonster.image}
                     alt={currentMonster.name}
                 />
-                <p>{currentMonster.culture}</p>
-                <p>{currentMonster.element}</p>
-                <p>{currentMonster.power}</p>
+                <h2 className="monsterCulture">{currentMonster.culture}</h2>
+                <h2 className="monsterPower">{currentMonster.power}</h2>
             </div>
             {/* )})}; */}
         </div>

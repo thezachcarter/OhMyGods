@@ -27,6 +27,7 @@ import Battle from '../Battle/Battle';
 
 // import './App.css';
 import './App.scss';
+import '../../fonts/Final_Fantasy_VII.woff'
 
 function App() {
   const dispatch = useDispatch();

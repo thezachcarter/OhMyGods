@@ -1,0 +1,75 @@
+.currentMonsterCard {
+    width: 400px;
+    height: 300px;
+    margin: 16px;
+    transition: 0.3s;
+    padding: 16px;
+    text-align: center;
+} 
+
+
+.Water {
+    background: rgb(62,140,165);
+}
+
+.Earth {
+    background: rgb(78,163,91);
+}
+
+.Fire {
+    background: rgb(182,47,40);
+}
+
+.Sky {
+    background: rgb(241,156,66);
+}
+
+.currentMonsterCard {
+    border: 4px black solid;
+    border-radius: 8px;
+    width: 400px;
+    height: 300px;
+    margin: 16px;
+    padding: 16px;
+    text-align: center;
+
+
+    .monsterName{
+        font-size: 32px;
+        line-height: 32px;
+        color: white;
+        text-shadow: 4px 4px black;
+    }
+
+    .monsterImg {
+        border: 2px black solid;
+        border-radius: 8px;
+        height: 180px;
+        width: 320px;
+    }
+
+    .monsterCulture{
+        font-size: 28px;
+        line-height: 28px;
+        color: white;
+        text-shadow: 4px 4px black;
+    }
+
+    .monsterPower{
+        font-size: 28px;
+        line-height: 28px;
+        color: white;
+        text-shadow: 4px 4px black;
+    }
+
+    .monsterCardBtn{
+        height: 24px;
+        width: 24px;
+        margin-left: 12px;
+        margin-right: 12px;
+        margin-top: 4px;
+        background-color: white;
+    }
+
+} 
+    

@@ -1,0 +1,72 @@
+$Water: rgb(62,140,165);
+$Earth: rgb(78,163,91);
+$Fire: rgb(182,47,40);
+$Sky: rgb(241,156,66);
+
+.Water {
+    background: $Water;
+}
+
+.Earth {
+    background: $Earth;
+}
+
+.Fire {
+    background: $Fire;
+}
+
+.Sky {
+    background: $Sky;
+}
+
+.godCard {
+    border: 4px black solid;
+    border-radius: 8px;
+    width: 200px;
+    height: 300px;
+    margin: 16px;
+    padding: 16px;
+    text-align: center; 
+
+    .godName{
+        font-size: 32px;
+        line-height: 32px;
+        color: white;
+        text-shadow: 4px 4px black;
+    }
+
+    .godImg {
+        border: 2px black solid;
+        border-radius: 8px;
+
+    }
+
+    .godCulture{
+        font-size: 28px;
+        line-height: 28px;
+        color: white;
+        text-shadow: 4px 4px black;
+    }
+
+    .godPower{
+        font-size: 28px;
+        line-height: 28px;
+        color: white;
+        text-shadow: 4px 4px black;
+    }
+
+    .godCardBtn{
+        height: 24px;
+        width: 24px;
+        margin-left: 12px;
+        margin-right: 12px;
+        margin-top: 4px;
+        background-color: white;
+
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+    
+}

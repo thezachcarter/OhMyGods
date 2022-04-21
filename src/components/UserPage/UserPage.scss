@@ -12,29 +12,58 @@
         grid-column: 4 / 8;
         justify-self: center;
         align-self: center;
+        font-size: 48px;
+        color: white;
+        text-shadow: 3px 3px black;
+        position: relative;
+        bottom: 20px;
+
+        .titleSpan{
+            font-size: 64px;
+            text-shadow: 6px 6px black;
+        }
     }
     
     .battleBtn {
         grid-column: 4 / 8;
+        grid-row: 3 / 4;
         justify-self: center;
         align-self: bottom;
         width: 200px;
+        height: 80px;
+        position: relative;
+        top: 12px;
+        border: 2px solid black;
+        border-radius: 8px;
+        box-shadow: 2px 2px black;
+        font-size: 24px;
+        background-color: white;
+
+        &:hover{
+            font-size: 32px; 
+        }
+    }
+
+    .homeDisplay {
+        grid-row: 2 / 3;
+        grid-column: 2 / 10;
+        height: 200px;
+        border: 4px solid black;
+        border-radius: 8px;
+        background-color: white;
+        position: relative;
+        bottom: 12px;
+        text-align: center;
+        overflow: scroll;
+        
     }
 
     .godCardContainer{
         display: flex;
         grid-row: 4 / 6 ;
         grid-column: 2 / 10;
-        justify-content: center;
+        justify-content: center;        
     }
 
-    .godCard {
-        width: 200px;
-        height: 300px;
-        margin: 16px;
-        padding: 16px;
-        background-color: gray;
-        text-align: center;    
-    }
     
 }
