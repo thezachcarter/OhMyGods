@@ -1,3 +1,6 @@
+@import "node_modules/pixel-borders/src/styles/pixel-borders.scss";
+
+
 .userPageGrid {
 
     display: grid;
@@ -34,13 +37,13 @@
         position: relative;
         top: 12px;
         border: 2px solid black;
-        border-radius: 8px;
+        // border-radius: 8px;
         box-shadow: 2px 2px black;
         font-size: 24px;
         background-color: white;
 
         &:hover{
-            font-size: 32px; 
+            font-size: 40px; 
         }
     }
 
@@ -49,12 +52,13 @@
         grid-column: 2 / 10;
         height: 200px;
         border: 4px solid black;
-        border-radius: 8px;
+        // border-radius: 8px;
         background-color: white;
         position: relative;
         bottom: 12px;
         text-align: center;
         overflow: scroll;
+       
         
     }
 
@@ -64,6 +68,5 @@
         grid-column: 2 / 10;
         justify-content: center;        
     }
-
     
 }

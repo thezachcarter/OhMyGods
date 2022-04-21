@@ -18,13 +18,12 @@ function UserPage() {
   const howToPlay = `
     Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
     the battlefield. Victory is gained once a monster has been reduced to zero power. If all four
-    of your gods are reduced to zero power before the monster, you will taste defeat. damage is dealt based on 
-    a comparison of each combatants color / element. Matching a foe's culture doubles all damage. 
-
-    In the upper right corner, you will see your devotion points. When you are not in battle, you may click 
+    of your gods are reduced to zero power before the monster, you shall taste defeat. damage is dealt based on 
+    a comparison of each combatants color / element. Matching a foe's culture doubles all damage. Gods may
+    not attack twice in a row. In the upper right corner, you will see your devotion points. When you are not in battle, you may click 
     the ^ button on any of your gods to increase their power by 1 at the cost of 1 devotion. Click the ?
     button to learn more about your god. Click the X button to replace a god for four devotion. All new gods start 
-    with eight power'
+    with eight power.
   `
   const [display, setDisplay] = useState(howToPlay)
 

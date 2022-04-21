@@ -168,7 +168,7 @@ function Battle() {
         dispatch({ type: 'UPDATE_USER_MONSTER_POWER', payload: currentMonster, updatedMonsterPower })
 
         //display damage to DOM
-        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster} - 
+        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster} ___
            Damage to ${attackingGod.name} = ${damageToGod}
           `);
 
@@ -191,22 +191,22 @@ function Battle() {
         <tbody>
           <tr>
             <td className="earthTxt">Earth</td>
-            <td>&gt;</td>
+            <td className="ltGt">&gt;</td>
             <td className="skyTxt">Sky</td>
           </tr>
           <tr>
             <td className="fireTxt">Fire</td>
-            <td>&gt;</td>
+            <td className="ltGt">&gt;</td>
             <td className="earthTxt">Earth</td>
           </tr>
           <tr>
             <td className="skyTxt">Sky</td>
-            <td>&gt;</td>
+            <td className="ltGt">&gt;</td>
             <td className="waterTxt">Water</td>
           </tr>
           <tr>
             <td className="waterTxt">Water</td>
-            <td>&gt;</td>
+            <td className="ltGt">&gt;</td>
             <td className="fireTxt">Fire</td>
           </tr>
         </tbody>
@@ -218,22 +218,22 @@ function Battle() {
         <tbody>
           <tr>
             <td className="earthTxt">Earth</td>
-            <td>&lt;</td>
+            <td className="ltGt">&lt;</td>
             <td className="fireTxt">Fire</td>
           </tr>
           <tr>
             <td className="fireTxt">Fire</td>
-            <td>&lt;</td>
+            <td className="ltGt">&lt;</td>
             <td className="waterTxt">Water</td>
           </tr>
           <tr>
             <td className="skyTxt">Sky</td>
-            <td>&lt;</td>
+            <td className="ltGt">&lt;</td>
             <td className="earthTxt">Earth</td>
           </tr>
           <tr>
             <td className="waterTxt">Water</td>
-            <td>&lt;</td>
+            <td className="ltGt">&lt;</td>
             <td className="skyTxt">Sky</td>
           </tr>
         </tbody>
