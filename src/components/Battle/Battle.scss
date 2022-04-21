@@ -44,8 +44,12 @@
         display: flex;
         grid-row: 2 / 3;
         grid-column: 4 / 8;
+        width: 100vw;
         justify-content: center;
         align-self: center;
+        color: white;
+        text-shadow: 2px 2px black;
+        font-size: 24px;
     }
     
 }

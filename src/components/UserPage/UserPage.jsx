@@ -18,8 +18,11 @@ function UserPage() {
   console.log(location);
   return (
     <div className="userPageGrid">
-      <h1 className="title">OhMyGods</h1> 
-      <button className="battleBtn" onClick={() => history.push('/battle')}>TO BATTLE!!!</button>
+      <h1 className="title">
+        <span className="titleSpan">O</span>h
+        <span className="titleSpan">M</span>y
+        <span className="titleSpan">G</span>ods</h1> 
+      <button className="battleBtn" onClick={() => history.push('/battle')}>BATTLE!!!</button>
 
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
       <GodCard />
