@@ -40,7 +40,6 @@ router.post('/', (req, res) => {
     console.log('error in adminGod.router POST', err);
     sendStatus(500)
   });
-
 });
 
 module.exports = router;
