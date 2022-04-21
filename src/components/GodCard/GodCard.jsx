@@ -85,7 +85,9 @@ function GodCard({attack}) {
             /> 
             <h2 className="godCulture">{god.culture}</h2>
             <h2 className="godPower">{god.power}</h2>
-            <button onClick={(() => increasePower(god.id, god.power))}>⬆</button>
+            <button className="godCardBtn">X</button>
+            <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
+            <button className="godCardBtn">?</button>
           </div>
         );
       })}
