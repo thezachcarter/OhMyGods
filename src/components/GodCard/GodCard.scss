@@ -58,6 +58,11 @@
         margin-right: 12px;
         margin-top: 4px;
         background-color: white;
+
+        &:hover{
+            background-color: black;
+            color: white;
+        }
     }
     
 }

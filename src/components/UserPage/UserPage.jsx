@@ -24,6 +24,9 @@ function UserPage() {
         <span className="titleSpan">G</span>ods</h1> 
       <button className="battleBtn" onClick={() => history.push('/battle')}>BATTLE!!!</button>
 
+      <div className="homeDisplay">
+
+      </div>
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
       <GodCard />
     </div>
