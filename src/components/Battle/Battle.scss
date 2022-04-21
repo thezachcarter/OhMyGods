@@ -14,14 +14,14 @@
         grid-column: 4 / 8;
         grid-row: 1 / 2;
         
-        .currentMonsterCard {
-            width: 400px;
-            height: 300px;
-            margin: 16px;
-            padding: 16px;
-            background-color: gray;
-            text-align: center;
-        }
+        // .currentMonsterCard {
+        //     width: 400px;
+        //     height: 300px;
+        //     margin: 16px;
+        //     padding: 16px;
+        //     background-color: gray;
+        //     text-align: center;
+        // }
     };
 
     .godCardContainer{
@@ -31,14 +31,14 @@
         justify-content: center;
     }
 
-    .godCard {
-        width: 200px;
-        height: 300px;
-        margin: 16px;
-        padding: 16px;
-        background-color: gray;
-        text-align: center;    
-    }
+    // .godCard {
+    //     width: 200px;
+    //     height: 300px;
+    //     margin: 16px;
+    //     padding: 16px;
+    //     background-color: gray;
+    //     text-align: center;    
+    // }
 
     .infoDisplayContainer{
         display: flex;
