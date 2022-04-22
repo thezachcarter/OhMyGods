@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import './LandingPage.css';
+import './LandingPage.scss';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -15,10 +15,17 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
-
+      
+      
       <div className="grid">
-        <div className="grid-col grid-col_8">
+
+      <h1 className="title">
+        <span className="titleSpan">O</span>h
+        <span className="titleSpan">M</span>y
+        <span className="titleSpan">G</span>ods</h1> 
+
+
+        <div className="grid-col grid-col_">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus

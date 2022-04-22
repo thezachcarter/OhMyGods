@@ -10,7 +10,7 @@ where power != 0
     [x] get
     [x] post
     [ ] put
-    [ ] delete
+    [x] delete
 [ ] admin authorization
 [x] prevent devotion going negative
 [x] fix bug where gods disappear on refresh of battle page - submit ticket!
@@ -24,7 +24,7 @@ where power != 0
 [x] fix bug with god power increase
 
 04/22 TO-DO REFACTOR
-[ ] Admin edit & delete
+[ ] Admin edit
 [ ] Admin authorization
 [ ] Create new account, populate tables (see above)
 [ ] Restart Game, similar functionality to new account
