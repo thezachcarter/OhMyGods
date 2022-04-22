@@ -34,10 +34,13 @@ function GodCard({attack}) {
   };
 
   const increasePower = (godId, updatedGodPower) => {
-    updatedGodPower += 1;
+    if (user.devotion > 0){updatedGodPower += 1;
     console.log('increasePower', godId, updatedGodPower);
     dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: godId, updatedGodPower})
-    decreaseDevotion(user.id, user.devotion);
+    decreaseDevotion(user.id, user.devotion)}
+    else{
+      alert('you are out of devotion points')
+    }
   };
 
   const decreaseDevotion = (userId, updatedDevotion) => {

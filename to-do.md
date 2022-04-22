@@ -16,7 +16,7 @@ where power != 0
 [x] fix bug where gods disappear on refresh of battle page - submit ticket!
 [ ] clean up SQL add to database.sql
 [x] remove all user info from URLs in router, replace w/ req.user
-[ ] Victory/Defeat Alerts, add devotion, click to continue
+[x] Victory/Defeat Alerts, add devotion, click to continue
 [ ] allow user to restart if gods and devotion are at 0 
 [ ] Fill user_gods and user_monsters when new account is created or game is restarted
     [ ] monsters could be inserted individually with query on GET with incrementing monster id?

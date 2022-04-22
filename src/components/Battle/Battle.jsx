@@ -40,7 +40,7 @@ function Battle() {
   })
   
   //power level of monster, value will change on client side, not in db
-  const [monsterPower, setMonsterPower ]= useState(currentMonster.power)
+  // const [monsterPower, setMonsterPower ]= useState(currentMonster.power)
   //total power level of all gods
   const totalGodPower = godArray?.reduce((accumulator, object) => {
     return accumulator + object.power;
@@ -48,15 +48,15 @@ function Battle() {
 
   //determine victory status by checking power of monster and ALL gods 
   const checkBattleStatus = () => {
-    console.log('CHECK BATTLE STATUS totalGodPower:', totalGodPower, 'monsterPower:', monsterPower);
     if (currentMonster.power <= 0) {
       setDisplay('victory');
       renderBattleDisplay(display);
-      setTimeout(() => {  history.push('/user') }, 2000);
+      setTimeout(() => {  setDisplay('devotion') }, 2000);
+      setTimeout(() => {  history.push('/user') }, 4000);
     } else if (totalGodPower <= 0) {
       setDisplay('defeat')
       renderBattleDisplay(display);
-      setTimeout(() => {  history.push('/user') }, 2000);
+      setTimeout(() => {  history.push('/user') }, 3000);
     };
     renderBattleDisplay(display);
   };
@@ -68,6 +68,12 @@ function Battle() {
         <h1 className="victory">VICTORY!</h1>
       </div>
       )}
+    else if (display === 'devotion'){
+        return(
+        <div>
+          <h1 className="victory">+8 devotion</h1>
+        </div>
+        )}
     else if (display === 'defeat'){
       return(
       <div>
@@ -81,7 +87,6 @@ function Battle() {
       </div>
       )}
   }
-
 
   const attack = (event) => {
 
@@ -217,7 +222,6 @@ function Battle() {
 
   }//end attack function
 
-  
   return (
     <div className="battleGrid">
 
