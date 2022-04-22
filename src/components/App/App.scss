@@ -6,12 +6,6 @@
     font-family: pixcyr2;
 }
 
-body {
-    background-image: url('../../../public/images/Olympus.png');
-    background-size: 100% 100%;
-    border-bottom: 4px solid black;
-}
-
 @font-face {
     font-family: "pixcyr2";
     src: local("pixcyr2"),
@@ -21,6 +15,9 @@ body {
 .app {
     width: 100vw;
     height: 80vh;
+    background-image: url('../../../public/images/Olympus.png');
+    background-size: 100% 100%;
+    border-bottom: 4px solid black;
 }
 
 .nav {
