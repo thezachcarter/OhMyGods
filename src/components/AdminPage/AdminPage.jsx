@@ -43,8 +43,15 @@ function Admin() {
 
   const submitGod = (event) => {
     event.preventDefault;
-    dispatch({type: 'POST_GOD', payload: godObj})
-  }
+    dispatch({type: 'POST_GOD', payload: godObj});
+    setGodObj({
+      name: '',
+      culture: '',
+      element: '',
+      image: '',
+      info: '',
+    });
+  };
 
   const submitMonster = (event) => {
     event.preventDefault;
@@ -102,6 +109,10 @@ function Admin() {
     // dispatch({ type: 'SET_EDIT_GOD', payload: props.god })
   }
 
+  const handleDeleteGod = (godId) => {
+    console.log('$$$$$$$$$$$$$$$ handleDelete event:', godId);
+    dispatch({ type: 'DELETE_GOD', payload:godId })
+  }
 
   return (
     <div className="admin">
@@ -166,7 +177,7 @@ function Admin() {
                     <td>{god.info}</td>
                     <td></td>
                     <td><button onClick={handleGodEdit}>edit</button></td>
-                    <td><button>delete</button></td>
+                    <td><button onClick={() => handleDeleteGod(god.id)}>delete</button></td>
                   </tr>
                 );
               })}

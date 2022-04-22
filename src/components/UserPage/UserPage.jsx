@@ -30,6 +30,7 @@ function UserPage() {
   
   const renderUserDisplay = () => {
     console.log('render user display');
+    
   }
   
 

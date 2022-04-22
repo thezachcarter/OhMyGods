@@ -2,6 +2,15 @@
     background-image: none;
     background-color: white;
     font-size: 18px;
+    justify-content: center;
+
+    button{
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        text-align: center;
+        height: 24px;
+    }
 
     .adminForm{
         width: 100vw;
@@ -11,16 +20,15 @@
             width: 20vw;
         }
 
-        button{
-            justify-self: center;
-            text-align: center;
-            height: 24px;
-        }
     }
 
     .adminTable {
         border: 1px solid black;
         width: 100vw; 
+
+        td { 
+            border: 1px solid black
+        }
     }
 
 }

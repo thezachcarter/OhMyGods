@@ -22,3 +22,20 @@ where power != 0
     [ ] monsters could be inserted individually with query on GET with incrementing monster id?
 [x] PIXELIZE PHOTOS
 [x] fix bug with god power increase
+
+04/22 TO-DO REFACTOR
+[ ] Admin edit & delete
+[ ] Admin authorization
+[ ] Create new account, populate tables (see above)
+[ ] Restart Game, similar functionality to new account
+[ ] Info button
+[ ] Replace Button
+
+STRETCH
+[ ] Animation
+[ ] Conquered Monsters
+[ ] Leaderboard
+
+Before Submission
+[ ] REFACTOR
+[ ] update database.sql
