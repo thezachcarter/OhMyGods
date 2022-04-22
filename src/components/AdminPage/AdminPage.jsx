@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import './AdminPage.scss'
+
 function Admin() {
   
   const store = useSelector((store) => store);
@@ -102,7 +104,7 @@ function Admin() {
 
 
   return (
-    <div>
+    <div className="admin">
 
       <h2>ADMIN</h2> 
       
@@ -112,7 +114,7 @@ function Admin() {
       {table === 'gods' ?
       //GOD FORM
       <div>
-      <form>
+      <form className="adminForm">
         <input type="text" placeholder="name" onChange={handleGodObj}/>
         <input type="text" placeholder="culture" onChange={handleGodObj}/>
         <input type="text" placeholder="element" onChange={handleGodObj}/>
@@ -125,7 +127,7 @@ function Admin() {
       :
       //MONSTER FORM
       <div>
-        <form>
+        <form className="adminForm">
           <input type="text" placeholder="name" onChange={handleMonsterObj}/>
           <input type="text" placeholder="culture" onChange={handleMonsterObj}/>
           <input type="text" placeholder="element" onChange={handleMonsterObj}/>
@@ -140,7 +142,7 @@ function Admin() {
       {/* TABLES, table rendered changes based on god/monster toggle */}
       {table === 'gods' ?
       // GOD TABLE
-      <div>
+      <div className="adminTable">
         <table>
           <thead>
             <tr>
@@ -175,7 +177,7 @@ function Admin() {
 
         :
         //MONSTER TABLE 
-        <div>
+        <div className="adminTable">
         <table>
           <thead>
             <tr>

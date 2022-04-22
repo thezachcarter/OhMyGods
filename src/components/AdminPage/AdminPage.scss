@@ -1,0 +1,26 @@
+.admin {
+    background-image: none;
+    background-color: white;
+    font-size: 18px;
+
+    .adminForm{
+        width: 100vw;
+        
+        input{
+            height: 24px;
+            width: 20vw;
+        }
+
+        button{
+            justify-self: center;
+            text-align: center;
+            height: 24px;
+        }
+    }
+
+    .adminTable {
+        border: 1px solid black;
+        width: 100vw; 
+    }
+
+}

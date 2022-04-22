@@ -48,6 +48,10 @@ function GodCard({attack}) {
     console.log('decreaseDevotion', userId, updatedDevotion);
     dispatch({ type: 'UPDATE_DEVOTION', payload: userId, updatedDevotion})
   };
+
+  const handleGodInfo = (godId) => {
+    dispatch({ type:'SET_INFO_GOD', payload: godId})
+  };
   
   return (
     <>
@@ -90,7 +94,7 @@ function GodCard({attack}) {
             <h2 className="godPower">{god.power}</h2>
             <button className="godCardBtn">X</button>
             <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
-            <button className="godCardBtn">?</button>
+            <button className="godCardBtn" onClick={(() => handleGodInfo(god.id))}>?</button>
           </div>
         );
       })}

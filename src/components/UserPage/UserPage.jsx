@@ -28,7 +28,9 @@ function UserPage() {
   const [display, setDisplay] = useState(howToPlay)
 
   
-  
+  const renderUserDisplay = () => {
+    console.log('render user display');
+  }
   
 
 
@@ -45,7 +47,7 @@ function UserPage() {
         <h2>{display}</h2>
       </div>
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
-      <GodCard />
+      <GodCard renderUserDisplay={renderUserDisplay}/>
     </div>
   );
 }
