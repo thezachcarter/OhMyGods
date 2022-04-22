@@ -26,6 +26,9 @@ where power != 0
 04/22 TO-DO REFACTOR
 [ ] Admin edit
 [ ] Admin authorization
+[ ] Remove LandingPage
+[ ] Update log in, log out, register pages
+[ ] Update about
 [ ] Create new account, populate tables (see above)
 [ ] Restart Game, similar functionality to new account
 [ ] Info button
