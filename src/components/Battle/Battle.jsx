@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { render } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {useLocation} from 'react-router-dom'
+import {useLocation, useHistory} from 'react-router-dom'
+
+
 import GodCard from '../GodCard/GodCard';
 import MonsterCard from '../MonsterCard/MonsterCard';
 
@@ -13,6 +16,7 @@ function Battle() {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
 
   const [display, setDisplay] = useState('Click a God to attack!')
 
@@ -21,6 +25,7 @@ function Battle() {
   const godArray = store.usersGods;
   const user = store.user;
 
+  
 
   //checks array for first monster, by id, that has not been defeated
   //also resets to beginning of monsters if order gets messed up in testing
@@ -35,22 +40,52 @@ function Battle() {
   })
   
   //power level of monster, value will change on client side, not in db
-  const monsterPower = currentMonster.power
+  const [monsterPower, setMonsterPower ]= useState(currentMonster.power)
   //total power level of all gods
-  const totalGodPower = godArray.reduce((accumulator, object) => {
+  const totalGodPower = godArray?.reduce((accumulator, object) => {
     return accumulator + object.power;
   }, 0);
 
   //determine victory status by checking power of monster and ALL gods 
   const checkBattleStatus = () => {
-    if (monsterPower <= 0) {
-      setDisplay('Victory!');
+    console.log('CHECK BATTLE STATUS totalGodPower:', totalGodPower, 'monsterPower:', monsterPower);
+    if (currentMonster.power <= 0) {
+      setDisplay('victory');
+      renderBattleDisplay(display);
+      setTimeout(() => {  history.push('/user') }, 2000);
     } else if (totalGodPower <= 0) {
-      setDisplay('Defeat!')
+      setDisplay('defeat')
+      renderBattleDisplay(display);
+      setTimeout(() => {  history.push('/user') }, 2000);
     };
+    renderBattleDisplay(display);
+  };
+
+  const renderBattleDisplay = (display) => {
+    if (display === 'victory'){
+      return(
+      <div>
+        <h1 className="victory">VICTORY!</h1>
+      </div>
+      )}
+    else if (display === 'defeat'){
+      return(
+      <div>
+        <h1 className="defeat">DEFEAT!</h1>
+      </div>
+      )}
+    else {
+    return(
+      <div>
+        {display}
+      </div>
+      )}
   }
 
+
   const attack = (event) => {
+
+    console.log('ATTACK CLICKED');
 
     if(location.pathname !== '/battle'){
       return 'false';
@@ -164,26 +199,25 @@ function Battle() {
         //set and update power level for god and monster
         let updatedGodPower = attackingGod.power - damageToGod;
         let updatedMonsterPower = currentMonster.power -= damageToMonster;
-        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod, updatedGodPower  })
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod.id, updatedGodPower  })
         dispatch({ type: 'UPDATE_USER_MONSTER_POWER', payload: currentMonster, updatedMonsterPower })
 
         //display damage to DOM
-        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster} ___
+        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster} _
            Damage to ${attackingGod.name} = ${damageToGod}
           `);
 
         dispatch({ type: 'SET_LAST_ATTACK', action: attackingGod})
         console.log('LAST ATTACK:', store.lastAttack);
 
-        checkBattleStatus();
-
       }//end if else checking god disabled/enabled
+      
+      console.log('^^^^^^^^^^^^^^^CHECKING BATTLE. currentMonster.power', currentMonster.power);
+      checkBattleStatus();
+
   }//end attack function
 
   
-  
-  console.log('CURRENT MONSTER', currentMonster);
-  console.log('GOD ARRAY', godArray[0]?.name);
   return (
     <div className="battleGrid">
 
@@ -241,7 +275,7 @@ function Battle() {
 
       <div className="infoDisplayContainer">
         <div className="infoDisplay">
-          {display}   
+          {renderBattleDisplay(display)}
         </div>
       </div>
 

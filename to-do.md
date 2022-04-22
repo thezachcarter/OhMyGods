@@ -20,6 +20,5 @@ where power != 0
 [ ] allow user to restart if gods and devotion are at 0 
 [ ] Fill user_gods and user_monsters when new account is created or game is restarted
     [ ] monsters could be inserted individually with query on GET with incrementing monster id?
-[ ] PIXELIZE PHOTOS
-[ ] remove image border?
-[ ] fix bug with god power increase
+[x] PIXELIZE PHOTOS
+[x] fix bug with god power increase

@@ -14,11 +14,11 @@ $Sky: rgb(241,156,66);
     height: 90%;
     
 
-.earthTxt {
+.earthTxt, .victory{
     color: $Earth;
 }
 
-.fireTxt {
+.fireTxt, .defeat{
     color: $Fire; 
 }
 
@@ -88,8 +88,12 @@ $Sky: rgb(241,156,66);
         justify-content: center;
         align-self: center;
         color: white;
-        text-shadow: 2px 2px black;
+        text-shadow: 4px 4px black;
         font-size: 24px;
+
+        .victory, .defeat{
+            font-size: 60px;
+        }
     }
     
 }
