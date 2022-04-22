@@ -2,11 +2,20 @@ import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
 
+import './LoginPage.scss'
+
 function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="grid" >
+
+      <h1 className="title">
+        <span className="titleSpan">O</span>h
+        <span className="titleSpan">M</span>y
+        <span className="titleSpan">G</span>ods</h1> 
+
+
       <LoginForm />
 
       <center>

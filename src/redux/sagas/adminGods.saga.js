@@ -22,9 +22,19 @@ function* postGod(action){
     }
 }
 
+function* deleteGod(action){
+    try{
+        yield axios.delete(`/api/adminGods/${ action.payload}`);
+        yield put({ type: 'GET_ADMIN_GODS' });
+    } catch (err){
+        console.log(err);
+    }
+}
+
 function* getAdminGodsWatcher() {
     yield takeLatest('GET_ADMIN_GODS', getAdminGods);
     yield takeLatest('POST_GOD', postGod)
+    yield takeLatest('DELETE_GOD', deleteGod)
 }
 
 export default getAdminGodsWatcher;

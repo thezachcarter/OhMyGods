@@ -10,7 +10,7 @@ where power != 0
     [x] get
     [x] post
     [ ] put
-    [ ] delete
+    [x] delete
 [ ] admin authorization
 [x] prevent devotion going negative
 [x] fix bug where gods disappear on refresh of battle page - submit ticket!
@@ -22,3 +22,23 @@ where power != 0
     [ ] monsters could be inserted individually with query on GET with incrementing monster id?
 [x] PIXELIZE PHOTOS
 [x] fix bug with god power increase
+
+04/22 TO-DO REFACTOR
+[ ] Admin edit
+[ ] Admin authorization
+[ ] Remove LandingPage
+[ ] Update log in, log out, register pages
+[ ] Update about
+[ ] Create new account, populate tables (see above)
+[ ] Restart Game, similar functionality to new account
+[ ] Info button
+[ ] Replace Button
+
+STRETCH
+[ ] Animation
+[ ] Conquered Monsters
+[ ] Leaderboard
+
+Before Submission
+[ ] REFACTOR
+[ ] update database.sql
