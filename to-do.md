@@ -28,10 +28,11 @@ where power != 0
 [ ] Fix DEFEAT display bug
 [ ] Admin edit
 [ ] Admin authorization
-[ ] Remove LandingPage
+[x] Remove LandingPage
 [ ] Update log in, log out, register pages
 [ ] Update about
-[ ] Create new account, populate tables (see above)
+[x] Create new account, populate tables (see above)
+    [ ] populate user_monsters
 [ ] Restart Game, similar functionality to new account
 [ ] Info button
 [ ] Replace God Button
@@ -40,7 +41,9 @@ STRETCH
 [ ] Animation
 [ ] Conquered Monsters
 [ ] Leaderboard
+[ ] Add more gods and monsters
 
 Before Submission
 [ ] REFACTOR
 [ ] update database.sql
+[ ] find and remove user.id where not needed

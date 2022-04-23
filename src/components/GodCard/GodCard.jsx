@@ -21,10 +21,16 @@ function GodCard({attack}) {
   const user = store.user;
 
   useEffect(() => {
-    console.log('**********************GOD CARD USE EFFECT! user:', user);
+    
     checkInBattle();
     dispatch({ type: 'GET_USERS_GODS', payload: user.id });
+    console.log('**********************GOD CARD USE EFFECT! user:', user, 'godArray:', godArray.length);
+    
   }, []);
+
+  const populateNewUserGods = () => {if(godArray?.length < 4){
+    dispatch({type: 'POPULATE_GODS'});}
+  }
   
   const checkInBattle = () => {
     if(location.pathname === '/battle'){

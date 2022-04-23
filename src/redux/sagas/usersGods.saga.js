@@ -45,6 +45,15 @@ function* setInfoGod(godId) {
     }
 }
 
+function* populateGods() {
+  try{ 
+  yield axios.post('/api/usersGods');
+  
+  }catch (err){
+    console.log(err);
+  }
+}
+
 // function* addGodPower(action) {
 //     console.log('addGodPower', action);
 //     try{
@@ -61,6 +70,7 @@ function* getUsersGodsWatcher() {
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
     yield takeLatest('SET_LAST_ATTACK', setLastAttack);
     yield takeLatest('SET_INFO_GOD', setInfoGod);
+    yield takeLatest('POPULATE_GODS', populateGods);
 }
 
 export default getUsersGodsWatcher;

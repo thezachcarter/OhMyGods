@@ -18,6 +18,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AdminPage from '../AdminPage/AdminPage'
+import NewUserPage from '../NewUser/NewUser'
 
 //added components
 import Battle from '../Battle/Battle';
@@ -42,6 +43,13 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
+
+          <ProtectedRoute
+            exact
+            path="/newuser"
+          >
+            <NewUserPage />
+          </ProtectedRoute>
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route

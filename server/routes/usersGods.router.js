@@ -35,6 +35,19 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  const id = req.user.id;
+
+  const queryText = `INSERT INTO "users_gods" ("user_id", "god_id")
+  VALUES ($1,1), ($1,2), ($1,3), ($1,4)`
+  ;
+
+  pool
+  .query(queryText, [id])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log('POPULATE GODS FAILED: ', err);
+    res.sendStatus(500);
+  });
 });
 
 

@@ -4,7 +4,7 @@ import {useHistory, useLocation} from 'react-router-dom';
 import GodCard from '../GodCard/GodCard';
 
 //styling
-import './UserPage.scss'
+import './NewUser.scss'
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -27,28 +27,23 @@ function UserPage() {
   `
   const [display, setDisplay] = useState(howToPlay)
 
-  
-  const renderUserDisplay = () => {
-    console.log('render user display');
-    
+  const populateGods = () => {
+    dispatch({ type: 'POPULATE_GODS' });
+    history.push('/user');
   }
-  
-
 
   console.log(location);
   return (
     <div className="userPageGrid">
       <h1 className="title">
-        <span className="titleSpan">O</span>h
-        <span className="titleSpan">M</span>y
-        <span className="titleSpan">G</span>ods</h1> 
-      <button className="battleBtn" onClick={() => history.push('/battle')}>BATTLE!!!</button>
+        Greetings, {user.username}</h1> 
+      <button className="battleBtn" onClick={populateGods}>BEGIN</button>
 
       <div className="homeDisplay">
         <h2>{display}</h2>
       </div>
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
-      <GodCard renderUserDisplay={renderUserDisplay}/>
+      <GodCard />
     </div>
   );
 }
