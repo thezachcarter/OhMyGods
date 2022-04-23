@@ -28,6 +28,10 @@ $Sky: rgb(241,156,66);
     padding: 16px;
     text-align: center; 
 
+    &:hover{
+        box-shadow: 0px 0px 40px 24px white;
+    }
+
     .godName{
         font-size: 32px;
         line-height: 32px;
