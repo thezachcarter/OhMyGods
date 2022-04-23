@@ -28,7 +28,7 @@ function* updateUserGodPower(action) {
 function* setLastAttack(action) {
     console.log('setLastAttack', action);
     try{
-        yield put({type: 'SET_LAST_ATTACK_STATE', payload: action})
+        yield put({type: 'SET_LAST_ATTACK_STATE', payload: action.payload})
     }
     catch(err){
         console.log(err); 

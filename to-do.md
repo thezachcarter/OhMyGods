@@ -23,7 +23,9 @@ where power != 0
 [x] PIXELIZE PHOTOS
 [x] fix bug with god power increase
 
-04/22 TO-DO REFACTOR
+04/22 TO-DO 
+[x] Add devotion after battle
+[ ] Fix DEFEAT display bug
 [ ] Admin edit
 [ ] Admin authorization
 [ ] Remove LandingPage
@@ -32,7 +34,7 @@ where power != 0
 [ ] Create new account, populate tables (see above)
 [ ] Restart Game, similar functionality to new account
 [ ] Info button
-[ ] Replace Button
+[ ] Replace God Button
 
 STRETCH
 [ ] Animation

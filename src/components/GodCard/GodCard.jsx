@@ -45,7 +45,7 @@ function GodCard({attack}) {
 
   const decreaseDevotion = (userId, updatedDevotion) => {
     updatedDevotion -= 1;
-    console.log('decreaseDevotion', userId, updatedDevotion);
+    // console.log('decreaseDevotion', userId, updatedDevotion);
     dispatch({ type: 'UPDATE_DEVOTION', payload: userId, updatedDevotion})
   };
 

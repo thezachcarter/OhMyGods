@@ -25,8 +25,14 @@ function Battle() {
   const godArray = store.usersGods;
   const user = store.user;
 
-  
+    //power level of monster, value will change on client side, not in db
+  // const [monsterPower, setMonsterPower ]= useState(currentMonster.power)
+  //total power level of all gods
+  const totalGodPower = godArray?.reduce((accumulator, object) => {
+    return accumulator + object.power;
+  }, 0);
 
+  
   //checks array for first monster, by id, that has not been defeated
   //also resets to beginning of monsters if order gets messed up in testing
   const [currentMonster, setCurrentMonster] = useState('')
@@ -39,26 +45,27 @@ function Battle() {
     }
   })
   
-  //power level of monster, value will change on client side, not in db
-  // const [monsterPower, setMonsterPower ]= useState(currentMonster.power)
-  //total power level of all gods
-  const totalGodPower = godArray?.reduce((accumulator, object) => {
-    return accumulator + object.power;
-  }, 0);
-
   //determine victory status by checking power of monster and ALL gods 
   const checkBattleStatus = () => {
+    console.log('$$$$$$$$$$ checkBattleStatus monster', currentMonster.power, 'Gods', totalGodPower );
     if (currentMonster.power <= 0) {
       setDisplay('victory');
       renderBattleDisplay(display);
+      dispatch({ type: 'SET_LAST_ATTACK', payload: {id:0} })
       setTimeout(() => {  setDisplay('devotion') }, 2000);
-      setTimeout(() => {  history.push('/user') }, 4000);
+      increaseDevotion(user.id, user.devotion);
+      setTimeout(() => {  history.push('/user') }, 3000);
     } else if (totalGodPower <= 0) {
       setDisplay('defeat')
       renderBattleDisplay(display);
       setTimeout(() => {  history.push('/user') }, 3000);
     };
     renderBattleDisplay(display);
+  };
+
+  const increaseDevotion = (userId, updatedDevotion) => {
+    updatedDevotion += 8;
+    dispatch({ type: 'UPDATE_DEVOTION', payload: userId, updatedDevotion})
   };
 
   const renderBattleDisplay = (display) => {
@@ -212,7 +219,7 @@ function Battle() {
            Damage to ${attackingGod.name} = ${damageToGod}
           `);
 
-        dispatch({ type: 'SET_LAST_ATTACK', action: attackingGod})
+        dispatch({ type: 'SET_LAST_ATTACK', payload: attackingGod})
         console.log('LAST ATTACK:', store.lastAttack);
 
       }//end if else checking god disabled/enabled
