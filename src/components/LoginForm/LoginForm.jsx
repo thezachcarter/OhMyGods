@@ -28,6 +28,7 @@ function LoginForm() {
 
   return (
     <div className="grid">
+      
     <form className="formPanel" onSubmit={login}>
       <h2>Login</h2>
       {errors.loginMessage && (

@@ -26,9 +26,19 @@ function* updateUserMonsterPower(action) {
     }
 }
 
+function* populateMonsters() {
+    try{ 
+    yield axios.post('/api/usersMonsters');
+    
+    }catch (err){
+      console.log(err);
+    }
+  }
+
 function* getUsersMonstersWatcher() {
     yield takeLatest('GET_USERS_MONSTERS', getUsersMonsters);
     yield takeLatest('UPDATE_USER_MONSTER_POWER', updateUserMonsterPower);
+    yield takeLatest('POPULATE_MONSTERS', populateMonsters);
 }
 
 export default getUsersMonstersWatcher;

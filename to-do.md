@@ -37,7 +37,11 @@ where power != 0
 [ ] Info button
 [ ] Replace God Button
 
+
+[ ] FIX BUG - updating god power failing! GodCard sending wrong id on click, may be in put query. wrong id
+
 STRETCH
+[ ] Four Color Accent
 [ ] Animation
 [ ] Conquered Monsters
 [ ] Leaderboard

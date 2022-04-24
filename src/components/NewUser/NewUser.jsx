@@ -29,22 +29,38 @@ function UserPage() {
 
   const populateGods = () => {
     dispatch({ type: 'POPULATE_GODS' });
+    dispatch({ type: 'POPULATE_MONSTERS' });
     history.push('/user');
   }
 
   console.log(location);
   return (
     <div className="userPageGrid">
+      <span className="Water colorSplash"></span>
+      <span className="Earth colorSplash"></span>
+      <span className="Fire colorSplash"></span>
+      <span className="Sky colorSplash"></span>
+      
+
       <h1 className="title">
         Greetings, {user.username}</h1> 
+      
+      
       <button className="battleBtn" onClick={populateGods}>BEGIN</button>
-
+      
+      
       <div className="homeDisplay">
         <h2>{display}</h2>
       </div>
+
+      
+      
+
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
       <GodCard />
     </div>
+
+    
   );
 }
 

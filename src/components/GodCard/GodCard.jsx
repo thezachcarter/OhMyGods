@@ -66,8 +66,9 @@ function GodCard({attack}) {
       
       <div className="godCardContainer ">
       {godArray.map(god => {
+        console.log('**************************', god)
         return (
-
+          
           <div className={`godCard ${god.element}`} onClick={((event) => attack(god.id))} key={god.id}>
             <h2 className="godName">{god.name}</h2>
             <img

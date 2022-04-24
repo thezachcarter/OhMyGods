@@ -32,8 +32,20 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-    // POST route code here
+ router.post('/', (req, res) => {
+  // POST route code here
+  const id = req.user.id;
+
+  const queryText = `INSERT INTO "users_monsters" ("user_id", "monster_id", "power")
+  VALUES ($1,1,10), ($1,2,20), ($1,3,30), ($1,4,40), ($1,5,15);`;
+
+  pool
+  .query(queryText, [id])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log('POPULATE MONSTERS FAILED: ', err);
+    res.sendStatus(500);
+  });
 });
 
 /**
