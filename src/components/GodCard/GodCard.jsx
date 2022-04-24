@@ -39,10 +39,10 @@ function GodCard({attack}) {
     }
   };
 
-  const increasePower = (godId, updatedGodPower) => {
+  const increasePower = (god, updatedGodPower) => {
     if (user.devotion > 0){updatedGodPower += 1;
-    console.log('increasePower', godId, updatedGodPower);
-    dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: godId, updatedGodPower})
+    console.log('increasePower', god, updatedGodPower);
+    dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: god, updatedGodPower})
     decreaseDevotion(user.id, user.devotion)}
     else{
       alert('you are out of devotion points')
@@ -100,7 +100,7 @@ function GodCard({attack}) {
             <h2 className="godCulture">{god.culture}</h2>
             <h2 className="godPower">{god.power}</h2>
             <button className="godCardBtn">X</button>
-            <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
+            <button className="godCardBtn" onClick={(() => increasePower(god, god.power))}>^</button>
             <button className="godCardBtn" onClick={(() => handleGodInfo(god.id))}>?</button>
           </div>
         );
