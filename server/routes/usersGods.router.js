@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
     console.log('usersGods.router PUT params', req.params);
     
 
-    //id is the god_id in "users_gods" join table
+    //params.id is the god_id in "users_gods" join table
     const power = req.params.power;
     const god_id = req.params.id;
     const user_id = req.user.id;

@@ -52,18 +52,19 @@ router.get('/', (req, res) => {
  * PUT route template
 //  */
 router.put('/:power/:id', (req, res) => {
-    // ID refers to user_monster id NOT user id
-    //id is the id in "users_monsters" join table
+    
+    //params.id is the id in "users_monsters" join table
     const power = req.params.power;
-    const id = req.params.id;
+    const monster_id = req.params.id;
+    const user_id = req.user.id;
 
     const queryText = `
         UPDATE "users_monsters" 
         SET "power" = $1
-        WHERE "id" = $2
+        WHERE "monster_id" = $2 AND "user_id" = $3
         ;`
    
-    pool.query(queryText, [power, id])
+    pool.query(queryText, [power, monster_id, user_id])
     .then((result) => {
         res.send(result.rows);
       })

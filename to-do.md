@@ -25,23 +25,24 @@ where power != 0
 
 04/22 TO-DO 
 [x] Add devotion after battle
-[ ] Fix DEFEAT display bug
 [ ] Admin edit
 [ ] Admin authorization
 [x] Remove LandingPage
-[ ] Update log in, log out, register pages
+[x] Update log in, log out, register pages
 [ ] Update about
 [x] Create new account, populate tables (see above)
-    [ ] populate user_monsters
+    [x] populate user_monsters
 [ ] Restart Game, similar functionality to new account
 [ ] Info button
 [ ] Replace God Button
 
-
-[ ] FIX BUG - updating god power failing! GodCard sending wrong id on click, may be in put query. wrong id
+FIX BUGS
+[ ] Fix DEFEAT display bug
+[ ] send proper data for increasing god power through ^ button and updating monster power 
+[ ] fix log out screen
 
 STRETCH
-[ ] Four Color Accent
+[x] Four Color Accent
 [ ] Animation
 [ ] Conquered Monsters
 [ ] Leaderboard
