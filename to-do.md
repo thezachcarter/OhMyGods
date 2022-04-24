@@ -38,8 +38,8 @@ where power != 0
 
 FIX BUGS
 [ ] Fix DEFEAT display bug
-[ ] send proper data for increasing god power through ^ button and updating monster power 
-[ ] fix log out screen
+[x] send proper data for increasing god power through ^ button and updating monster power 
+[ ] fix log out screen, bug occurs when logging out from battle
 
 STRETCH
 [x] Four Color Accent
@@ -50,5 +50,6 @@ STRETCH
 
 Before Submission
 [ ] REFACTOR
+[ ] Remove extra crap: psOne css, 
 [ ] update database.sql
 [ ] find and remove user.id where not needed

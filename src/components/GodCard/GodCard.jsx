@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import { attack } from '../Battle/Battle';
+import axios from 'axios';
 
 import './GodCard.scss'
 
@@ -55,8 +56,15 @@ function GodCard({attack}) {
     dispatch({ type: 'UPDATE_DEVOTION', payload: userId, updatedDevotion})
   };
 
-  const handleGodInfo = (godId) => {
-    dispatch({ type:'SET_INFO_GOD', payload: godId})
+  const handleGodInfo = (godName) => {
+    axios.get(`/api/info/${godName}`)
+    .then( response => { 
+        dispatch({type: 'SET_GOD_INFO_STORE', payload: response.data.query.pages})
+        console.log(response.data.query.pages);
+    })
+    .catch(err => {
+        console.log(err)
+    })
   };
   
   return (
@@ -66,7 +74,6 @@ function GodCard({attack}) {
       
       <div className="godCardContainer ">
       {godArray.map(god => {
-        console.log('**************************', god)
         return (
           
           <div className={`godCard ${god.element}`} onClick={((event) => attack(god.id))} key={god.id}>
@@ -101,7 +108,7 @@ function GodCard({attack}) {
             <h2 className="godPower">{god.power}</h2>
             <button className="godCardBtn">X</button>
             <button className="godCardBtn" onClick={(() => increasePower(god, god.power))}>^</button>
-            <button className="godCardBtn" onClick={(() => handleGodInfo(god.id))}>?</button>
+            <button className="godCardBtn" onClick={(() => handleGodInfo(god.name))}>?</button>
           </div>
         );
       })}

@@ -35,15 +35,17 @@ function* setLastAttack(action) {
     }
 }
 
-function* setInfoGod(godId) {
-    console.log('!!!!!!!!! setInfoGod', godId);
-    try{
-        yield put({type: 'SET_INFO_GOD_STORE', payload: godId})
-    }
-    catch(err){
-        console.log(err);
-    }
-}
+// function* setInfoGod(action) {
+//     console.log('!!!!!!!!! setInfoGod', action.payload);
+//     try{
+//         console.log('god info sent');
+//         const godInfo = yield axios.get(`/api/info/${action.payload}`);
+//         // yield put({type: 'SET_INFO_GOD_STORE', payload: godId})
+//     }
+//     catch(err){
+//         console.log(err);
+//     }
+// }
 
 function* populateGods() {
   try{ 
@@ -69,7 +71,7 @@ function* getUsersGodsWatcher() {
     yield takeLatest('GET_USERS_GODS', getUsersGods);
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
     yield takeLatest('SET_LAST_ATTACK', setLastAttack);
-    yield takeLatest('SET_INFO_GOD', setInfoGod);
+    // yield takeLatest('SET_INFO_GOD', setInfoGod);
     yield takeLatest('POPULATE_GODS', populateGods);
 }
 

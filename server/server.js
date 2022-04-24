@@ -13,6 +13,7 @@ const usersGodsRouter = require('./routes/usersGods.router');
 const usersMonstersRouter = require('./routes/usersMonsters.router');
 const adminGodsRouter = require('./routes/adminGods.router');
 const adminMonstersRouter = require('./routes/adminMonsters.router');
+const infoRouter = require('./routes/info.router');
 
 
 // Body parser middleware
@@ -32,6 +33,7 @@ app.use('/api/usersGods', usersGodsRouter);
 app.use('/api/usersMonsters', usersMonstersRouter);
 app.use('/api/adminGods', adminGodsRouter);
 app.use('/api/adminMonsters', adminMonstersRouter);
+app.use('/api/info', infoRouter);
 
 // Serve static files
 app.use(express.static('build'));
