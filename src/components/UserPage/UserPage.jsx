@@ -11,9 +11,12 @@ function UserPage() {
   const dispatch = useDispatch()
   const store = useSelector((store) => store);
   const user = store.user;
+  const godInfo = store.godInfo;
   const history = useHistory();
   const location = useLocation();
 
+  const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
+  console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
 
   const howToPlay = `
     Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
@@ -25,12 +28,11 @@ function UserPage() {
     button to learn more about your god. Click the X button to replace a god for four devotion. All new gods start 
     with eight power.
   `
-  const [display, setDisplay] = useState(howToPlay)
+  const [display, setDisplay] = useState(howToPlay);  
 
   
   const renderUserDisplay = () => {
     console.log('render user display');
-    
   }
   
 
