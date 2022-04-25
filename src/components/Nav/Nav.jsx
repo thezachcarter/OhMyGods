@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 import './Nav.scss';
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
+  const setHowToPlay = () => {
+    dispatch({ type: 'SET_USER_DISPLAY', payload: 'howToPlay' })
+  }
 
   return (
     <div className="nav">
@@ -34,7 +40,7 @@ function Nav() {
 
             <h2 className="navLink" >{user.username}</h2>
 
-            <Link className="navLink" to="/user">
+            <Link className="navLink" to="/user" onClick={setHowToPlay}>
               How To Play
             </Link>
 

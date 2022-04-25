@@ -42,7 +42,7 @@ function UserPage() {
         console.log('AAAAAAAAAAAAA renderUserDisplayFunction(‘displayGodInfo’)', wikiText?.toString(wikiText));
         setDisplay(wikiText?.toString(wikiText));
         // console.log('WIKITEXT:', wikiText);
-        // dispatch({ type: 'SET_USER_DISPLAY', payload: wikiText })
+        dispatch({ type: 'SET_USER_DISPLAY', payload: 'godInfo' })
         break;
     }
   }
