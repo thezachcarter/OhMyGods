@@ -18,8 +18,7 @@ where power != 0
 [x] remove all user info from URLs in router, replace w/ req.user
 [x] Victory/Defeat Alerts, add devotion, click to continue
 [ ] allow user to restart if gods and devotion are at 0 
-[ ] Fill user_gods and user_monsters when new account is created or game is restarted
-    [ ] monsters could be inserted individually with query on GET with incrementing monster id?
+[x] Fill user_gods and user_monsters when new account is created or game is restarted
 [x] PIXELIZE PHOTOS
 [x] fix bug with god power increase
 
@@ -28,14 +27,16 @@ where power != 0
 [ ] Fix DEFEAT display bug
 [ ] Admin edit
 [ ] Admin authorization
-[ ] Remove LandingPage
-[ ] Update log in, log out, register pages
+[ ] Remove LandingPage - component 
+[x] Update log in, log out, register pages
 [ ] Update about
-[ ] Create new account, populate tables (see above)
+[x] Create new account, populate tables (see above)
 [ ] Restart Game, similar functionality to new account
-[ ] Info button
+[ ] Info button - RACE CONDITION TICKET
 [ ] Replace God Button
-
+[ ] Text wrap god names
+[ ] FIX BUG - new gods power increase
+ 
 STRETCH
 [ ] Animation
 [ ] Conquered Monsters
