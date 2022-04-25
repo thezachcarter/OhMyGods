@@ -22,6 +22,7 @@ function GodCard({ attack, renderUserDisplay }) {
   const godArray = store.usersGods;
   const user = store.user;
   const godInfo = store.godInfo;
+  
 
   useEffect(() => {
 
@@ -49,17 +50,17 @@ function GodCard({ attack, renderUserDisplay }) {
       updatedGodPower += 1;
       console.log('increasePower', god, updatedGodPower);
       dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: god, updatedGodPower })
-      decreaseDevotion(user.id, user.devotion)
+      decreaseDevotion(user.devotion)
     }
     else {
       alert('you are out of devotion points')
     }
   };
 
-  const decreaseDevotion = (userId, updatedDevotion) => {
+  const decreaseDevotion = (updatedDevotion) => {
     updatedDevotion -= 1;
     // console.log('decreaseDevotion', userId, updatedDevotion);
-    dispatch({ type: 'UPDATE_DEVOTION', payload: userId, updatedDevotion })
+    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion })
   };
 
   const handleGodInfo = (godName) => {
@@ -92,9 +93,11 @@ function GodCard({ attack, renderUserDisplay }) {
     }
     console.log(newGodIds);
 
-    dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds }) 
-    dispatch({ type: 'SET_GOD_TO_REPLACE', payload: godToReplace})   
-    // renderUserDisplay('replaceGods');
+    //dispatch to update devotion
+    let updatedDevotion = user.devotion -= 6;
+    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
+    dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds }); 
+    dispatch({ type: 'SET_GOD_TO_REPLACE', payload: godToReplace});    
   }
 
   return (

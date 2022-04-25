@@ -37,6 +37,7 @@ function UserDisplay() {
     axios.put(`/api/replaceGods/${godToReplace.id}/${replaceGodId}`)
       .then(response => {
         dispatch({ type: 'GET_USERS_GODS'})
+        dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'howToPlay' }); 
       })
       .catch(err => {
         console.log(err)
