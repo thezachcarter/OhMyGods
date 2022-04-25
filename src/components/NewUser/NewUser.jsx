@@ -22,7 +22,7 @@ function UserPage() {
     a comparison of each combatants color / element. Matching a foe's culture doubles all damage. Gods may
     not attack twice in a row. In the upper right corner, you will see your devotion points. When you are not in battle, you may click 
     the ^ button on any of your gods to increase their power by one at the cost of one devotion. Click the ?
-    button to learn more about your god. Click the X button to replace a god for four devotion. All new gods start 
+    button to learn more about your god. Click the X button to replace a god for the cost of six devotion. All new gods start 
     with eight power.
   `
   const [display, setDisplay] = useState(howToPlay)

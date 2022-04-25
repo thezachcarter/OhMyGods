@@ -24,9 +24,7 @@ where power != 0
 
 04/22 TO-DO 
 [x] Add devotion after battle
-[ ] Admin edit
 [ ] Admin authorization
-[ ] Remove LandingPage - component 
 [x] Update log in, log out, register pages
 [ ] Update about
 [x] Create new account, populate tables (see above)
@@ -36,8 +34,8 @@ where power != 0
     [x] populate user_monsters
 [ ] Restart Game, similar functionality to new account
 [x] Info button - RACE CONDITION TICKET
-[ ] Replace God Button
-[ ] Text wrap god names
+[x] Replace God Button
+[x] Text wrap god names
 [x] FIX BUG - new gods power increase
 [ ] database table references
  
@@ -46,16 +44,20 @@ FIX BUGS
 [ ] Fix DEFEAT display bug
 [x] send proper data for increasing god power through ^ button and updating monster power 
 [ ] fix log out screen, bug occurs when logging out from battle
+[ ] reset userDisplay so all new users see how to play, useEffect? if user logs out in another screen it may 
+stay same for next user
 
 STRETCH
 [x] Four Color Accent
 [ ] Animation
 [ ] Conquered Monsters
+[ ] Add more monsters
 [ ] Leaderboard
-[ ] Add more gods and monsters
+[ ] Admin edit - remove button if goal not reached
 
 Before Submission
 [ ] REFACTOR
-[ ] Remove extra crap: psOne css, 
+[ ] Remove extra crap: psOne css, LandingPage - component, 
+
 [ ] update database.sql
 [ ] find and remove user.id where not needed
