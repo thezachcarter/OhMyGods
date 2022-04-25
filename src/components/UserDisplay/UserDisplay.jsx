@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 import './UserDisplay.scss';
 
@@ -11,10 +12,12 @@ function UserDisplay() {
     // a default value of 'Functional Component'
     const store = useSelector((store) => store);
     const [heading, setHeading] = useState('Functional Component');
+    const dispatch = useDispatch()
     
     const displayReducer = store.display;
     const godInfo = store.godInfo;
     const replaceGods = store.replaceGods;
+    const godToReplace = store.godToReplace;
 
     const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
     //   // console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
@@ -30,6 +33,15 @@ function UserDisplay() {
     button to learn more about your god. Click the X button to replace a god for six devotion. All new gods start 
     with eight power.
   `
+    const selectReplaceGod = (replaceGodId) => {
+    axios.put(`/api/replaceGods/${godToReplace.id}/${replaceGodId}`)
+      .then(response => {
+        dispatch({ type: 'GET_USERS_GODS'})
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
 
     //renders user page display based on store.display
     switch (displayReducer) {
@@ -50,12 +62,13 @@ function UserDisplay() {
         case 'replaceGods' :
             return (
                 <div className="replaceGodContainer">
-                    <h2>Choose your new God</h2>
+                    <h2>Choose a God to replace {godToReplace.name}</h2>
                     <table className="replaceGodTbl">
                         <tbody>
                             {replaceGods.map(replaceGod => {
                                 return (
-                                    <tr key={replaceGod.id} className={replaceGod.element}>
+                                    <tr key={replaceGod.id} className={replaceGod.element}
+                                    onClick={(() => selectReplaceGod(replaceGod.id))}>
                                         <td>{replaceGod.name}</td>
                                         <td>{replaceGod.culture}</td>
                                         <td>{replaceGod.element}</td>

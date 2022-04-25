@@ -68,11 +68,18 @@ function* populateGods() {
 // }
 
 function* getReplaceGods(action) {
-    console.log(action.payload[2]);
     try{ 
         const replaceGods = yield axios.get(`/api/replaceGods/${action.payload[0]}/${action.payload[1]}/${action.payload[2]}`);
         yield put({ type: 'SET_REPLACE_GODS', payload: replaceGods.data })
         yield put({ type: 'SET_USER_DISPLAY', payload: 'replaceGods' })
+        }catch (err){
+          console.log(err);
+        }
+}
+
+function* setGodToReplace(action) {
+    try{
+        yield put({ type: 'SET_GOD_TO_REPLACE_STORE', payload: action.payload })
         }catch (err){
           console.log(err);
         }
@@ -85,6 +92,7 @@ function* getUsersGodsWatcher() {
     // yield takeLatest('SET_INFO_GOD', setInfoGod);
     yield takeLatest('POPULATE_GODS', populateGods);
     yield takeLatest('GET_REPLACE_GODS', getReplaceGods);
+    yield takeLatest('SET_GOD_TO_REPLACE', setGodToReplace);
 }
 
 export default getUsersGodsWatcher;
