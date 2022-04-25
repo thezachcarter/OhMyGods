@@ -7,6 +7,7 @@ import lastAttack from './lastAttack.reducer';
 import adminGods from './adminGods.reducer';
 import adminMonsters from './adminMonsters.reducer';
 import godInfo from './godInfo.reducer';
+import display from './display.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   adminGods,
   adminMonsters,
   godInfo,
+  display,
 });
 
 export default rootReducer;

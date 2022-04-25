@@ -6,6 +6,7 @@ import getUsersGodsWatcher from './usersGods.saga';
 import getUsersMonstersWatcher from './usersMonsters.saga';
 import getAdminGodsWatcher from './adminGods.saga';
 import getAdminMonstersWatcher from './adminMonsters.saga';
+import userDisplayWatcher from './displaySaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     getUsersMonstersWatcher(),
     getAdminGodsWatcher(),
     getAdminMonstersWatcher(),
+    userDisplayWatcher(),
   ]);
 }

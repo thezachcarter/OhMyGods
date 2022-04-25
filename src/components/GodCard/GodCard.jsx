@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import { attack } from '../Battle/Battle';
+import { renderUserDisplay } from '../UserPage/UserPage';
 import axios from 'axios';
 
 import './GodCard.scss'
@@ -10,7 +11,7 @@ import './GodCard.scss'
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function GodCard({attack}) {
+function GodCard({attack, renderUserDisplay}) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
@@ -20,6 +21,7 @@ function GodCard({attack}) {
 
   const godArray = store.usersGods;
   const user = store.user;
+  const godInfo = store.godInfo;
 
   useEffect(() => {
     
@@ -57,14 +59,20 @@ function GodCard({attack}) {
   };
 
   const handleGodInfo = (godName) => {
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!handleGodInfo clicked');
     axios.get(`/api/info/${godName}`)
     .then( response => { 
         dispatch({type: 'SET_GOD_INFO_STORE', payload: response.data.query.pages})
         console.log(response.data.query.pages);
+        
+    })
+    .then( response => { 
+      renderUserDisplay('displayGodInfo');
     })
     .catch(err => {
         console.log(err)
     })
+    
   };
   
   return (

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import GodCard from '../GodCard/GodCard';
+import UserDisplay from '../UserDisplay/UserDisplay'
 
 //styling
 import './UserPage.scss'
@@ -12,11 +13,12 @@ function UserPage() {
   const store = useSelector((store) => store);
   const user = store.user;
   const godInfo = store.godInfo;
+  const displayReducer = store.display;
   const history = useHistory();
   const location = useLocation();
-
-  const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
-  console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
+  
+  const wikiText = godInfo[Object?.keys(godInfo)[0]]?.extract;
+  console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', store.display);
 
   const howToPlay = `
     Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
@@ -28,16 +30,22 @@ function UserPage() {
     button to learn more about your god. Click the X button to replace a god for four devotion. All new gods start 
     with eight power.
   `
-  const [display, setDisplay] = useState(howToPlay);  
-
+  const [display, setDisplay] = useState(howToPlay); 
   
-  const renderUserDisplay = () => {
-    console.log('render user display');
+  const renderUserDisplay = (params) => {
+    console.log('$$$$$$$$$$$$$$$$ renderUserDisplay');
+    switch (params) {
+      case 'howToPlay':
+        setDisplay(howToPlay)
+        break;
+      case 'displayGodInfo':
+        setDisplay(wikiText?.toString(wikiText));
+        // console.log('WIKITEXT:', wikiText);
+        // dispatch({ type: 'SET_USER_DISPLAY', payload: wikiText })
+        break;
+    }
   }
   
-
-
-  console.log(location);
   return (
     <div className="userPageGrid">
       <h1 className="title">
@@ -47,10 +55,12 @@ function UserPage() {
       <button className="battleBtn" onClick={() => history.push('/battle')}>BATTLE!!!</button>
 
       <div className="homeDisplay">
-        <h2>{display}</h2>
+      <h2>{display}</h2>
+      {/* <UserDisplay renderUserDisplay={renderUserDisplay} display={display}/> */}
       </div>
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
-      <GodCard renderUserDisplay={renderUserDisplay}/>
+      {/* <GodCard renderUserDisplay={renderUserDisplay}/> */}
+      <GodCard renderUserDisplay={renderUserDisplay} />
     </div>
   );
 }
