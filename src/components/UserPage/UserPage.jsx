@@ -36,13 +36,18 @@ function UserPage() {
     console.log('$$$$$$$$$$$$$$$$ renderUserDisplay');
     switch (params) {
       case 'howToPlay':
-        setDisplay(howToPlay)
+        // setDisplay(howToPlay)
+        dispatch({ type: 'SET_USER_DISPLAY', payload: 'howToPlay' })
         break;
       case 'displayGodInfo':
         console.log('AAAAAAAAAAAAA renderUserDisplayFunction(‘displayGodInfo’)', wikiText?.toString(wikiText));
-        setDisplay(wikiText?.toString(wikiText));
+        // setDisplay(wikiText?.toString(wikiText));
         // console.log('WIKITEXT:', wikiText);
         dispatch({ type: 'SET_USER_DISPLAY', payload: 'godInfo' })
+        break;
+      case 'replaceGods':
+        // setDisplay(replaceGods)
+        dispatch({ type: 'SET_USER_DISPLAY', payload: 'replaceGods' })
         break;
     }
   }
@@ -57,7 +62,7 @@ function UserPage() {
 
       <div className="homeDisplay">
       {/* <h2>{display}</h2> */}
-      <UserDisplay renderUserDisplay={renderUserDisplay} />
+      <UserDisplay />
       </div>
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
       {/* <GodCard renderUserDisplay={renderUserDisplay}/> */}

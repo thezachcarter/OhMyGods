@@ -39,6 +39,7 @@ where power != 0
 [ ] Replace God Button
 [ ] Text wrap god names
 [x] FIX BUG - new gods power increase
+[ ] database table references
  
 
 FIX BUGS

@@ -70,7 +70,9 @@ function* populateGods() {
 function* getReplaceGods(action) {
     console.log(action.payload[2]);
     try{ 
-        yield axios.get(`/api/replaceGods/${action.payload[0]}/${action.payload[1]}/${action.payload[2]}`);
+        const replaceGods = yield axios.get(`/api/replaceGods/${action.payload[0]}/${action.payload[1]}/${action.payload[2]}`);
+        yield put({ type: 'SET_REPLACE_GODS', payload: replaceGods.data })
+        yield put({ type: 'SET_USER_DISPLAY', payload: 'replaceGods' })
         }catch (err){
           console.log(err);
         }

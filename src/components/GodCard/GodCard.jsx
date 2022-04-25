@@ -77,7 +77,7 @@ function GodCard({ attack, renderUserDisplay }) {
       })
   };
 
-  const handleReplaceGod = () => {
+  const handleReplaceGods = () => {
 
     const godIds = [godArray[0].god_id, godArray[1].god_id, godArray[2].god_id, godArray[3].god_id,];
     const len = 4;
@@ -93,8 +93,7 @@ function GodCard({ attack, renderUserDisplay }) {
     console.log(newGodIds);
 
     dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds })    
-
-
+    // renderUserDisplay('replaceGods');
   }
 
   return (
@@ -136,7 +135,7 @@ function GodCard({ attack, renderUserDisplay }) {
                 />
                 <h2 className="godCulture">{god.culture}</h2>
                 <h2 className="godPower">{god.power}</h2>
-                <button className="godCardBtn" onClick={(() => handleReplaceGod())}>X</button>
+                <button className="godCardBtn" onClick={(() => handleReplaceGods())}>X</button>
                 <button className="godCardBtn" onClick={(() => increasePower(god, god.power))}>^</button>
                 <button className="godCardBtn" onClick={(() => handleGodInfo(god.name))}>?</button>
               </div>
