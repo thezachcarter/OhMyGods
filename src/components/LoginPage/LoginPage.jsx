@@ -9,7 +9,7 @@ function LoginPage() {
 
   return (
     <div className="grid" >
-
+      
       <h1 className="title">
         <span className="titleSpan">O</span>h
         <span className="titleSpan">M</span>y

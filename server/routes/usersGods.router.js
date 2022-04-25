@@ -35,6 +35,18 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  const id = req.user.id;
+
+  const queryText = `INSERT INTO "users_gods" ("user_id", "god_id")
+  VALUES ($1,1), ($1,2), ($1,3), ($1,4);`;
+
+  pool
+  .query(queryText, [id])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log('POPULATE GODS FAILED: ', err);
+    res.sendStatus(500);
+  });
 });
 
 
@@ -47,17 +59,18 @@ router.post('/', (req, res) => {
     console.log('usersGods.router PUT params', req.params);
     
 
-    //id is the id in "users_gods" join table
+    //params.id is the god_id in "users_gods" join table
     const power = req.params.power;
-    const id = req.params.id;
+    const god_id = req.params.id;
+    const user_id = req.user.id;
 
     const queryText = `
         UPDATE "users_gods" 
         SET "power" = $1
-        WHERE "id" = $2
+        WHERE "god_id" = $2 AND "user_id" = $3
         ;`
     // console.log('god.router GET User ID ', req.user.id);
-    pool.query(queryText, [power, id])
+    pool.query(queryText, [power, god_id, user_id])
     .then((result) => {
         res.send(result.rows);
       })

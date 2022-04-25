@@ -18,6 +18,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AdminPage from '../AdminPage/AdminPage'
+import NewUserPage from '../NewUser/NewUser'
 
 //added components
 import Battle from '../Battle/Battle';
@@ -43,6 +44,13 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
+          <ProtectedRoute
+            exact
+            path="/newuser"
+          >
+            <NewUserPage />
+          </ProtectedRoute>
+
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
@@ -63,6 +71,7 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+          
           {/* ADMIN Page */}
           <ProtectedRoute
             
@@ -126,7 +135,7 @@ function App() {
               <Redirect to="/user" />
               :
               // Otherwise, show the Landing page
-              <LandingPage />
+              <LoginPage />
             }
           </Route>
 

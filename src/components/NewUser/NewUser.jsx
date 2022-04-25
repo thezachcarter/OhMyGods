@@ -2,23 +2,18 @@ import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import GodCard from '../GodCard/GodCard';
-import UserDisplay from '../UserDisplay/UserDisplay'
 
 //styling
-import './UserPage.scss'
+import './NewUser.scss'
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const dispatch = useDispatch()
   const store = useSelector((store) => store);
   const user = store.user;
-  const godInfo = store.godInfo;
-  // const displayReducer = store.display;
   const history = useHistory();
   const location = useLocation();
-  
-  const wikiText = godInfo[Object?.keys(godInfo)[0]]?.extract;
-  console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
+
 
   const howToPlay = `
     Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
@@ -30,39 +25,42 @@ function UserPage() {
     button to learn more about your god. Click the X button to replace a god for four devotion. All new gods start 
     with eight power.
   `
-  const [display, setDisplay] = useState(howToPlay); 
-  
-  const renderUserDisplay = (params) => {
-    console.log('$$$$$$$$$$$$$$$$ renderUserDisplay');
-    switch (params) {
-      case 'howToPlay':
-        setDisplay(howToPlay)
-        break;
-      case 'displayGodInfo':
-        console.log('AAAAAAAAAAAAA renderUserDisplayFunction(‘displayGodInfo’)', wikiText?.toString(wikiText));
-        setDisplay(wikiText?.toString(wikiText));
-        // console.log('WIKITEXT:', wikiText);
-        dispatch({ type: 'SET_USER_DISPLAY', payload: 'godInfo' })
-        break;
-    }
+  const [display, setDisplay] = useState(howToPlay)
+
+  const populateGods = () => {
+    dispatch({ type: 'POPULATE_GODS' });
+    dispatch({ type: 'POPULATE_MONSTERS' });
+    history.push('/user');
   }
-  
+
+  console.log(location);
   return (
     <div className="userPageGrid">
-      <h1 className="title">
-        <span className="titleSpan">O</span>h
-        <span className="titleSpan">M</span>y
-        <span className="titleSpan">G</span>ods</h1> 
-      <button className="battleBtn" onClick={() => history.push('/battle')}>BATTLE!!!</button>
+      <span className="Water colorSplash"></span>
+      <span className="Earth colorSplash"></span>
+      <span className="Fire colorSplash"></span>
+      <span className="Sky colorSplash"></span>
+      
 
+      <h1 className="title">
+        Greetings, {user.username}</h1> 
+      
+      
+      <button className="battleBtn" onClick={populateGods}>BEGIN</button>
+      
+      
       <div className="homeDisplay">
-      {/* <h2>{display}</h2> */}
-      <UserDisplay renderUserDisplay={renderUserDisplay} />
+        <h2>{display}</h2>
       </div>
+
+      
+      
+
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
-      {/* <GodCard renderUserDisplay={renderUserDisplay}/> */}
-      <GodCard renderUserDisplay={renderUserDisplay} />
+      <GodCard />
     </div>
+
+    
   );
 }
 

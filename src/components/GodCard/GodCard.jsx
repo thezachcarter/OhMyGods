@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import { attack } from '../Battle/Battle';
+import { renderUserDisplay } from '../UserPage/UserPage';
+import axios from 'axios';
 
 import './GodCard.scss'
 
@@ -9,7 +11,7 @@ import './GodCard.scss'
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function GodCard({attack}) {
+function GodCard({attack, renderUserDisplay}) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
@@ -19,12 +21,19 @@ function GodCard({attack}) {
 
   const godArray = store.usersGods;
   const user = store.user;
+  const godInfo = store.godInfo;
 
   useEffect(() => {
-    console.log('**********************GOD CARD USE EFFECT! user:', user);
+    
     checkInBattle();
     dispatch({ type: 'GET_USERS_GODS', payload: user.id });
+    console.log('**********************GOD CARD USE EFFECT! user:', user, 'godArray:', godArray.length);
+    
   }, []);
+
+  const populateNewUserGods = () => {if(godArray?.length < 4){
+    dispatch({type: 'POPULATE_GODS'});}
+  }
   
   const checkInBattle = () => {
     if(location.pathname === '/battle'){
@@ -33,10 +42,10 @@ function GodCard({attack}) {
     }
   };
 
-  const increasePower = (godId, updatedGodPower) => {
+  const increasePower = (god, updatedGodPower) => {
     if (user.devotion > 0){updatedGodPower += 1;
-    console.log('increasePower', godId, updatedGodPower);
-    dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: godId, updatedGodPower})
+    console.log('increasePower', god, updatedGodPower);
+    dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: god, updatedGodPower})
     decreaseDevotion(user.id, user.devotion)}
     else{
       alert('you are out of devotion points')
@@ -49,8 +58,20 @@ function GodCard({attack}) {
     dispatch({ type: 'UPDATE_DEVOTION', payload: userId, updatedDevotion})
   };
 
-  const handleGodInfo = (godId) => {
-    dispatch({ type:'SET_INFO_GOD', payload: godId})
+  const handleGodInfo = (godName) => {
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!handleGodInfo clicked');
+    axios.get(`/api/info/${godName}`)
+    .then( response => { 
+        dispatch({type: 'SET_GOD_INFO_STORE', payload: response.data.query.pages})
+        console.log(response.data.query.pages);
+    })
+    .then( response => { 
+      renderUserDisplay('displayGodInfo');
+    })
+    .catch(err => {
+        console.log(err)
+    })
+    
   };
   
   return (
@@ -61,7 +82,7 @@ function GodCard({attack}) {
       <div className="godCardContainer ">
       {godArray.map(god => {
         return (
-
+          
           <div className={`godCard ${god.element}`} onClick={((event) => attack(god.id))} key={god.id}>
             <h2 className="godName">{god.name}</h2>
             <img
@@ -93,8 +114,8 @@ function GodCard({attack}) {
             <h2 className="godCulture">{god.culture}</h2>
             <h2 className="godPower">{god.power}</h2>
             <button className="godCardBtn">X</button>
-            <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
-            <button className="godCardBtn" onClick={(() => handleGodInfo(god.id))}>?</button>
+            <button className="godCardBtn" onClick={(() => increasePower(god, god.power))}>^</button>
+            <button className="godCardBtn" onClick={(() => handleGodInfo(god.name))}>?</button>
           </div>
         );
       })}
