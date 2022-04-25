@@ -92,17 +92,9 @@ function GodCard({ attack, renderUserDisplay }) {
     }
     console.log(newGodIds);
 
-    // let newGodsIds = [];
+    dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds })    
 
-    // for (let godId of godIds) {
-    //   let randNum = Math.floor(Math.random() * (16 - 1)) + 1;
-    //   for (let i = 0; newGodsIds < 3; i++) {
-    //     if (randNum !== godId && randNum !== newGodId) {
-    //       newGodsIds.push(randNum)
-    //     }
-    //   }
-    // }
-    // console.log(newGodsIds);
+
   }
 
   return (

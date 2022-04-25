@@ -67,12 +67,22 @@ function* populateGods() {
 //     }
 // }
 
+function* getReplaceGods(action) {
+    console.log(action.payload[2]);
+    try{ 
+        yield axios.get(`/api/replaceGods/${action.payload[0]}/${action.payload[1]}/${action.payload[2]}`);
+        }catch (err){
+          console.log(err);
+        }
+}
+
 function* getUsersGodsWatcher() {
     yield takeLatest('GET_USERS_GODS', getUsersGods);
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
     yield takeLatest('SET_LAST_ATTACK', setLastAttack);
     // yield takeLatest('SET_INFO_GOD', setInfoGod);
     yield takeLatest('POPULATE_GODS', populateGods);
+    yield takeLatest('GET_REPLACE_GODS', getReplaceGods);
 }
 
 export default getUsersGodsWatcher;
