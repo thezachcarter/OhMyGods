@@ -45,11 +45,10 @@ function GodCard({ attack, renderUserDisplay }) {
     }
   };
 
-  const increasePower = (god, updatedGodPower) => {
+  const increasePower = (godId, updatedGodPower) => {
     if (user.devotion > 0) {
       updatedGodPower += 1;
-      console.log('increasePower', god, updatedGodPower);
-      dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: god, updatedGodPower })
+      dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: godId, updatedGodPower })
       decreaseDevotion(user.devotion)
     }
     else {
@@ -140,7 +139,7 @@ function GodCard({ attack, renderUserDisplay }) {
                 <h2 className="godCulture">{god.culture}</h2>
                 <h2 className="godPower">{god.power}</h2>
                 <button className="godCardBtn" onClick={(() => handleReplaceGods(god))}>X</button>
-                <button className="godCardBtn" onClick={(() => increasePower(god, god.power))}>^</button>
+                <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
                 <button className="godCardBtn" onClick={(() => handleGodInfo(god.name))}>?</button>
               </div>
             );

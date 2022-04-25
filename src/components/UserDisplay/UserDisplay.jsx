@@ -42,6 +42,9 @@ function UserDisplay() {
       .catch(err => {
         console.log(err)
       })
+
+      let updatedGodPower = 8;
+      dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: replaceGodId, updatedGodPower })
     }
 
     //renders user page display based on store.display

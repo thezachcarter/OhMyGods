@@ -211,7 +211,7 @@ function Battle() {
         //set and update power level for god and monster
         let updatedGodPower = attackingGod.power - damageToGod;
         let updatedMonsterPower = currentMonster.power -= damageToMonster;
-        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod, updatedGodPower  })
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod.id, updatedGodPower  })
         dispatch({ type: 'UPDATE_USER_MONSTER_POWER', payload: currentMonster, updatedMonsterPower })
 
         //display damage to DOM
