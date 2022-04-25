@@ -13,8 +13,8 @@ function UserDisplay({ renderUserDisplay, display }) {
   const displayReducer = store.display;  
   
   //THE COMMENTED OUT CODE BELOW IS LEFTOVER FROM TRYING MANY THING TO SOLVE A RACING ISSUE WITH GOD INFO
-//   const godInfo = store.godInfo;
-//   const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
+  const godInfo = store.godInfo;
+  const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
 //   // console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
 
 //   const howToPlay = `
@@ -46,7 +46,7 @@ function UserDisplay({ renderUserDisplay, display }) {
 
   return (
     <div>
-      <h2>{displayReducer}</h2>
+      <h2>{wikiText}</h2>
     </div>
   );
 }

@@ -64,7 +64,6 @@ function GodCard({attack, renderUserDisplay}) {
     .then( response => { 
         dispatch({type: 'SET_GOD_INFO_STORE', payload: response.data.query.pages})
         console.log(response.data.query.pages);
-        
     })
     .then( response => { 
       renderUserDisplay('displayGodInfo');

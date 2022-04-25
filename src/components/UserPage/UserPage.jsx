@@ -13,12 +13,12 @@ function UserPage() {
   const store = useSelector((store) => store);
   const user = store.user;
   const godInfo = store.godInfo;
-  const displayReducer = store.display;
+  // const displayReducer = store.display;
   const history = useHistory();
   const location = useLocation();
   
   const wikiText = godInfo[Object?.keys(godInfo)[0]]?.extract;
-  console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', store.display);
+  console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
 
   const howToPlay = `
     Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
@@ -39,6 +39,7 @@ function UserPage() {
         setDisplay(howToPlay)
         break;
       case 'displayGodInfo':
+        console.log('AAAAAAAAAAAAA renderUserDisplayFunction(‘displayGodInfo’)', wikiText?.toString(wikiText));
         setDisplay(wikiText?.toString(wikiText));
         // console.log('WIKITEXT:', wikiText);
         // dispatch({ type: 'SET_USER_DISPLAY', payload: wikiText })
@@ -55,8 +56,8 @@ function UserPage() {
       <button className="battleBtn" onClick={() => history.push('/battle')}>BATTLE!!!</button>
 
       <div className="homeDisplay">
-      <h2>{display}</h2>
-      {/* <UserDisplay renderUserDisplay={renderUserDisplay} display={display}/> */}
+      {/* <h2>{display}</h2> */}
+      <UserDisplay renderUserDisplay={renderUserDisplay} />
       </div>
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
       {/* <GodCard renderUserDisplay={renderUserDisplay}/> */}

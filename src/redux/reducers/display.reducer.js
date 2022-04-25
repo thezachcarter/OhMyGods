@@ -1,12 +1,11 @@
 const display = (state = [], action) => {
-    console.log('ZZZZZZZZZ', action.payload);
     
     switch (action.type) {
       case 'SET_DISPLAY_REDUCER':
         
-        return [action.payload];
+        return action.payload;
       default:
-        console.log('ZZZZZZZZZ display reducer did not trigger', state);
+        // console.log('ZZZZZZZZZ display reducer did not trigger', state);
         return state;
     }
   };
