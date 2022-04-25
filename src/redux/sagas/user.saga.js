@@ -27,7 +27,7 @@ function* fetchUser() {
 function* updateDevotion(action) {
   console.log('updateDevotion', action);
   try {
-      yield axios.put(`api/user/${action.updatedDevotion}/${action.payload}`)
+      yield axios.put(`api/user/${action.payload}`)
       yield put({ type: 'FETCH_USER'});
   }
   catch(err){

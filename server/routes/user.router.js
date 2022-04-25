@@ -55,13 +55,13 @@ router.post('/logout', (req, res) => {
 /**
  * PUT route template
 //  */
-router.put('/:devotion/:id', (req, res) => {
+router.put('/:devotion', (req, res) => {
   // PUT route code here
   console.log('user.router PUT devotion:', req.params);
 
   //id is the id in "users_gods" join table
   const devotion = req.params.devotion;
-  const id = req.params.id;
+  const id = req.user.id;
 
   const queryText = `
       UPDATE "user"
