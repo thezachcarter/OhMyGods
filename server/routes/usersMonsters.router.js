@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
   const id = req.user.id;
 
   const queryText = `INSERT INTO "users_monsters" ("user_id", "monster_id", "power")
-  VALUES ($1,1,10), ($1,2,20), ($1,3,30), ($1,4,40), ($1,5,15);`;
+  VALUES ($1,1,10), ($1,5,15), ($1,2,20), ($1,3,30), ($1,4,40);`;
 
   pool
   .query(queryText, [id])
