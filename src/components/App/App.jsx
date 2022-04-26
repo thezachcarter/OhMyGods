@@ -83,7 +83,7 @@ function App() {
           
           {/* BATTLE! */}
           <Route
-            
+            exact
             path="/battle"
           >
             {user.id ?

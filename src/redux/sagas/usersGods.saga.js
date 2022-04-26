@@ -85,6 +85,14 @@ function* setGodToReplace(action) {
         }
 }
 
+function* setTotalGodPower(action) {
+    try{
+        yield put({ type: 'SET_TOTAL_GOD_POWER_STORE', payload: action.payload})
+    }catch (err){
+        console.log(err);
+    }
+}
+
 function* getUsersGodsWatcher() {
     yield takeLatest('GET_USERS_GODS', getUsersGods);
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
@@ -93,6 +101,7 @@ function* getUsersGodsWatcher() {
     yield takeLatest('POPULATE_GODS', populateGods);
     yield takeLatest('GET_REPLACE_GODS', getReplaceGods);
     yield takeLatest('SET_GOD_TO_REPLACE', setGodToReplace);
+    yield takeLatest('SET_TOTAL_GOD_POWER', setTotalGodPower)
 }
 
 export default getUsersGodsWatcher;

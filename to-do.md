@@ -39,23 +39,24 @@ where power != 0
 [x] FIX BUG - new gods power increase
 [x] expand how to play. add damage rules. label reminder tables strength and weakness
 [ ] Conquered Monsters
-[ ] login/register UI
+[x] login/register UI
+[ ] add new monsters to database query
 
 FIX BUGS
-[ ] Fix DEFEAT display bug
+[ ] Fix DEFEAT display bug, remove extra crap like unused reducer.
 [x] send proper data for increasing god power through ^ button and updating monster power 
 [ ] fix log out screen, bug occurs when logging out from battle
 [x] reset userDisplay so all new users see how to play, useEffect? if user logs out in another screen it may 
 stay same for next user
 [x] devotion is resetting to 47? seems to set to user id
 [x] replace god button lets you spend negative devotion
-[ ] not all gods start with 8 power. seems to not always update from previous god array position
+[x] not all gods start with 8 power. seems to not always update from previous god array position
 
 STRETCH
+[ ] Animation
+[x] Add more monsters
 [ ] database table references
 [x] Four Color Accent
-[ ] Animation
-[ ] Add more monsters
 [ ] Monster health bar
 [ ] Leaderboard
 [ ] Admin edit - remove button if goal not reached

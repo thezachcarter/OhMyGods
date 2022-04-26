@@ -10,6 +10,7 @@ function LoginPage() {
   return (
     <div className="grid" >
       
+      
       <h1 className="title">
         <span className="titleSpan">O</span>h
         <span className="titleSpan">M</span>y
@@ -19,6 +20,7 @@ function LoginPage() {
       <LoginForm />
 
       <center>
+        <br></br>create new account<br></br>
         <button
           type="button"
           className="btn btn_asLink"
@@ -29,6 +31,7 @@ function LoginPage() {
           Register
         </button>
       </center>
+
     </div>
   );
 }

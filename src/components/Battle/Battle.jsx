@@ -24,13 +24,21 @@ function Battle() {
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
   const user = store.user;
+  const godPowerTotal = store.totalGodPower;
+
+  const totalGodPower = godArray?.reduce((accumulator, object) => {
+    return accumulator + object.power;
+  }, 0);
 
     //power level of monster, value will change on client side, not in db
   // const [monsterPower, setMonsterPower ]= useState(currentMonster.power)
   //total power level of all gods
-  const totalGodPower = godArray?.reduce((accumulator, object) => {
-    return accumulator + object.power;
-  }, 0);
+  
+  const setTotalGodPower = () =>{
+    dispatch({ type: 'SET_TOTAL_GOD_POWER', payload: totalGodPower})
+  }
+  
+  
 
   
   //checks array for first monster, by id, that has not been defeated
@@ -47,7 +55,6 @@ function Battle() {
   
   //determine victory status by checking power of monster and ALL gods 
   const checkBattleStatus = () => {
-    console.log('$$$$$$$$$$ checkBattleStatus monster', currentMonster.power, 'Gods', totalGodPower );
     if (currentMonster.power <= 0) {
       setDisplay('victory');
       renderBattleDisplay(display);
@@ -58,7 +65,7 @@ function Battle() {
     } else if (totalGodPower <= 0) {
       setDisplay('defeat')
       renderBattleDisplay(display);
-      setTimeout(() => {  history.push('/user') }, 3000);
+      setTimeout(() => {  history.push('/user') }, 2000);
     };
     renderBattleDisplay(display);
   };
@@ -115,10 +122,8 @@ function Battle() {
       console.log('GOD ARRAY', godArray);
       //check if individual god is defeated
       if (attackingGod.power === 0) {
-        console.log(attackingGod.name, 'THIS GOD IS DEFEATED');
         setDisplay(`${attackingGod.name} has been defeated.`)
       } else if (attackingGod.id == store.lastAttack && attackingGod.power !== totalGodPower){
-          console.log('THIS GOD CANNOT REPEAT ATTACKS');
           setDisplay(`${attackingGod.name} just attacked. Choose another God.`)
       } else {
         console.log('ELEMENTS, God:', attackingGod.element, 'Monster:', currentMonster.element);
