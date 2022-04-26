@@ -13,7 +13,7 @@ function UserDisplay() {
     const store = useSelector((store) => store);
     const [heading, setHeading] = useState('Functional Component');
     const dispatch = useDispatch()
-    
+
     const displayReducer = store.display;
     const godInfo = store.godInfo;
     const replaceGods = store.replaceGods;
@@ -26,25 +26,21 @@ function UserDisplay() {
     const howToPlay = `
     Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
     the battlefield. Victory is gained once a monster has been reduced to zero power. If all four
-    of your gods are reduced to zero power before the monster, you shall suffer defeat. damage is dealt based on 
-    a comparison of each combatants color / element. Matching a foe's culture doubles all damage. Gods may
-    not attack twice in a row. In the upper right corner, you will see your devotion points. When you are not in battle, you may click 
-    the ^ button on any of your gods to increase their power by one at the cost of one devotion. Click the ?
-    button to learn more about your god. Click the X button to replace a god for the cost of six devotion. All new gods start 
-    with eight power.
-  `
-    const selectReplaceGod = (replaceGodId) => {
-    axios.put(`/api/replaceGods/${godToReplace.id}/${replaceGodId}`)
-      .then(response => {
-        dispatch({ type: 'GET_USERS_GODS'})
-        dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'howToPlay' }); 
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    of your gods are reduced to zero power before the monster, you shall suffer defeat. Click 
+    'How To Play' for detailed game rules. Click the ? button to learn more about your god.`
 
-      let updatedGodPower = 8;
-      dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: replaceGodId, updatedGodPower })
+    const selectReplaceGod = (replaceGodId) => {
+        axios.put(`/api/replaceGods/${godToReplace.id}/${replaceGodId}`)
+            .then(response => {
+                dispatch({ type: 'GET_USERS_GODS' })
+                dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'howToPlay' });
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+        let updatedGodPower = 8;
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: replaceGodId, updatedGodPower })
     }
 
     //renders user page display based on store.display
@@ -59,11 +55,28 @@ function UserDisplay() {
         case 'howToPlay':
             return (
                 <div>
-                    <h2>{howToPlay}</h2>
+                    <h1>The Basics</h1>
+                    <h2>Once you enter into battle, click a god to launch an attack. The god and monster
+                        will then exchange damage. Gods may not attack twice in a row, unless all other 
+                        gods have been eliminated.</h2>
+                    <h1>Damage</h1>
+                    <h2>Damage is dealt based on a comparison of each combatants color / element.
+                        Base damage is two points, with a strength advantage it is increased to three,
+                        with a weakness disadvantage it is reduced to one. Matching a foe's culture
+                        doubles all damage.</h2>
+                    <h1>Devotion</h1>
+                    <h2>In the upper right corner, you will see your devotion points. You will
+                        earn eight devotion points for every battle won. When you are not in battle, 
+                        you may click the ^ button on any of your gods to
+                        increase their power by one at the cost of one devotion. For six devotion
+                        you may replace a god, this action cannot be cancelled or undone. To replace a god, 
+                        click the X button on the card of the god that you wish
+                        to replace. you will then choose one of three randomly offered
+                        replacements gods. All new gods start with eight power.</h2>
                 </div>
             );
             break;
-        case 'replaceGods' :
+        case 'replaceGods':
             return (
                 <div className="replaceGodContainer">
                     <h2>Choose a God to replace {godToReplace.name}</h2>
@@ -72,7 +85,7 @@ function UserDisplay() {
                             {replaceGods.map(replaceGod => {
                                 return (
                                     <tr key={replaceGod.id} className={replaceGod.element}
-                                    onClick={(() => selectReplaceGod(replaceGod.id))}>
+                                        onClick={(() => selectReplaceGod(replaceGod.id))}>
                                         <td>{replaceGod.name}</td>
                                         <td>{replaceGod.culture}</td>
                                         <td>{replaceGod.element}</td>

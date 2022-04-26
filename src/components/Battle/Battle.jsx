@@ -232,7 +232,15 @@ function Battle() {
   return (
     <div className="battleGrid">
 
+      
       <table className="strong tbl">
+        <thead>
+          <tr>
+            <th colSpan={3} className="battleTh">
+              Strength
+            </th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td className="earthTxt">Earth</td>
@@ -260,6 +268,13 @@ function Battle() {
       <MonsterCard currentMonster={currentMonster} />
       
       <table className="weak tbl">
+      <thead>
+          <tr>
+            <th colSpan={3} className="battleTh">
+              Weakness
+            </th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td className="earthTxt">Earth</td>

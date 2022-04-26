@@ -38,6 +38,8 @@ where power != 0
 [x] Text wrap god names
 [x] FIX BUG - new gods power increase
 [ ] database table references
+[x] expand how to play. add damage rules. label reminder tables strength and weakness
+[ ] login/register UI
  
 
 FIX BUGS
@@ -46,6 +48,8 @@ FIX BUGS
 [ ] fix log out screen, bug occurs when logging out from battle
 [ ] reset userDisplay so all new users see how to play, useEffect? if user logs out in another screen it may 
 stay same for next user
+[ ] devotion is resetting to 47? seems to set to user id
+[ ] replace god button lets you spend negative devotion
 
 STRETCH
 [x] Four Color Accent
