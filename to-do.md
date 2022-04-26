@@ -48,7 +48,7 @@ FIX BUGS
 [x] reset userDisplay so all new users see how to play, useEffect? if user logs out in another screen it may 
 stay same for next user
 [x] devotion is resetting to 47? seems to set to user id
-[ ] replace god button lets you spend negative devotion
+[x] replace god button lets you spend negative devotion
 [ ] not all gods start with 8 power. seems to not always update from previous god array position
 
 STRETCH

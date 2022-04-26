@@ -16,21 +16,18 @@ function UserPage() {
 
 
   const howToPlay = `
-    Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
-    the battlefield. Victory is gained once a monster has been reduced to zero power. If all four
-    of your gods are reduced to zero power before the monster, you shall suffer defeat. damage is dealt based on 
-    a comparison of each combatants color / element. Matching a foe's culture doubles all damage. Gods may
-    not attack twice in a row. In the upper right corner, you will see your devotion points. When you are not in battle, you may click 
-    the ^ button on any of your gods to increase their power by one at the cost of one devotion. Click the ?
-    button to learn more about your god. Click the X button to replace a god for the cost of six devotion. All new gods start 
-    with eight power.
-  `
+  Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
+  the battlefield. Victory is gained once a monster has been reduced to zero power. If all four
+  of your gods are reduced to zero power before the monster, you shall suffer defeat. Click 
+  'How To Play' for detailed game rules. Click the ? button to learn more about your god.`
+
   const [display, setDisplay] = useState(howToPlay)
 
   const populateGods = () => {
     dispatch({ type: 'POPULATE_GODS' });
     dispatch({ type: 'POPULATE_MONSTERS' });
     history.push('/user');
+    dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'intro' })
   }
 
   console.log(location);
@@ -50,14 +47,13 @@ function UserPage() {
       
       
       <div className="homeDisplay">
-        <h2>{display}</h2>
+        <h2>
+          Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
+          the battlefield. Victory is gained once a monster has been reduced to zero power. If all four
+          of your gods are reduced to zero power before the monster, you shall suffer defeat. 
+        </h2>
       </div>
 
-      
-      
-
-      {/* style classes coming from GodCard component= godCard AND godCardContainer */}
-      <GodCard />
     </div>
 
     

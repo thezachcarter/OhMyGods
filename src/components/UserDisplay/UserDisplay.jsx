@@ -23,28 +23,32 @@ function UserDisplay() {
     //   // console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
 
 
-    const howToPlay = `
-    Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
-    the battlefield. Victory is gained once a monster has been reduced to zero power. If all four
-    of your gods are reduced to zero power before the monster, you shall suffer defeat. Click 
-    'How To Play' for detailed game rules. Click the ? button to learn more about your god.`
-
     const selectReplaceGod = (replaceGodId) => {
+        
+        const updatedGodPower = 8
+
         axios.put(`/api/replaceGods/${godToReplace.id}/${replaceGodId}`)
             .then(response => {
                 dispatch({ type: 'GET_USERS_GODS' })
-                dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'howToPlay' });
+                dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'intro' });
+                dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: replaceGodId, updatedGodPower })
             })
             .catch(err => {
                 console.log(err)
             })
-
-        let updatedGodPower = 8;
-        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: replaceGodId, updatedGodPower })
     }
 
     //renders user page display based on store.display
     switch (displayReducer) {
+        case 'intro':
+            return (
+                <div>
+                    <h2>Click 'How To Play' for detailed games rules.
+                        Click the '?' button on any god to learn more about them. 
+                    </h2>
+                </div>
+            );
+            break;
         case 'godInfo':
             return (
                 <div>
@@ -100,7 +104,9 @@ function UserDisplay() {
         default:
             return (
                 <div>
-                    <h2>{howToPlay}</h2>
+                    <h2>Click 'How To Play' for detailed games rules.
+                        Click the '?' button on any god to learn more about the,. 
+                    </h2>
                 </div>
             );
             break;

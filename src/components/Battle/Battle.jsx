@@ -237,7 +237,7 @@ function Battle() {
         <thead>
           <tr>
             <th colSpan={3} className="battleTh">
-              Strength
+              Strengths
             </th>
           </tr>
         </thead>
@@ -271,7 +271,7 @@ function Battle() {
       <thead>
           <tr>
             <th colSpan={3} className="battleTh">
-              Weakness
+              Weaknesses
             </th>
           </tr>
         </thead>
