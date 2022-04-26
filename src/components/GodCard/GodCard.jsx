@@ -79,6 +79,15 @@ function GodCard({ attack, renderUserDisplay }) {
 
   const handleReplaceGods = (godToReplace) => {
 
+    let updatedDevotion = user.devotion -= 6;
+    if (user.devotion > 0) {
+      dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
+
+    }
+    else {
+      alert('you are out of devotion points')
+    }
+
     const godIds = [godArray[0].god_id, godArray[1].god_id, godArray[2].god_id, godArray[3].god_id,];
     const len = 4;
     const newGodIds = [];
@@ -93,8 +102,6 @@ function GodCard({ attack, renderUserDisplay }) {
     console.log(newGodIds);
 
     //dispatch to update devotion
-    let updatedDevotion = user.devotion -= 6;
-    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
     dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds }); 
     dispatch({ type: 'SET_GOD_TO_REPLACE', payload: godToReplace});    
   }

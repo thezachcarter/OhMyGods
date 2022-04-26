@@ -65,7 +65,7 @@ function Battle() {
 
   const increaseDevotion = (userId, updatedDevotion) => {
     updatedDevotion += 8;
-    dispatch({ type: 'UPDATE_DEVOTION', payload: userId, updatedDevotion})
+    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion})
   };
 
   const renderBattleDisplay = (display) => {

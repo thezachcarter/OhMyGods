@@ -115,7 +115,7 @@ function Admin() {
   }
 
   return (
-    <div className="admin">
+    <div className="admin" id="admin">
 
       <h2>ADMIN</h2> 
       
@@ -176,7 +176,7 @@ function Admin() {
                     <td>{god.image}</td>
                     <td>{god.info}</td>
                     <td></td>
-                    <td><button onClick={handleGodEdit}>edit</button></td>
+                    {/* <td><button onClick={handleGodEdit}>edit</button></td> */}
                     <td><button onClick={() => handleDeleteGod(god.id)}>delete</button></td>
                   </tr>
                 );
