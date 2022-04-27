@@ -71,31 +71,23 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
-          
+
           {/* ADMIN Page */}
           <ProtectedRoute
-            
+
             exact
             path="/admin"
           >
             <AdminPage />
           </ProtectedRoute>
-          
+
           {/* BATTLE! */}
-          <Route
+          <ProtectedRoute
             exact
             path="/battle"
           >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to="/battle" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
-            }
             <Battle />
-          </Route>
+          </ProtectedRoute>
           {/* USER?LOGIN Page */}
           <Route
             exact
