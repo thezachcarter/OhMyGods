@@ -1,11 +1,13 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated} = require('../modules/authentication-middleware')
+
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
  
 
   const queryText = `
@@ -26,7 +28,7 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   const queryText = `
   INSERT INTO "monsters"
@@ -40,6 +42,19 @@ router.post('/', (req, res) => {
     console.log('error in adminGod.router POST', err);
     sendStatus(500)
   });
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+
+  const queryText = `DELETE FROM "gods"
+                    WHERE "id" = $1;`;
+  
+  pool.query(queryText, [req.params.id])
+    .then(() => {res.sendStatus(200)})
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500)
+    });  
 });
 
 module.exports = router;

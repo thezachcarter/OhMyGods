@@ -213,7 +213,7 @@ function Admin() {
                     <td>{monster.info}</td>
                     <td>{monster.starting_power}</td>
                     <td><button>edit</button></td>
-                    <td><button>delete</button></td>
+                    <td><button onClick={() => handleDeleteGod(monster.id)}>delete</button></td>
                   </tr>
                 );
               })}

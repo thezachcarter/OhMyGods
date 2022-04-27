@@ -1,11 +1,13 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated} = require('../modules/authentication-middleware')
+
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated,  (req, res) => {
   // GET route code here
   const queryText = `
   SELECT * FROM "gods"
@@ -25,7 +27,7 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   const queryText = `
   INSERT INTO "gods"
@@ -42,9 +44,9 @@ router.post('/', (req, res) => {
   
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
-  const queryText = `DELETE FROM "gods"
+  const queryText = `DELETE FROM "monsters"
                     WHERE "id" = $1;`;
   
   pool.query(queryText, [req.params.id])
