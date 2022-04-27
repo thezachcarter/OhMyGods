@@ -13,6 +13,18 @@
         tr {
             height: 48px;
         }
+
+        .monsterDisplayBtn{
+            height: 24px;
+            width: 24px;
+            background-color: white;
+    
+            &:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+        
     }
 
 }

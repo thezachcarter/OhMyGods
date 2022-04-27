@@ -50,7 +50,8 @@ function MonsterDisplay(props) {
                                 <tr key={monster.id} className={monster.element}>
                                     <td>{monster.name}</td>
                                     <td>{monster.culture}</td>
-                                    <td onClick={(() => handleMonsterInfo(monster.name))}>?</td>
+                                    <td><button className="monsterDisplayBtn" 
+                                    onClick={(() => handleMonsterInfo(monster.name))}>?</button></td>
                                 </tr>
                             )
                         }
