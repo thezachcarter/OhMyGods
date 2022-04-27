@@ -1,5 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+import './MonsterDisplay.scss'
 
 
 function MonsterDisplay(props) {
@@ -12,23 +14,30 @@ function MonsterDisplay(props) {
     const store = useSelector((store) => store);
 
     const monsters = store.usersMonsters;
+    const [remainingMonsters, setRemainingMonsters] = useState(16);
 
     console.log('--------------------------',monsters);
     return (
 
         <div className="monsterDisplay">
-            <h2>MONSTER DISPLAY</h2>
-            <h2>Conquered Monster</h2>
                 <table className="monsterTbl">
+                    <thead>
+                        <tr>
+                            <th colSpan={3}>
+                                Conquered Monsters:
+                            </th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        {monsters.map(monster => {
+                        {monsters.map(monster => 
+                        {if(monster.power <= 0){
                             return (
                                 <tr key={monster.id} className={monster.element}>
                                     <td>{monster.name}</td>
                                     <td>{monster.culture}</td>
-                                    <td>{monster.element}</td>
+                                    <td onClick={(() => handleGodInfo(god.name))}>?</td>
                                 </tr>
-                            )
+                            )}
                         })}
                         
                     </tbody>
