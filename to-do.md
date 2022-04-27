@@ -17,14 +17,14 @@ where power != 0
 [ ] clean up SQL add to database.sql
 [x] remove all user info from URLs in router, replace w/ req.user
 [x] Victory/Defeat Alerts, add devotion, click to continue
-[ ] allow user to restart if gods and devotion are at 0 
+[x] allow user to restart if gods and devotion are at 0 
 [x] Fill user_gods and user_monsters when new account is created or game is restarted
 [x] PIXELIZE PHOTOS
 [x] fix bug with god power increase
 
 04/22 TO-DO 
 [x] Add devotion after battle
-[ ] Admin authorization
+[x] Admin authorization
 [x] Update log in, log out, register pages
 [ ] Update about
 [x] Create new account, populate tables (see above)
@@ -32,7 +32,7 @@ where power != 0
 [x] Update log in, log out, register pages
 [x] Create new account, populate tables (see above)
     [x] populate user_monsters
-[ ] Restart Game, similar functionality to new account
+[x] Restart Game, similar functionality to new account
 [x] Info button - RACE CONDITION TICKET
 [x] Replace God Button
 [x] Text wrap god names
