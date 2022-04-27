@@ -18,8 +18,8 @@ function UserPage() {
   const howToPlay = `
   Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
   the battlefield. Victory is gained once a monster has been reduced to zero power. If all four
-  of your gods are reduced to zero power before the monster, you shall suffer defeat. Click 
-  'How To Play' for detailed game rules. Click the ? button to learn more about your god.`
+  of your gods are reduced to zero power before the monster, you shall suffer defeat. 
+  Each monster that you encounter will be more powerful than the previous.`
 
   const [display, setDisplay] = useState(howToPlay)
 

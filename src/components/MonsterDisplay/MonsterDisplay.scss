@@ -1,0 +1,30 @@
+.monsterDisplay {
+
+    margin: auto;
+    padding-top: 12px;
+
+
+    .monsterTbl {
+        font-size: 24px;
+        width: 600px;
+        margin: auto;
+        text-align: center;
+
+        tr {
+            height: 48px;
+        }
+
+        .monsterDisplayBtn{
+            height: 24px;
+            width: 24px;
+            background-color: white;
+    
+            &:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+        
+    }
+
+}

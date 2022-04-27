@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
+import MonsterDisplay from '../MonsterDisplay/MonsterDisplay';
+
 import './UserDisplay.scss';
 
 // Basic functional component structure for React with default state
@@ -16,10 +18,12 @@ function UserDisplay() {
 
     const displayReducer = store.display;
     const godInfo = store.godInfo;
+    const monsterInfo = store.monsterInfo;
     const replaceGods = store.replaceGods;
     const godToReplace = store.godToReplace;
 
     const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
+    const monsterWikiText = monsterInfo[Object.keys(monsterInfo)[0]]?.extract;
     //   // console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
 
 
@@ -42,10 +46,11 @@ function UserDisplay() {
     switch (displayReducer) {
         case 'intro':
             return (
-                <div>
-                    <h2>Click 'How To Play' for detailed games rules.
-                        Click the '?' button on any god to learn more about them. 
-                    </h2>
+                <div className="introContainer">
+                    <h2>Click 'How To Play' for detailed game rules.</h2>
+                    <h2>Click the '?' button on any god to learn about their origins.</h2>
+                    <h2>After winning a battle, click 'Monsters' to view your conquests and access their background info.</h2>
+                    <h2>You may restart at any time by clicking 'Restart'.</h2>
                 </div>
             );
             break;
@@ -98,6 +103,18 @@ function UserDisplay() {
                             })}
                         </tbody>
                     </table>
+                </div>
+            );
+            break
+            case 'monsterDisplay':
+            return (
+                <MonsterDisplay />
+            );
+            break
+            case 'monsterInfo':
+            return (
+                <div>
+                    <h2>{monsterWikiText}</h2>
                 </div>
             );
             break

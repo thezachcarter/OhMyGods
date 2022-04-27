@@ -4,6 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { attack } from '../Battle/Battle';
 import { renderUserDisplay } from '../UserPage/UserPage';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 import './GodCard.scss'
 
@@ -22,7 +23,7 @@ function GodCard({ attack, renderUserDisplay }) {
   const godArray = store.usersGods;
   const user = store.user;
   const godInfo = store.godInfo;
-  
+
 
   useEffect(() => {
 
@@ -52,7 +53,7 @@ function GodCard({ attack, renderUserDisplay }) {
       decreaseDevotion(user.devotion)
     }
     else {
-      alert('you are out of devotion points')
+      swal("Not valid", "You don't have any devotion points", "error");
     }
   };
 
@@ -85,25 +86,25 @@ function GodCard({ attack, renderUserDisplay }) {
 
     }
     else {
-      alert('you are out of devotion points')
+      swal("Not valid", "You don't have any devotion points", "error");
     }
 
     const godIds = [godArray[0].god_id, godArray[1].god_id, godArray[2].god_id, godArray[3].god_id,];
     const len = 4;
     const newGodIds = [];
-    for (let i = 0; i < len;){
+    for (let i = 0; i < len;) {
       const random = Math.floor(Math.random() * (16 - 1)) + 1;
       if (!godIds.includes(random) &&
-          !newGodIds.includes(random)){
-            newGodIds.push(random);
-            i++;
+        !newGodIds.includes(random)) {
+        newGodIds.push(random);
+        i++;
       }
     }
     console.log(newGodIds);
 
     //dispatch to update devotion
-    dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds }); 
-    dispatch({ type: 'SET_GOD_TO_REPLACE', payload: godToReplace});    
+    dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds });
+    dispatch({ type: 'SET_GOD_TO_REPLACE', payload: godToReplace });
   }
 
   return (

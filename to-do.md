@@ -38,9 +38,9 @@ where power != 0
 [x] Text wrap god names
 [x] FIX BUG - new gods power increase
 [x] expand how to play. add damage rules. label reminder tables strength and weakness
-[ ] Conquered Monsters
+[x] Conquered Monsters
 [x] login/register UI
-[ ] add new monsters to database query
+[x] add new monsters to database query
 
 FIX BUGS
 [ ] Fix text overflow in god names
@@ -58,7 +58,6 @@ STRETCH
 [x] Add more monsters
 [ ] database table references
 [x] Four Color Accent
-[ ] Leaderboard
 [ ] Admin edit - remove button if goal not reached
 
 Before Submission

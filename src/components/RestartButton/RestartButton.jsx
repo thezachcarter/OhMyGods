@@ -41,7 +41,7 @@ function RestartButton(props) {
       className={props.className}
       onClick={confirmRestart}
     >
-      RESTART GAME
+      RESTART
     </button>
   );
 }
