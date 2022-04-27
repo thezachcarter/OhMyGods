@@ -93,6 +93,14 @@ function* setTotalGodPower(action) {
     }
 }
 
+function* deleteUsersGods() {
+    try{
+        yield axios.delete('/api/usersGods')
+    }catch (err){
+        console.log(err);
+    }
+}
+
 function* getUsersGodsWatcher() {
     yield takeLatest('GET_USERS_GODS', getUsersGods);
     yield takeLatest('UPDATE_USER_GOD_POWER', updateUserGodPower);
@@ -101,7 +109,8 @@ function* getUsersGodsWatcher() {
     yield takeLatest('POPULATE_GODS', populateGods);
     yield takeLatest('GET_REPLACE_GODS', getReplaceGods);
     yield takeLatest('SET_GOD_TO_REPLACE', setGodToReplace);
-    yield takeLatest('SET_TOTAL_GOD_POWER', setTotalGodPower)
+    yield takeLatest('SET_TOTAL_GOD_POWER', setTotalGodPower);
+    yield takeLatest('DELETE_USERS_GODS', deleteUsersGods);
 }
 
 export default getUsersGodsWatcher;
