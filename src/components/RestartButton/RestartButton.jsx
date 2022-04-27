@@ -8,16 +8,20 @@ function RestartButton(props) {
   const dispatch = useDispatch();
 
   const handleRestart = () => {
-  dispatch({ type: 'LOGOUT' })
-  dispatch({ type: 'LOGOUT' })
-  dispatch({ type: 'LOGOUT' })
+    
+    const updatedDevotion = 8;
+
+    dispatch({ type: 'POPULATE_GODS' });
+    dispatch({ type: 'POPULATE_MONSTERS' });
+    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
+    dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'intro' });
+
+    history.push('/user');
+
   }
 
   return (
     <button
-      // This button shows up in multiple locations and is styled differently
-      // because it's styled differently depending on where it is used, the className
-      // is passed to it from it's parents through React props
       className={props.className}
       onClick={handleRestart}
     >
