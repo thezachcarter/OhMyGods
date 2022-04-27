@@ -15,6 +15,10 @@ function Nav() {
     dispatch({ type: 'SET_USER_DISPLAY', payload: 'howToPlay' })
   }
 
+  const setMonsterDisplay = () => {
+    dispatch({ type: 'SET_USER_DISPLAY', payload: 'monsterDisplay' })
+  }
+
   return (
     <div className="nav">
       {/* <Link to="/home">
@@ -25,13 +29,13 @@ function Nav() {
         {!user.id && (
           // If there's no user, show login/registration links
           <>
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
+            <Link className="navLink" to="/login">
+              Login/Register
+            </Link>
 
-          <Link className="navLink" to="/about">
-          About
-          </Link>
+            <Link className="navLink" to="/about">
+              About
+            </Link>
           </>
         )}
 
@@ -46,11 +50,11 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/about">
-            About
+              About
             </Link>
 
-            <Link className="navLink" to="/info">
-              Conquered Monsters
+            <Link className="navLink" to="/user" onClick={setMonsterDisplay}>
+              Monsters
             </Link>
 
             <RestartButton className="navLink" />

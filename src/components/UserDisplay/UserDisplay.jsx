@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
+import MonsterDisplay from '../MonsterDisplay/MonsterDisplay';
+
 import './UserDisplay.scss';
 
 // Basic functional component structure for React with default state
@@ -99,6 +101,11 @@ function UserDisplay() {
                         </tbody>
                     </table>
                 </div>
+            );
+            break
+            case 'monsterDisplay':
+            return (
+                <MonsterDisplay />
             );
             break
         default:
