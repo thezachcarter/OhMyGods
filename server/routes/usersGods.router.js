@@ -80,5 +80,21 @@ router.post('/', (req, res) => {
     });
   });
 
+  router.delete('/', (req, res) => {
+    // POST route code here
+    const id = req.user.id;
+  
+    const queryText = 
+      `DELETE FROM "users_gods"
+      WHERE "user_id" = $1`;
+  
+    pool
+    .query(queryText, [id])
+    .then(() => res.sendStatus(200))
+    .catch((err) => {
+      console.log('DELETE USERS GODS: ', err);
+      res.sendStatus(500);
+    });
+  });
 
 module.exports = router;

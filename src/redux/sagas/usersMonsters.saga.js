@@ -35,10 +35,19 @@ function* populateMonsters() {
     }
   }
 
+  function* deleteUsersMonsters() {
+    try{
+        yield axios.delete('/api/usersMonsters')
+    }catch (err){
+        console.log(err);
+    }
+}
+
 function* getUsersMonstersWatcher() {
     yield takeLatest('GET_USERS_MONSTERS', getUsersMonsters);
     yield takeLatest('UPDATE_USER_MONSTER_POWER', updateUserMonsterPower);
     yield takeLatest('POPULATE_MONSTERS', populateMonsters);
+    yield takeLatest('DELETE_USERS_MONSTERS', deleteUsersMonsters);
 }
 
 export default getUsersMonstersWatcher;
