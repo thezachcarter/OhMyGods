@@ -14,6 +14,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   if (req.user.admin === true) {
     const queryText = `
   SELECT * FROM "monsters"
+  ORDER BY "id" ASC
   `
     // console.log('god.router GET User ID ', req.user.id);
     pool.query(queryText)
