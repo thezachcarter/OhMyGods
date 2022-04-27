@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import RestartButton from '../RestartButton/RestartButton';
 import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -51,6 +52,8 @@ function Nav() {
             <Link className="navLink" to="/info">
               Conquered Monsters
             </Link>
+
+            <RestartButton className="navLink" />
 
             <LogOutButton className="navLink" />
 
