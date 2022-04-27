@@ -11,7 +11,7 @@ where power != 0
     [x] post
     [ ] put
     [x] delete
-[ ] admin authorization
+[x] admin authorization
 [x] prevent devotion going negative
 [x] fix bug where gods disappear on refresh of battle page - submit ticket!
 [ ] clean up SQL add to database.sql
