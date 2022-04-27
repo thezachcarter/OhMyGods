@@ -56,7 +56,6 @@ function MonsterDisplay(props) {
                             )
                         }
                     })}
-
                 </tbody>
             </table>
         </div>
