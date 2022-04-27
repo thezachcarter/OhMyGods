@@ -13,11 +13,13 @@ function UserPage() {
   const store = useSelector((store) => store);
   const user = store.user;
   const godInfo = store.godInfo;
+  const monsterInfo = store.monsterInfo;
   // const displayReducer = store.display;
   const history = useHistory();
   const location = useLocation();
   
   const wikiText = godInfo[Object?.keys(godInfo)[0]]?.extract;
+  
   console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
 
   const howToPlay = `

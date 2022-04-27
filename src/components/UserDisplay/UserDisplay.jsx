@@ -18,10 +18,12 @@ function UserDisplay() {
 
     const displayReducer = store.display;
     const godInfo = store.godInfo;
+    const monsterInfo = store.monsterInfo;
     const replaceGods = store.replaceGods;
     const godToReplace = store.godToReplace;
 
     const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
+    const monsterWikiText = monsterInfo[Object.keys(monsterInfo)[0]]?.extract;
     //   // console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
 
 
@@ -106,6 +108,13 @@ function UserDisplay() {
             case 'monsterDisplay':
             return (
                 <MonsterDisplay />
+            );
+            break
+            case 'monsterInfo':
+            return (
+                <div>
+                    <h2>{monsterWikiText}</h2>
+                </div>
             );
             break
         default:
