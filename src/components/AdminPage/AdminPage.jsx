@@ -4,20 +4,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import './AdminPage.scss'
 
 function Admin() {
-  
+
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
 
   const gods = store.adminGods;
   const monsters = store.adminMonsters;
+  const user = store.user;
 
   useEffect(() => {
     dispatch({ type: 'GET_ADMIN_GODS' });
     dispatch({ type: 'GET_ADMIN_MONSTERS' });
   }, []);
 
-  //used to toggle between tables
+  //used to toggle between god and monster tables
   const [table, setTable] = useState('gods');
+  const toggleTable = () => {
+    table === 'gods' ? setTable('monsters') : setTable('gods');
+    console.log(table);
+  }
 
   const [godObj, setGodObj] = useState({
     name: '',
@@ -36,14 +41,9 @@ function Admin() {
     starting_power: '',
   });
 
-  const toggleTable = () => {
-    table === 'gods' ? setTable('monsters') : setTable('gods');
-    console.log(table);
-  }
-
   const submitGod = (event) => {
     event.preventDefault;
-    dispatch({type: 'POST_GOD', payload: godObj});
+    dispatch({ type: 'POST_GOD', payload: godObj });
     setGodObj({
       name: '',
       culture: '',
@@ -56,116 +56,114 @@ function Admin() {
   const submitMonster = (event) => {
     event.preventDefault;
     console.log('submitMonster clicked', monsterObj);
-    dispatch({type: 'POST_MONSTER', payload: monsterObj})
+    dispatch({ type: 'POST_MONSTER', payload: monsterObj })
   }
 
   const handleGodObj = (event) => {
     switch (event.target.placeholder) {
       case 'name':
-        setGodObj({...godObj, name: event.target.value,});
-        break; 
+        setGodObj({ ...godObj, name: event.target.value, });
+        break;
       case 'culture':
-        setGodObj({...godObj, culture: event.target.value,});
-        break; 
+        setGodObj({ ...godObj, culture: event.target.value, });
+        break;
       case 'element':
-        setGodObj({...godObj, element: event.target.value,});
-        break; 
+        setGodObj({ ...godObj, element: event.target.value, });
+        break;
       case 'image':
-        setGodObj({...godObj, image: event.target.value,});
-        break; 
+        setGodObj({ ...godObj, image: event.target.value, });
+        break;
       case 'info':
-        setGodObj({...godObj, info: event.target.value,});
-        break; 
+        setGodObj({ ...godObj, info: event.target.value, });
+        break;
     }
-    console.log('%%%%%%%%%%%%%%%%', godObj);
   }
 
   const handleMonsterObj = (event) => {
     switch (event.target.placeholder) {
       case 'name':
-        setMonsterObj({...monsterObj, name: event.target.value,});
-        break; 
+        setMonsterObj({ ...monsterObj, name: event.target.value, });
+        break;
       case 'culture':
-        setMonsterObj({...monsterObj, culture: event.target.value,});
-        break; 
+        setMonsterObj({ ...monsterObj, culture: event.target.value, });
+        break;
       case 'element':
-        setMonsterObj({...monsterObj, element: event.target.value,});
-        break; 
+        setMonsterObj({ ...monsterObj, element: event.target.value, });
+        break;
       case 'image':
-        setMonsterObj({...monsterObj, image: event.target.value,});
-        break; 
+        setMonsterObj({ ...monsterObj, image: event.target.value, });
+        break;
       case 'info':
-        setMonsterObj({...monsterObj, info: event.target.value,});
-        break; 
+        setMonsterObj({ ...monsterObj, info: event.target.value, });
+        break;
       case 'power':
-        setMonsterObj({...monsterObj, starting_power: event.target.value,});
-        break; 
+        setMonsterObj({ ...monsterObj, starting_power: event.target.value, });
+        break;
     }
-    console.log('%%%%%%%%%%%%%%%%', godObj);
   }
 
-  const handleGodEdit = (props) => {
-    console.log('%%%%%%%%%%%%%%%% handleGodEdit', props.godProp);
-    // dispatch({ type: 'SET_EDIT_GOD', payload: props.god })
-  }
+  // const handleGodEdit = (props) => {
+  //   console.log('%%%%%%%%%%%%%%%% handleGodEdit', props.godProp);
+  //   dispatch({ type: 'SET_EDIT_GOD', payload: props.god })
+  // }
 
   const handleDeleteGod = (godId) => {
-    console.log('$$$$$$$$$$$$$$$ handleDelete event:', godId);
-    dispatch({ type: 'DELETE_GOD', payload:godId })
+    dispatch({ type: 'DELETE_GOD', payload: godId })
   }
 
   return (
+
     <div className="admin" id="admin">
 
-      <h2>ADMIN</h2> 
-      
+      <h2>ADMIN</h2>
+
       <button onClick={toggleTable}>Toggle Gods / Monsters</button>
 
       {/* FORMS, form rendered changes based on god/monster toggle */}
       {table === 'gods' ?
-      //GOD FORM
-      <div>
-      <form className="adminForm">
-        <input type="text" placeholder="name" onChange={handleGodObj}/>
-        <input type="text" placeholder="culture" onChange={handleGodObj}/>
-        <input type="text" placeholder="element" onChange={handleGodObj}/>
-        <input type="text" placeholder="image" onChange={handleGodObj}/>
-        <input type="text" placeholder="info" onChange={handleGodObj}/>
-        <button type="submit" onClick={(event) => submitGod(event)}>Submit God</button>
-      </form>
-      </div>
+        //GOD FORM
+        <div>
+          <form className="adminForm">
+            <input type="text" placeholder="name" onChange={handleGodObj} />
+            <input type="text" placeholder="culture" onChange={handleGodObj} />
+            <input type="text" placeholder="element" onChange={handleGodObj} />
+            <input type="text" placeholder="image" onChange={handleGodObj} />
+            <input type="text" placeholder="info" onChange={handleGodObj} />
+            <button type="submit" onClick={(event) => submitGod(event)}>Submit God</button>
+          </form>
+        </div>
 
-      :
-      //MONSTER FORM
-      <div>
-        <form className="adminForm">
-          <input type="text" placeholder="name" onChange={handleMonsterObj}/>
-          <input type="text" placeholder="culture" onChange={handleMonsterObj}/>
-          <input type="text" placeholder="element" onChange={handleMonsterObj}/>
-          <input type="text" placeholder="image" onChange={handleMonsterObj}/>
-          <input type="text" placeholder="info" onChange={handleMonsterObj}/>
-          <input type="text" placeholder="power" onChange={handleMonsterObj}/>
-          <button type="submit" onClick={(event) => submitMonster(event)}>Submit Monster</button>
-        </form>
-      </div>
+        :
+        //MONSTER FORM
+        <div>
+          <form className="adminForm">
+            <input type="text" placeholder="name" onChange={handleMonsterObj} />
+            <input type="text" placeholder="culture" onChange={handleMonsterObj} />
+            <input type="text" placeholder="element" onChange={handleMonsterObj} />
+            <input type="text" placeholder="image" onChange={handleMonsterObj} />
+            <input type="text" placeholder="info" onChange={handleMonsterObj} />
+            <input type="text" placeholder="power" onChange={handleMonsterObj} />
+            <button type="submit" onClick={(event) => submitMonster(event)}>Submit Monster</button>
+          </form>
+        </div>
       }
 
       {/* TABLES, table rendered changes based on god/monster toggle */}
       {table === 'gods' ?
-      // GOD TABLE
-      <div className="adminTable">
-        <table>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>name</th>
-              <th>culture</th>
-              <th>element</th>
-              <th>image</th>
-              <th>info</th>
-            </tr>
-          </thead>
-          <tbody>
+        // GOD TABLE
+        <div className="adminTable">
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>culture</th>
+                <th>element</th>
+                <th>image</th>
+                <th>info</th>
+              </tr>
+            </thead>
+            <tbody>
               {gods.map(god => {
                 return (
                   <tr key={god.id}>
@@ -181,27 +179,27 @@ function Admin() {
                   </tr>
                 );
               })}
-            {/* end gods.map */}
-          </tbody>
-        </table>
+              {/* end gods.map */}
+            </tbody>
+          </table>
         </div>
 
         :
         //MONSTER TABLE 
         <div className="adminTable">
-        <table>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>name</th>
-              <th>culture</th>
-              <th>element</th>
-              <th>image</th>
-              <th>info</th>
-              <th>power</th>
-            </tr>
-          </thead>
-          <tbody>
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>culture</th>
+                <th>element</th>
+                <th>image</th>
+                <th>info</th>
+                <th>power</th>
+              </tr>
+            </thead>
+            <tbody>
               {monsters.map(monster => {
                 return (
                   <tr key={monster.id}>
@@ -213,17 +211,17 @@ function Admin() {
                     <td>{monster.info}</td>
                     <td>{monster.starting_power}</td>
                     <td><button>edit</button></td>
-                    <td><button>delete</button></td>
+                    <td><button onClick={() => handleDeleteGod(monster.id)}>delete</button></td>
                   </tr>
                 );
               })}
-            {/* end monsters.map */}
-          </tbody>
-        </table>
+              {/* end monsters.map */}
+            </tbody>
+          </table>
         </div>
 
       }
-      
+
     </div>
   );
 }
