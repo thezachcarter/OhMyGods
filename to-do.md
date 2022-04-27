@@ -43,7 +43,8 @@ where power != 0
 [ ] add new monsters to database query
 
 FIX BUGS
-[ ] Fix DEFEAT display bug, remove extra crap like unused reducer.
+[ ] Fix text overflow in god names
+[ ] Fix DEFEAT display race condition bug, remove extra crap like unused reducer.
 [x] send proper data for increasing god power through ^ button and updating monster power 
 [ ] fix log out screen, bug occurs when logging out from battle
 [x] reset userDisplay so all new users see how to play, useEffect? if user logs out in another screen it may 
@@ -57,13 +58,11 @@ STRETCH
 [x] Add more monsters
 [ ] database table references
 [x] Four Color Accent
-[ ] Monster health bar
 [ ] Leaderboard
 [ ] Admin edit - remove button if goal not reached
 
 Before Submission
 [ ] REFACTOR
 [ ] Remove extra crap: psOne css, LandingPage - component, 
-
 [ ] update database.sql
 [ ] find and remove user.id where not needed
