@@ -59,7 +59,7 @@ function Battle() {
       setDisplay('victory');
       renderBattleDisplay(display);
       dispatch({ type: 'SET_LAST_ATTACK', payload: {id:0} })
-      setTimeout(() => {  setDisplay('devotion') }, 2000);
+      setTimeout(() => {  setDisplay('devotion') }, 1000);
       increaseDevotion(user.id, user.devotion);
       setTimeout(() => {  history.push('/user') }, 3000);
     } else if (totalGodPower <= 0) {
