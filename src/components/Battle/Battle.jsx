@@ -47,14 +47,14 @@ function Battle() {
   //determine victory status by checking power of monster and ALL gods 
   const checkBattleStatus = () => {
     console.log('********************** checkBattleStatus, currentMonster =', currentMonster);
-    if (currentMonster.power <= 0) {
+    if (currentMonster.power < 1) {
       setDisplay('victory');
       renderBattleDisplay(display);
       dispatch({ type: 'SET_LAST_ATTACK', payload: {id:0} })
       setTimeout(() => {  setDisplay('devotion') }, 1000);
       increaseDevotion(user.id, user.devotion);
       setTimeout(() => {  history.push('/user') }, 3000);
-    } else if (totalGodPower <= 0) {
+    } else if (totalGodPower < 1) {
       setDisplay('defeat')
       renderBattleDisplay(display);
       setTimeout(() => {  history.push('/user') }, 2000);
@@ -210,8 +210,10 @@ function Battle() {
         //set and update power level for god and monster
         let updatedGodPower = attackingGod.power - damageToGod;
         let updatedMonsterPower = currentMonster.power -= damageToMonster;
-        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod.id, updatedGodPower  })
-        dispatch({ type: 'UPDATE_USER_MONSTER_POWER', payload: currentMonster, updatedMonsterPower })
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod.id, updatedGodPower  });
+        dispatch({ type: 'UPDATE_USER_MONSTER_POWER', payload: currentMonster, updatedMonsterPower });
+        dispatch({ type: 'UPDATE_CURRENT_MONSTER_POWER', payload: currentMonster, updatedMonsterPower });
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!! currentMonster power after attack', currentMonster);
 
         //display damage to DOM
         setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster} _

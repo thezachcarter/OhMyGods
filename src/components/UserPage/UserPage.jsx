@@ -41,14 +41,12 @@ function UserPage() {
 
 
   const renderUserDisplay = (params) => {
-    console.log('$$$$$$$$$$$$$$$$ renderUserDisplay');
     switch (params) {
       case 'howToPlay':
         // setDisplay(howToPlay)
         dispatch({ type: 'SET_USER_DISPLAY', payload: 'howToPlay' })
         break;
       case 'displayGodInfo':
-        console.log('AAAAAAAAAAAAA renderUserDisplayFunction(‘displayGodInfo’)', wikiText?.toString(wikiText));
         // setDisplay(wikiText?.toString(wikiText));
         // console.log('WIKITEXT:', wikiText);
         dispatch({ type: 'SET_USER_DISPLAY', payload: 'godInfo' })
@@ -63,12 +61,11 @@ function UserPage() {
   //SET UP REDUCER 
   const handleBattleClick = () => {
 
-    console.log('%%%%%%%%%%%%%%%%% monsterArray[0]', store.usersMonsters);
     dispatch({ type: 'SET_CURRENT_MONSTER', payload: monsterArray[0] })
 
     for (let i = 0; i < monsterArray.length; i++){
-      console.log('monsterArray.map in handleBattleLick in UserPage. currentMonster,', currentMonster, 'Monster:', monsterArray[i]);
-      if (currentMonster === '' && monsterArray[i].power > 0) {
+      console.log('in set currentMonster loop. monsterArray,', monsterArray, 'monsterArray[i]', monsterArray[i]);
+      if (currentMonster === '' && monsterArray[i]?.power > 0) {
         dispatch({ type: 'SET_CURRENT_MONSTER', payload: monsterArray[i] })
         break;
       } else if (currentMonster.id > monsterArray[i].id && monsterArray[i].power > 0) {
