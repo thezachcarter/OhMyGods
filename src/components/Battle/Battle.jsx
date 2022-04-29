@@ -18,43 +18,35 @@ function Battle() {
   const location = useLocation();
   const history = useHistory();
 
+  // sets text to display during battle
   const [display, setDisplay] = useState('Click a God to attack!')
 
-  // const [monsterArray, setMonsterArray ]= useState(store.usersMonsters);
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
   const user = store.user;
-  const godPowerTotal = store.totalGodPower;
+  const currentMonster = store.currentMonster;
 
   const totalGodPower = godArray?.reduce((accumulator, object) => {
     return accumulator + object.power;
-  }, 0);
-
-    //power level of monster, value will change on client side, not in db
-  // const [monsterPower, setMonsterPower ]= useState(currentMonster.power)
-  //total power level of all gods
+  }, 0); 
   
-  const setTotalGodPower = () =>{
-    dispatch({ type: 'SET_TOTAL_GOD_POWER', payload: totalGodPower})
-  }
-  
-  
-
-  
-  //checks array for first monster, by id, that has not been defeated
+  //check array for first monster, by id, that has not been defeated
   //also resets to beginning of monsters if order gets messed up in testing
-  const [currentMonster, setCurrentMonster] = useState('')
-  monsterArray.map(monster => {
-    // console.log('MONSTER IN BATTLE', monster.power);
-    if (currentMonster == '' && monster.power > 0) {
-      setCurrentMonster(monster);
-    } else if (currentMonster.id > monster.id && monster.power > 0) {
-      setCurrentMonster(monster);
-    }
-  })
+  // const [currentMonster, setCurrentMonster] = useState('')
+  
+  // // monsterArray.map(monster => {
+  // //   // console.log('****MONSTER IN BATTLE monster power:', monster.power, 'monster.id', monster.id, 'currentMonster.id', currentMonster.id);
+  // //   if (currentMonster == '' && monster.power > 0) {
+  // //     setCurrentMonster(monster);
+  // //   } else if (currentMonster.id > monster.id && monster.power > 0) {
+  // //     setCurrentMonster(monster);
+  // //   }
+  // //   console.log(monster);
+  // // })
   
   //determine victory status by checking power of monster and ALL gods 
   const checkBattleStatus = () => {
+    console.log('********************** checkBattleStatus, currentMonster =', currentMonster);
     if (currentMonster.power <= 0) {
       setDisplay('victory');
       renderBattleDisplay(display);
@@ -75,7 +67,9 @@ function Battle() {
     dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion})
   };
 
+  //conditional rendering for battleDisplay section between cards
   const renderBattleDisplay = (display) => {
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%% renderBattleDisplay, display = ', display);
     if (display === 'victory'){
       return(
       <div>
@@ -102,6 +96,7 @@ function Battle() {
       )}
   }
 
+  //initiate attack, calculate damage
   const attack = (event) => {
 
     console.log('ATTACK CLICKED');
@@ -119,7 +114,6 @@ function Battle() {
     let damageToMonster = 2;
     let damageToGod = 2;
 
-      console.log('GOD ARRAY', godArray);
       //check if individual god is defeated
       if (attackingGod.power === 0) {
         setDisplay(`${attackingGod.name} has been defeated.`)
@@ -229,7 +223,6 @@ function Battle() {
 
       }//end if else checking god disabled/enabled
       
-      console.log('^^^^^^^^^^^^^^^CHECKING BATTLE. currentMonster.power', currentMonster.power);
       checkBattleStatus();
 
   }//end attack function
@@ -237,7 +230,6 @@ function Battle() {
   return (
     <div className="battleGrid">
 
-      
       <table className="strong tbl">
         <thead>
           <tr>

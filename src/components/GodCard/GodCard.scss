@@ -28,7 +28,6 @@ $Sky: rgb(241,156,66);
     padding: 16px;
     text-align: center;
     
-   
 
     &:hover{
         box-shadow: 0px 0px 40px 24px white;
@@ -39,30 +38,31 @@ $Sky: rgb(241,156,66);
         line-height: 32px;
         color: white;
         text-shadow: 4px 4px black;
-        // overflow: scroll;
+        overflow: scroll;
     }
 
     .godImg {
         border: 4px black solid;
-        // border-radius: 8px;
-
     }
 
     .godCulture{
-        font-size: 28px;
-        line-height: 28px;
+        text-align: left;
+        font-size: 24px;
+        line-height: 24px;
         color: white;
         text-shadow: 4px 4px black;
     }
 
     .godPower{
-        font-size: 28px;
-        line-height: 28px;
+        text-align: right;
+        font-size: 24px;
+        line-height: 24px;
         color: white;
         text-shadow: 4px 4px black;
     }
 
     .godCardBtn{
+        margin-top: 8px;
         height: 24px;
         width: 24px;
         margin-left: 12px;

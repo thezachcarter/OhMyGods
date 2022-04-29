@@ -41,6 +41,8 @@
         box-shadow: 2px 2px black;
         font-size: 24px;
         background-color: white;
+        font-family: pixcyr2;
+
 
         &:hover{
             font-size: 40px; 
@@ -59,7 +61,7 @@
         text-align: center;
         overflow: scroll;
         padding-top: 12px;
-        
+        font-family: 'Courier New', Courier, monospace;
     }
 
     .godCardContainer{

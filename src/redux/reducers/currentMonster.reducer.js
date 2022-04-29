@@ -1,6 +1,7 @@
-const usersMonsters = (state = [], action) => {
+const currentMonster = (state = '', action) => {
+    
     switch (action.type) {
-      case 'SET_USERS_MONSTERS':
+      case 'SET_CURRENT_MONSTER':
         return action.payload;
       default:
         return state;
@@ -9,4 +10,4 @@ const usersMonsters = (state = [], action) => {
   
   // user will be on the redux state at:
   // state.user
-  export default usersMonsters;
+  export default currentMonster;

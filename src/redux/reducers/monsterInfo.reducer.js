@@ -1,5 +1,4 @@
 const monsterInfo = (state = [], action) => {
-    console.log('ZZZZZZZZZ', action.payload);
       switch (action.type) {
         case 'SET_MONSTER_INFO_STORE':
           return action.payload;

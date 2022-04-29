@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { currentMonster } from '../Battle/Battle'
+// import { currentMonster } from '../Battle/Battle'
 
 import './MonsterCard.scss'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function MonsterCard({ currentMonster }) {
+function MonsterCard() {
     // Using hooks we're creating local state for a "heading" variable with
     // a default value of 'Functional Component'
     const store = useSelector((store) => store);
@@ -15,14 +15,10 @@ function MonsterCard({ currentMonster }) {
 
     const monsterArray = store.usersMonsters;
     const user = store.user;
+    const currentMonster = store.currentMonster;
 
-
-    console.log(monsterArray);
-
-    useEffect(() => {
-        dispatch({ type: 'GET_USERS_MONSTERS', payload: user.id });
-    }, []);
-
+    
+    console.log('CURRENT MONSTER IN MonsterCard', currentMonster);
     return (
         <div className="monsterCardContainer">
             {/* {monsterArray.map(monster => {

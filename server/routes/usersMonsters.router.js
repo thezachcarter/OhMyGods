@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
     JOIN "monsters"
     ON "monster_id" = "monsters".id
     WHERE "user_id" = $1
-    ORDER BY "monsters"."starting_power" ASC
     ;
     `
 

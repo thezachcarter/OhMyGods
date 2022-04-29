@@ -11,7 +11,8 @@ import display from './display.reducer';
 import replaceGods from './replaceGods.reducer';
 import godToReplace from './godToReplace.reducer';
 import totalGodPower from './totalGodPower.reducer';
-import monsterInfo from './monsterInfo.reducer'
+import monsterInfo from './monsterInfo.reducer';
+import currentMonster from './currentMonster.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   godToReplace,
   totalGodPower,
   monsterInfo,
+  currentMonster,
 });
 
 export default rootReducer;

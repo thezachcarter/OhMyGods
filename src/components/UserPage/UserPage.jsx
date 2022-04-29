@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import {useHistory, useLocation} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import GodCard from '../GodCard/GodCard';
 import UserDisplay from '../UserDisplay/UserDisplay'
 
@@ -17,10 +17,11 @@ function UserPage() {
   // const displayReducer = store.display;
   const history = useHistory();
   const location = useLocation();
-  
+  const monsterArray = store.usersMonsters;
+  const currentMonster = store.currentMonster;
+
+
   const wikiText = godInfo[Object?.keys(godInfo)[0]]?.extract;
-  
-  console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
 
   const howToPlay = `
     Your pantheon of gods are ready to lay waste to any monster foolish enough to meet them on
@@ -32,8 +33,13 @@ function UserPage() {
     button to learn more about your god. Click the X button to replace a god for four devotion. All new gods start 
     with eight power.
   `
-  const [display, setDisplay] = useState(howToPlay); 
-  
+  const [display, setDisplay] = useState(howToPlay);
+
+  useEffect(() => {
+    dispatch({ type: 'GET_USERS_MONSTERS', payload: user.id });
+  }, []);
+
+
   const renderUserDisplay = (params) => {
     console.log('$$$$$$$$$$$$$$$$ renderUserDisplay');
     switch (params) {
@@ -53,18 +59,42 @@ function UserPage() {
         break;
     }
   }
-  
+
+  //SET UP REDUCER 
+  const handleBattleClick = () => {
+
+    console.log('%%%%%%%%%%%%%%%%% monsterArray[0]', store.usersMonsters);
+    dispatch({ type: 'SET_CURRENT_MONSTER', payload: monsterArray[0] })
+
+    for (let i = 0; i < monsterArray.length; i++){
+      console.log('monsterArray.map in handleBattleLick in UserPage. currentMonster,', currentMonster, 'Monster:', monsterArray[i]);
+      if (currentMonster === '' && monsterArray[i].power > 0) {
+        dispatch({ type: 'SET_CURRENT_MONSTER', payload: monsterArray[i] })
+        break;
+      } else if (currentMonster.id > monsterArray[i].id && monsterArray[i].power > 0) {
+        dispatch({ type: 'SET_CURRENT_MONSTER', payload: monsterArray[i] })
+        break;
+      } else if (currentMonster.power < 1 && monsterArray[i].power > 0){
+        dispatch({ type: 'SET_CURRENT_MONSTER', payload: monsterArray[i] })
+        break;
+    }}
+
+    history.push('/battle');
+
+  }
+
+  //  make click listener function to set current monster for battle store in reducer to access in battle component
   return (
     <div className="userPageGrid">
       <h1 className="title">
         <span className="titleSpan">O</span>h
         <span className="titleSpan">M</span>y
-        <span className="titleSpan">G</span>ods</h1> 
-      <button className="battleBtn" onClick={() => history.push('/battle')}>BATTLE!!!</button>
+        <span className="titleSpan">G</span>ods</h1>
+      <button className="battleBtn" onClick={handleBattleClick}>BATTLE!!!</button>
 
       <div className="homeDisplay">
-      {/* <h2>{display}</h2> */}
-      <UserDisplay />
+        {/* <h2>{display}</h2> */}
+        <UserDisplay />
       </div>
       {/* style classes coming from GodCard component= godCard AND godCardContainer */}
       {/* <GodCard renderUserDisplay={renderUserDisplay}/> */}

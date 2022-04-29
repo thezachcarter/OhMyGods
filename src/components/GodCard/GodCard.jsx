@@ -29,8 +29,6 @@ function GodCard({ attack, renderUserDisplay }) {
 
     checkInBattle();
     dispatch({ type: 'GET_USERS_GODS', payload: user.id });
-    console.log('**********************GOD CARD USE EFFECT! user:', user, 'godArray:', godArray.length);
-
   }, []);
 
   const populateNewUserGods = () => {
@@ -64,7 +62,6 @@ function GodCard({ attack, renderUserDisplay }) {
   };
 
   const handleGodInfo = (godName) => {
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!handleGodInfo clicked');
     axios.get(`/api/info/${godName}`)
       .then(response => {
         dispatch({ type: 'SET_GOD_INFO_STORE', payload: response.data.query.pages })
@@ -145,7 +142,7 @@ function GodCard({ attack, renderUserDisplay }) {
                   alt={god.name}
                 />
                 <h2 className="godCulture">{god.culture}</h2>
-                <h2 className="godPower">{god.power}</h2>
+                <h2 className="godPower">hp: {god.power}</h2>
                 <button className="godCardBtn" onClick={(() => handleReplaceGods(god))}>X</button>
                 <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
                 <button className="godCardBtn" onClick={(() => handleGodInfo(god.name))}>?</button>

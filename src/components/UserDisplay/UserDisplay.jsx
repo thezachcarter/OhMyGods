@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
@@ -24,7 +24,8 @@ function UserDisplay() {
 
     const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
     const monsterWikiText = monsterInfo[Object.keys(monsterInfo)[0]]?.extract;
-    //   // console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
+
+    
 
 
     const selectReplaceGod = (replaceGodId) => {
@@ -120,10 +121,11 @@ function UserDisplay() {
             break
         default:
             return (
-                <div>
-                    <h2>Click 'How To Play' for detailed games rules.
-                        Click the '?' button on any god to learn more about the,. 
-                    </h2>
+                <div className="introContainer">
+                    <h2>Click 'How To Play' for detailed game rules.</h2>
+                    <h2>Click the '?' button on any god to learn about their origins.</h2>
+                    <h2>After winning a battle, click 'Monsters' to view your conquests and access their background info.</h2>
+                    <h2>You may restart at any time by clicking 'Restart'.</h2>
                 </div>
             );
             break;
