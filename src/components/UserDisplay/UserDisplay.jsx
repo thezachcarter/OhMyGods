@@ -77,11 +77,11 @@ function UserDisplay() {
                     <h1>Devotion</h1>
                     <h2>In the upper right corner, you will see your devotion points. You will
                         earn eight devotion points for every battle won. When you are not in battle, 
-                        you may click the ^ button on any of your gods to
+                        you may click the '^' button on any of your gods to
                         increase their power by one at the cost of one devotion. For six devotion
                         you may replace a god, this action cannot be cancelled or undone. To replace a god, 
-                        click the X button on the card of the god that you wish
-                        to replace. you will then choose one of three randomly offered
+                        click the 'X' button on the card of the god that you wish
+                        to replace. You will then choose one of three randomly offered
                         replacements gods. All new gods start with eight power.</h2>
                 </div>
             );

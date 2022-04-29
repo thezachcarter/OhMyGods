@@ -221,9 +221,11 @@ function Battle() {
         console.log('!!!!!!!!!!!!!!!!!!!!!!!!! currentMonster power after attack', currentMonster);
 
         //display damage to DOM
-        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster} _
-           Damage to ${attackingGod.name} = ${damageToGod}
-          `);
+        setDisplay(`${currentMonster.name} -${damageToMonster} Power!`);
+        setTimeout(() => {  setDisplay(`${attackingGod.name} -${damageToGod} Power!`); }, 1500);
+        setTimeout(() => {  setDisplay('Click a God to attack!') }, 3000);
+
+          
 
         dispatch({ type: 'SET_LAST_ATTACK', payload: attackingGod})
         console.log('LAST ATTACK:', store.lastAttack);

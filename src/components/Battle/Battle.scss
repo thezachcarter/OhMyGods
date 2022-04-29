@@ -3,6 +3,7 @@ $Earth: rgb(78,163,91);
 $Fire: rgb(182,47,40);
 $Sky: rgb(241,156,66);
 
+
 .battleGrid {
 
     display: grid;
@@ -12,7 +13,6 @@ $Sky: rgb(241,156,66);
     grid-row-gap: 0px;
     width: 100vw;
     height: 90%;
-    
 
 .earthTxt, .victory{
     color: $Earth;
@@ -72,7 +72,6 @@ $Sky: rgb(241,156,66);
 }
 
     .monsterCardContainer {
-        // display: flex;
         justify-self: center;
         align-self: center;
         grid-column: 5 / 7;
@@ -101,6 +100,19 @@ $Sky: rgb(241,156,66);
         .victory, .defeat{
             font-size: 64px;
         }
+    }
+
+    .infoDisplay {
+        color: black;
+        text-shadow: none;
+        background-color: white;
+        font-family: sans-serif;
+        height: 80px;
+        width: 1000px;
+        border: 4px solid black;
+        text-align: center;
+        font-size: 40px;
+        line-height: 70px;
     }
     
 }

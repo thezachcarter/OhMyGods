@@ -17,14 +17,13 @@ function MonsterCard() {
     const user = store.user;
     const currentMonster = store.currentMonster;
 
-    
+
     return (
         <div className="monsterCardContainer">
-            {/* {monsterArray.map(monster => {
-        return ( */}
-            <div className={`currentMonsterCard ${currentMonster.element}`} 
-                    key={currentMonster.id} >
-                <h2 className="monsterName">- {currentMonster.name} -</h2>
+
+            <div className={`currentMonsterCard ${currentMonster.element}`}
+                key={currentMonster.id} >
+                <h2 className="monsterName">{currentMonster.name}</h2>
                 <img
                     className="monsterImg"
                     src={currentMonster.image}
@@ -33,7 +32,6 @@ function MonsterCard() {
                 <h2 className="monsterCulture">{currentMonster.culture}</h2>
                 <h2 className="monsterPower">power : {currentMonster.power}</h2>
             </div>
-            {/* )})}; */}
         </div>
     );
 }
