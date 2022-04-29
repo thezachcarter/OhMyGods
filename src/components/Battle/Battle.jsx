@@ -69,7 +69,7 @@ function Battle() {
 
   const increaseDevotion = (userId, updatedDevotion) => {
     updatedDevotion += 8;
-    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion})
+    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion});
   };
 
   //conditional rendering for battleDisplay section between cards
