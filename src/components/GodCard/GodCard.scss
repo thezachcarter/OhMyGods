@@ -1,7 +1,7 @@
-$Water: rgb(62,140,165);
-$Earth: rgb(78,163,91);
-$Fire: rgb(182,47,40);
-$Sky: rgb(241,156,66);
+$Water: rgb(62, 140, 165);
+$Earth: rgb(78, 163, 91);
+$Fire: rgb(182, 47, 40);
+$Sky: rgb(241, 156, 66);
 
 .Water {
     background: $Water;
@@ -21,23 +21,22 @@ $Sky: rgb(241,156,66);
 
 .godCard {
     border: 4px black solid;
-    // border-radius: 8px;
     width: 200px;
     height: 300px;
     margin: 16px;
     padding: 16px;
     text-align: center;
-    
 
-    &:hover{
+    &:hover {
         box-shadow: 0px 0px 40px 24px white;
     }
 
-    .godName{
+    .godName {
+        text-align: left;
         font-size: 32px;
         line-height: 32px;
         color: white;
-        text-shadow: 4px 4px black;
+        text-shadow: 2px 4px black;
         overflow: scroll;
     }
 
@@ -45,35 +44,34 @@ $Sky: rgb(241,156,66);
         border: 4px black solid;
     }
 
-    .godCulture{
-        text-align: left;
+    .godCulture {
         font-size: 24px;
         line-height: 24px;
         color: white;
-        text-shadow: 4px 4px black;
+        text-shadow: 2px 4px black;
+        margin-bottom: 4px;
     }
 
-    .godPower{
-        text-align: right;
+    .godPower {
         font-size: 24px;
         line-height: 24px;
         color: white;
-        text-shadow: 4px 4px black;
+        text-shadow: 2px 4px black;
     }
 
-    .godCardBtn{
-        margin-top: 8px;
+    .godCardBtn {
+        margin-top: 4px;
         height: 24px;
         width: 24px;
         margin-left: 12px;
         margin-right: 12px;
-        // margin-top: 2px;
         background-color: white;
+        font-weight: bolder;
 
-        &:hover{
+        &:hover {
             background-color: black;
             color: white;
         }
     }
-    
+
 }

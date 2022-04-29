@@ -6,10 +6,9 @@ this is a running to-do list, update often!
 where power != 0 
 [x] Merge battle branches
 [x] Display damage and 'this god is out of power'
-[ ] ADMIN MODE!
+[x] ADMIN MODE!
     [x] get
     [x] post
-    [ ] put
     [x] delete
 [x] admin authorization
 [x] prevent devotion going negative
@@ -43,10 +42,11 @@ where power != 0
 [x] add new monsters to database query
 
 FIX BUGS
+[ ] 'FETCH_USER' removal causing weirdness.
 [ ] Fix text overflow in god names
 [ ] Fix DEFEAT display race condition bug, remove extra crap like unused reducer.
 [x] send proper data for increasing god power through ^ button and updating monster power 
-[ ] fix log out screen, bug occurs when logging out from battle
+[x] fix log out screen, bug occurs when logging out from battle
 [x] reset userDisplay so all new users see how to play, useEffect? if user logs out in another screen it may 
 stay same for next user
 [x] devotion is resetting to 47? seems to set to user id
@@ -56,12 +56,14 @@ stay same for next user
 STRETCH
 [ ] Animation
 [x] Add more monsters
-[ ] database table references
 [x] Four Color Accent
-[ ] Admin edit - remove button if goal not reached
 
 Before Submission
+[ ] TEST! TEST! TEST!
+[ ] Fix Bugs
+[ ] Simple Styling Tweaks? see notes?
+[ ] Simple animation?
 [ ] REFACTOR
-[ ] Remove extra crap: psOne css, LandingPage - component, 
+[ ] Remove extra crap: psOne css, LandingPage - component?, 
 [ ] update database.sql
 [ ] find and remove user.id where not needed

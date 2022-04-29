@@ -37,7 +37,7 @@ function UserPage() {
 
   useEffect(() => {
     dispatch({ type: 'GET_USERS_MONSTERS', payload: user.id });
-    dispatch({ type: 'FETCH_USER'});
+    // dispatch({ type: 'FETCH_USER'});
   }, []);
 
 

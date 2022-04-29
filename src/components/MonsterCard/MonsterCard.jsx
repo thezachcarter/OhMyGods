@@ -24,14 +24,14 @@ function MonsterCard() {
         return ( */}
             <div className={`currentMonsterCard ${currentMonster.element}`} 
                     key={currentMonster.id} >
-                <h2 className="monsterName">{currentMonster.name}</h2>
+                <h2 className="monsterName">- {currentMonster.name} -</h2>
                 <img
                     className="monsterImg"
                     src={currentMonster.image}
                     alt={currentMonster.name}
                 />
                 <h2 className="monsterCulture">{currentMonster.culture}</h2>
-                <h2 className="monsterPower">{currentMonster.power}</h2>
+                <h2 className="monsterPower">power : {currentMonster.power}</h2>
             </div>
             {/* )})}; */}
         </div>

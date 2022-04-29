@@ -47,7 +47,7 @@ function UserDisplay() {
     switch (displayReducer) {
         case 'intro':
             return (
-                <div className="introContainer">
+                <div className="userDisplayContainer">
                     <h2>Click 'How To Play' for detailed game rules.</h2>
                     <h2>Click the '?' button on any god to learn about their origins.</h2>
                     <h2>After winning a battle, click 'Monsters' to view your conquests and access their background info.</h2>
@@ -57,14 +57,14 @@ function UserDisplay() {
             break;
         case 'godInfo':
             return (
-                <div>
+                <div className="userDisplayContainer">
                     <h2>{wikiText}</h2>
                 </div>
             );
             break;
         case 'howToPlay':
             return (
-                <div>
+                <div className="userDisplayContainer">
                     <h1>The Basics</h1>
                     <h2>Once you enter into battle, click a god to launch an attack. The god and monster
                         will then exchange damage. Gods may not attack twice in a row, unless all other 
@@ -114,14 +114,14 @@ function UserDisplay() {
             break
             case 'monsterInfo':
             return (
-                <div>
+                <div className="userDisplayContainer">
                     <h2>{monsterWikiText}</h2>
                 </div>
             );
             break
         default:
             return (
-                <div className="introContainer">
+                <div className="userDisplayContainer">
                     <h2>Click 'How To Play' for detailed game rules.</h2>
                     <h2>Click the '?' button on any god to learn about their origins.</h2>
                     <h2>After winning a battle, click 'Monsters' to view your conquests and access their background info.</h2>

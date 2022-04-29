@@ -79,7 +79,6 @@ function GodCard({ attack, renderUserDisplay }) {
     let updatedDevotion = user.devotion -= 6;
     if (user.devotion > 0) {
       dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
-
     }
     else {
       swal("Not valid", "You don't have any devotion points", "error");
@@ -120,7 +119,7 @@ function GodCard({ attack, renderUserDisplay }) {
                   alt={god.name}
                 />
                 <h2 className="godCulture">{god.culture}</h2>
-                <h2 className="godPower">{god.power}</h2>
+                <h2 className="godPower">power : {god.power}</h2>
                 <p></p>
               </div>
             );
@@ -141,10 +140,11 @@ function GodCard({ attack, renderUserDisplay }) {
                   alt={god.name}
                 />
                 <h2 className="godCulture">{god.culture}</h2>
-                <h2 className="godPower">hp: {god.power}</h2>
+                <h2 className="godPower">power : {god.power}</h2>
                 <button className="godCardBtn" onClick={(() => handleReplaceGods(god))}>X</button>
-                <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
                 <button className="godCardBtn" onClick={(() => handleGodInfo(god.name))}>?</button>
+                <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
+
               </div>
             );
           })}
