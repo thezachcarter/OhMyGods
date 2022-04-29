@@ -61,6 +61,9 @@ function UserPage() {
   //SET UP REDUCER 
   const handleBattleClick = () => {
 
+    //reset last god to attack so blocking repeat attacks doesn't carry over
+    dispatch({ type: 'SET_LAST_ATTACK', payload: {id:0} })
+
     dispatch({ type: 'SET_CURRENT_MONSTER', payload: monsterArray[0] })
 
     for (let i = 0; i < monsterArray.length; i++){

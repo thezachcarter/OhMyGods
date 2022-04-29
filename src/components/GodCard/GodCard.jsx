@@ -26,7 +26,6 @@ function GodCard({ attack, renderUserDisplay }) {
 
 
   useEffect(() => {
-
     checkInBattle();
     dispatch({ type: 'GET_USERS_GODS', payload: user.id });
   }, []);

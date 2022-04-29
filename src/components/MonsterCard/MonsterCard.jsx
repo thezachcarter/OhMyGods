@@ -18,7 +18,6 @@ function MonsterCard() {
     const currentMonster = store.currentMonster;
 
     
-    console.log('CURRENT MONSTER IN MonsterCard', currentMonster);
     return (
         <div className="monsterCardContainer">
             {/* {monsterArray.map(monster => {

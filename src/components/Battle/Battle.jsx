@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {useLocation, useHistory} from 'react-router-dom'
+import {useLocation, useHistory} from 'react-router-dom';
 
 
 import GodCard from '../GodCard/GodCard';
@@ -30,6 +30,12 @@ function Battle() {
     return accumulator + object.power;
   }, 0); 
   
+  useEffect(() => {
+    console.log('Battle Mounted.')
+
+    return () => console.log('Battle Unmounted');
+  },[])
+
   //check array for first monster, by id, that has not been defeated
   //also resets to beginning of monsters if order gets messed up in testing
   // const [currentMonster, setCurrentMonster] = useState('')
@@ -49,17 +55,16 @@ function Battle() {
     console.log('********************** checkBattleStatus, currentMonster =', currentMonster);
     if (currentMonster.power < 1) {
       setDisplay('victory');
-      renderBattleDisplay(display);
+      renderBattleDisplay('victory');
       dispatch({ type: 'SET_LAST_ATTACK', payload: {id:0} })
       setTimeout(() => {  setDisplay('devotion') }, 1000);
       increaseDevotion(user.id, user.devotion);
       setTimeout(() => {  history.push('/user') }, 3000);
     } else if (totalGodPower < 1) {
       setDisplay('defeat')
-      renderBattleDisplay(display);
+      renderBattleDisplay('defeat');
       setTimeout(() => {  history.push('/user') }, 2000);
     };
-    renderBattleDisplay(display);
   };
 
   const increaseDevotion = (userId, updatedDevotion) => {
@@ -68,21 +73,21 @@ function Battle() {
   };
 
   //conditional rendering for battleDisplay section between cards
-  const renderBattleDisplay = (display) => {
-    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%% renderBattleDisplay, display = ', display);
-    if (display === 'victory'){
+  const renderBattleDisplay = (displayCode) => {
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%% renderBattleDisplay, display = ', displayCode);
+    if (displayCode === 'victory'){
       return(
       <div>
         <h1 className="victory">VICTORY!</h1>
       </div>
       )}
-    else if (display === 'devotion'){
+    else if (displayCode === 'devotion'){
         return(
         <div>
           <h1 className="victory">+8 devotion</h1>
         </div>
         )}
-    else if (display === 'defeat'){
+    else if (displayCode === 'defeat'){
       return(
       <div>
         <h1 className="defeat">DEFEAT!</h1>
