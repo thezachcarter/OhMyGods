@@ -19,7 +19,7 @@ function Battle() {
   const history = useHistory();
 
   // sets text to display during battle
-  const [display, setDisplay] = useState('Click a God to attack!')
+  const [display, setDisplay] = useState('click a god to attack')
 
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
@@ -84,7 +84,7 @@ function Battle() {
     else if (displayCode === 'devotion'){
         return(
         <div>
-          <h1 className="victory">+8 devotion</h1>
+          <h1 className="victory">+8 Devotion</h1>
         </div>
         )}
     else if (displayCode === 'defeat'){
@@ -221,9 +221,9 @@ function Battle() {
         console.log('!!!!!!!!!!!!!!!!!!!!!!!!! currentMonster power after attack', currentMonster);
 
         //display damage to DOM
-        setDisplay(`${currentMonster.name} -${damageToMonster} Power!`);
-        setTimeout(() => {  setDisplay(`${attackingGod.name} -${damageToGod} Power!`); }, 1500);
-        setTimeout(() => {  setDisplay('Click a God to attack!') }, 3000);
+        setDisplay(`${currentMonster.name} -${damageToMonster} power`);
+        setTimeout(() => {  setDisplay(`${attackingGod.name} -${damageToGod} power`); }, 1500);
+        setTimeout(() => {  setDisplay('click a god to attack') }, 3000);
 
           
 
