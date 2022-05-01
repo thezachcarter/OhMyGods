@@ -123,7 +123,7 @@ function Battle() {
       if (attackingGod.power === 0) {
         setDisplay(`${attackingGod.name} has been defeated.`)
       } else if (attackingGod.id == store.lastAttack && attackingGod.power !== totalGodPower){
-          setDisplay(`${attackingGod.name} just attacked. Choose another God.`)
+          setDisplay(`${attackingGod.name} just attacked, choose another god`)
       } else {
         console.log('ELEMENTS, God:', attackingGod.element, 'Monster:', currentMonster.element);
         switch (attackingGod.element) {
