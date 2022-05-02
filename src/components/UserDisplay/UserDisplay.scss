@@ -1,18 +1,25 @@
-.replaceGodContainer{
-     
-    margin: auto; 
-    padding-top: 12px;
-
-
-.replaceGodTbl {
-    font-size: 24px;
-   width: 600px;
-   margin: auto;
-   text-align: center;
-
-   tr {
-    height: 48px;
-   }
+.userDisplayContainer {
+    margin-left: 12px;
+    margin-right: 12px;
+    font-size: 16px;
+    line-height: 32px;
 }
+
+.replaceGodContainer {
+
+    margin: auto;
+    padding-top: 12px;
+    text-align: center;
+
+    .replaceGodTbl {
+        font-size: 24px;
+        width: 600px;
+        margin: auto;
+        text-align: center;
+
+        tr {
+            height: 48px;
+        }
+    }
 
 }

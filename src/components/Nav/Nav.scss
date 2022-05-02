@@ -10,6 +10,8 @@
 
 .navLink:is(a, button){
   text-decoration: underline;
+  font-family: pixcyr2;
+
 
   &:hover {
     color: black;

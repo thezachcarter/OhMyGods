@@ -6,10 +6,9 @@ this is a running to-do list, update often!
 where power != 0 
 [x] Merge battle branches
 [x] Display damage and 'this god is out of power'
-[ ] ADMIN MODE!
+[x] ADMIN MODE!
     [x] get
     [x] post
-    [ ] put
     [x] delete
 [x] admin authorization
 [x] prevent devotion going negative
@@ -26,7 +25,7 @@ where power != 0
 [x] Add devotion after battle
 [x] Admin authorization
 [x] Update log in, log out, register pages
-[ ] Update about
+[x] Update about
 [x] Create new account, populate tables (see above)
 [x] Remove LandingPage
 [x] Update log in, log out, register pages
@@ -43,10 +42,11 @@ where power != 0
 [x] add new monsters to database query
 
 FIX BUGS
-[ ] Fix text overflow in god names
+[ ] 'FETCH_USER' removal causing weirdness.
+[ ] Fix text overflow in god names - scroll works most of the time, but can cause issues when it randomly expands the element 
 [ ] Fix DEFEAT display race condition bug, remove extra crap like unused reducer.
 [x] send proper data for increasing god power through ^ button and updating monster power 
-[ ] fix log out screen, bug occurs when logging out from battle
+[x] fix log out screen, bug occurs when logging out from battle
 [x] reset userDisplay so all new users see how to play, useEffect? if user logs out in another screen it may 
 stay same for next user
 [x] devotion is resetting to 47? seems to set to user id
@@ -56,12 +56,13 @@ stay same for next user
 STRETCH
 [ ] Animation
 [x] Add more monsters
-[ ] database table references
 [x] Four Color Accent
-[ ] Admin edit - remove button if goal not reached
 
 Before Submission
+[ ] TEST! TEST! TEST!
+[ ] Fix Bugs
+[x] Simple Styling Tweaks? see notes?
 [ ] REFACTOR
-[ ] Remove extra crap: psOne css, LandingPage - component, 
+[ ] Remove extra crap: psOne css, LandingPage - component?, 
 [ ] update database.sql
-[ ] find and remove user.id where not needed
+[x] find and remove user.id where not needed

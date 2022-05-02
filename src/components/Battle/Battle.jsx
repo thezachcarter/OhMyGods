@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {useLocation, useHistory} from 'react-router-dom'
+import {useLocation, useHistory} from 'react-router-dom';
 
 
 import GodCard from '../GodCard/GodCard';
@@ -18,77 +18,78 @@ function Battle() {
   const location = useLocation();
   const history = useHistory();
 
-  const [display, setDisplay] = useState('Click a God to attack!')
+  // sets text to display during battle
+  const [display, setDisplay] = useState('click a god to attack')
 
-  // const [monsterArray, setMonsterArray ]= useState(store.usersMonsters);
   const monsterArray = store.usersMonsters;
   const godArray = store.usersGods;
   const user = store.user;
-  const godPowerTotal = store.totalGodPower;
+  const currentMonster = store.currentMonster;
 
   const totalGodPower = godArray?.reduce((accumulator, object) => {
     return accumulator + object.power;
-  }, 0);
+  }, 0); 
+  
+  useEffect(() => {
+    console.log('Battle Mounted.')
 
-    //power level of monster, value will change on client side, not in db
-  // const [monsterPower, setMonsterPower ]= useState(currentMonster.power)
-  //total power level of all gods
-  
-  const setTotalGodPower = () =>{
-    dispatch({ type: 'SET_TOTAL_GOD_POWER', payload: totalGodPower})
-  }
-  
-  
+    return () => console.log('Battle Unmounted');
+  },[])
 
-  
-  //checks array for first monster, by id, that has not been defeated
+  //check array for first monster, by id, that has not been defeated
   //also resets to beginning of monsters if order gets messed up in testing
-  const [currentMonster, setCurrentMonster] = useState('')
-  monsterArray.map(monster => {
-    // console.log('MONSTER IN BATTLE', monster.power);
-    if (currentMonster == '' && monster.power > 0) {
-      setCurrentMonster(monster);
-    } else if (currentMonster.id > monster.id && monster.power > 0) {
-      setCurrentMonster(monster);
-    }
-  })
+  // const [currentMonster, setCurrentMonster] = useState('')
+  
+  // // monsterArray.map(monster => {
+  // //   // console.log('****MONSTER IN BATTLE monster power:', monster.power, 'monster.id', monster.id, 'currentMonster.id', currentMonster.id);
+  // //   if (currentMonster == '' && monster.power > 0) {
+  // //     setCurrentMonster(monster);
+  // //   } else if (currentMonster.id > monster.id && monster.power > 0) {
+  // //     setCurrentMonster(monster);
+  // //   }
+  // //   console.log(monster);
+  // // })
   
   //determine victory status by checking power of monster and ALL gods 
   const checkBattleStatus = () => {
-    if (currentMonster.power <= 0) {
+    console.log('********************** checkBattleStatus, currentMonster =', currentMonster);
+    if (currentMonster.power < 1) {
+      increaseDevotion(user.id, user.devotion);
       setDisplay('victory');
-      renderBattleDisplay(display);
+      renderBattleDisplay('victory');
       dispatch({ type: 'SET_LAST_ATTACK', payload: {id:0} })
       setTimeout(() => {  setDisplay('devotion') }, 1000);
-      increaseDevotion(user.id, user.devotion);
       setTimeout(() => {  history.push('/user') }, 3000);
-    } else if (totalGodPower <= 0) {
+      setTimeout(() => {  dispatch({ type: 'FETCH_USER' }) }, 3000);
+    } else if (totalGodPower < 1) {
       setDisplay('defeat')
-      renderBattleDisplay(display);
-      setTimeout(() => {  history.push('/user') }, 2000);
+      renderBattleDisplay('defeat');
+      setTimeout(() => {  history.push('/user') }, 3000);
+      setTimeout(() => {  dispatch({ type: 'FETCH_USER' }) }, 3000);
     };
-    renderBattleDisplay(display);
   };
 
   const increaseDevotion = (userId, updatedDevotion) => {
     updatedDevotion += 8;
-    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion})
+    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion});
   };
 
-  const renderBattleDisplay = (display) => {
-    if (display === 'victory'){
+  //conditional rendering for battleDisplay section between cards
+  const renderBattleDisplay = (displayCode) => {
+    console.log('%%%%%%%%%%%%%%%%%%%%%%%%%% renderBattleDisplay, display = ', displayCode);
+    if (displayCode === 'victory'){
       return(
       <div>
         <h1 className="victory">VICTORY!</h1>
       </div>
       )}
-    else if (display === 'devotion'){
+    else if (displayCode === 'devotion'){
         return(
         <div>
-          <h1 className="victory">+8 devotion</h1>
+          <h1 className="victory">+8 Devotion</h1>
         </div>
         )}
-    else if (display === 'defeat'){
+    else if (displayCode === 'defeat'){
       return(
       <div>
         <h1 className="defeat">DEFEAT!</h1>
@@ -102,6 +103,7 @@ function Battle() {
       )}
   }
 
+  //initiate attack, calculate damage
   const attack = (event) => {
 
     console.log('ATTACK CLICKED');
@@ -119,12 +121,11 @@ function Battle() {
     let damageToMonster = 2;
     let damageToGod = 2;
 
-      console.log('GOD ARRAY', godArray);
       //check if individual god is defeated
       if (attackingGod.power === 0) {
         setDisplay(`${attackingGod.name} has been defeated.`)
       } else if (attackingGod.id == store.lastAttack && attackingGod.power !== totalGodPower){
-          setDisplay(`${attackingGod.name} just attacked. Choose another God.`)
+          setDisplay(`${attackingGod.name} just attacked, choose another god`)
       } else {
         console.log('ELEMENTS, God:', attackingGod.element, 'Monster:', currentMonster.element);
         switch (attackingGod.element) {
@@ -216,20 +217,23 @@ function Battle() {
         //set and update power level for god and monster
         let updatedGodPower = attackingGod.power - damageToGod;
         let updatedMonsterPower = currentMonster.power -= damageToMonster;
-        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod.id, updatedGodPower  })
-        dispatch({ type: 'UPDATE_USER_MONSTER_POWER', payload: currentMonster, updatedMonsterPower })
+        dispatch({ type: 'UPDATE_USER_GOD_POWER', payload: attackingGod.id, updatedGodPower  });
+        dispatch({ type: 'UPDATE_USER_MONSTER_POWER', payload: currentMonster, updatedMonsterPower });
+        dispatch({ type: 'UPDATE_CURRENT_MONSTER_POWER', payload: currentMonster, updatedMonsterPower });
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!! currentMonster power after attack', currentMonster);
 
         //display damage to DOM
-        setDisplay(`Damage to ${currentMonster.name} = ${damageToMonster} _
-           Damage to ${attackingGod.name} = ${damageToGod}
-          `);
+        setDisplay(`${currentMonster.name} -${damageToMonster} power`);
+        setTimeout(() => {  setDisplay(`${attackingGod.name} -${damageToGod} power`); }, 1500);
+        setTimeout(() => {  setDisplay('click a god to attack') }, 3000);
+
+          
 
         dispatch({ type: 'SET_LAST_ATTACK', payload: attackingGod})
         console.log('LAST ATTACK:', store.lastAttack);
 
       }//end if else checking god disabled/enabled
       
-      console.log('^^^^^^^^^^^^^^^CHECKING BATTLE. currentMonster.power', currentMonster.power);
       checkBattleStatus();
 
   }//end attack function
@@ -237,7 +241,6 @@ function Battle() {
   return (
     <div className="battleGrid">
 
-      
       <table className="strong tbl">
         <thead>
           <tr>

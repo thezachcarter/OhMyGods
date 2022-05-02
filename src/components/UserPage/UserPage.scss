@@ -41,6 +41,8 @@
         box-shadow: 2px 2px black;
         font-size: 24px;
         background-color: white;
+        font-family: pixcyr2;
+
 
         &:hover{
             font-size: 40px; 
@@ -52,14 +54,13 @@
         grid-column: 2 / 10;
         height: 200px;
         border: 4px solid black;
-        // border-radius: 8px;
         background-color: white;
         position: relative;
         bottom: 12px;
-        text-align: center;
+        text-align: left;
         overflow: scroll;
         padding-top: 12px;
-        
+        font-family: sans-serif;
     }
 
     .godCardContainer{

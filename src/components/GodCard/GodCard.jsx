@@ -26,11 +26,8 @@ function GodCard({ attack, renderUserDisplay }) {
 
 
   useEffect(() => {
-
     checkInBattle();
     dispatch({ type: 'GET_USERS_GODS', payload: user.id });
-    console.log('**********************GOD CARD USE EFFECT! user:', user, 'godArray:', godArray.length);
-
   }, []);
 
   const populateNewUserGods = () => {
@@ -60,11 +57,11 @@ function GodCard({ attack, renderUserDisplay }) {
   const decreaseDevotion = (updatedDevotion) => {
     updatedDevotion -= 1;
     // console.log('decreaseDevotion', userId, updatedDevotion);
-    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion })
+    dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
+    dispatch({ type: 'FETCH_USER' });
   };
 
   const handleGodInfo = (godName) => {
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!handleGodInfo clicked');
     axios.get(`/api/info/${godName}`)
       .then(response => {
         dispatch({ type: 'SET_GOD_INFO_STORE', payload: response.data.query.pages })
@@ -79,32 +76,35 @@ function GodCard({ attack, renderUserDisplay }) {
   };
 
   const handleReplaceGods = (godToReplace) => {
-
-    let updatedDevotion = user.devotion -= 6;
-    if (user.devotion > 0) {
-      dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
-
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!', user.devotion);
+    
+    if (user?.devotion < 6) {
+      swal("Not valid", "You don't have enough devotion points", "error");
     }
     else {
-      swal("Not valid", "You don't have any devotion points", "error");
-    }
+      let updatedDevotion = user.devotion -= 6;
+      dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
+      dispatch({ type: 'FETCH_USER' });
 
-    const godIds = [godArray[0].god_id, godArray[1].god_id, godArray[2].god_id, godArray[3].god_id,];
-    const len = 4;
-    const newGodIds = [];
-    for (let i = 0; i < len;) {
-      const random = Math.floor(Math.random() * (16 - 1)) + 1;
-      if (!godIds.includes(random) &&
-        !newGodIds.includes(random)) {
-        newGodIds.push(random);
-        i++;
+
+
+      const godIds = [godArray[0].god_id, godArray[1].god_id, godArray[2].god_id, godArray[3].god_id,];
+      const len = 4;
+      const newGodIds = [];
+      for (let i = 0; i < len;) {
+        const random = Math.floor(Math.random() * (16 - 1)) + 1;
+        if (!godIds.includes(random) &&
+          !newGodIds.includes(random)) {
+          newGodIds.push(random);
+          i++;
+        }
       }
-    }
-    console.log(newGodIds);
+      console.log(newGodIds);
 
-    //dispatch to update devotion
-    dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds });
-    dispatch({ type: 'SET_GOD_TO_REPLACE', payload: godToReplace });
+      //dispatch to update devotion
+      dispatch({ type: 'GET_REPLACE_GODS', payload: newGodIds });
+      dispatch({ type: 'SET_GOD_TO_REPLACE', payload: godToReplace });
+    }
   }
 
   return (
@@ -124,7 +124,7 @@ function GodCard({ attack, renderUserDisplay }) {
                   alt={god.name}
                 />
                 <h2 className="godCulture">{god.culture}</h2>
-                <h2 className="godPower">{god.power}</h2>
+                <h2 className="godPower">power : {god.power}</h2>
                 <p></p>
               </div>
             );
@@ -145,10 +145,11 @@ function GodCard({ attack, renderUserDisplay }) {
                   alt={god.name}
                 />
                 <h2 className="godCulture">{god.culture}</h2>
-                <h2 className="godPower">{god.power}</h2>
+                <h2 className="godPower">power : {god.power}</h2>
                 <button className="godCardBtn" onClick={(() => handleReplaceGods(god))}>X</button>
-                <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
                 <button className="godCardBtn" onClick={(() => handleGodInfo(god.name))}>?</button>
+                <button className="godCardBtn" onClick={(() => increasePower(god.id, god.power))}>^</button>
+
               </div>
             );
           })}

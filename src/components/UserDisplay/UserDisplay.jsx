@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
@@ -24,7 +24,8 @@ function UserDisplay() {
 
     const wikiText = godInfo[Object.keys(godInfo)[0]]?.extract;
     const monsterWikiText = monsterInfo[Object.keys(monsterInfo)[0]]?.extract;
-    //   // console.log('%%%%%%%%%%%%%%%%%%%%, wikiText', wikiText);
+
+    
 
 
     const selectReplaceGod = (replaceGodId) => {
@@ -46,7 +47,7 @@ function UserDisplay() {
     switch (displayReducer) {
         case 'intro':
             return (
-                <div className="introContainer">
+                <div className="userDisplayContainer">
                     <h2>Click 'How To Play' for detailed game rules.</h2>
                     <h2>Click the '?' button on any god to learn about their origins.</h2>
                     <h2>After winning a battle, click 'Monsters' to view your conquests and access their background info.</h2>
@@ -56,14 +57,14 @@ function UserDisplay() {
             break;
         case 'godInfo':
             return (
-                <div>
+                <div className="userDisplayContainer">
                     <h2>{wikiText}</h2>
                 </div>
             );
             break;
         case 'howToPlay':
             return (
-                <div>
+                <div className="userDisplayContainer">
                     <h1>The Basics</h1>
                     <h2>Once you enter into battle, click a god to launch an attack. The god and monster
                         will then exchange damage. Gods may not attack twice in a row, unless all other 
@@ -76,11 +77,11 @@ function UserDisplay() {
                     <h1>Devotion</h1>
                     <h2>In the upper right corner, you will see your devotion points. You will
                         earn eight devotion points for every battle won. When you are not in battle, 
-                        you may click the ^ button on any of your gods to
+                        you may click the '^' button on any of your gods to
                         increase their power by one at the cost of one devotion. For six devotion
                         you may replace a god, this action cannot be cancelled or undone. To replace a god, 
-                        click the X button on the card of the god that you wish
-                        to replace. you will then choose one of three randomly offered
+                        click the 'X' button on the card of the god that you wish
+                        to replace. You will then choose one of three randomly offered
                         replacements gods. All new gods start with eight power.</h2>
                 </div>
             );
@@ -113,17 +114,18 @@ function UserDisplay() {
             break
             case 'monsterInfo':
             return (
-                <div>
+                <div className="userDisplayContainer">
                     <h2>{monsterWikiText}</h2>
                 </div>
             );
             break
         default:
             return (
-                <div>
-                    <h2>Click 'How To Play' for detailed games rules.
-                        Click the '?' button on any god to learn more about the,. 
-                    </h2>
+                <div className="userDisplayContainer">
+                    <h2>Click 'How To Play' for detailed game rules.</h2>
+                    <h2>Click the '?' button on any god to learn about their origins.</h2>
+                    <h2>After winning a battle, click 'Monsters' to view your conquests and access their background info.</h2>
+                    <h2>You may restart at any time by clicking 'Restart'.</h2>
                 </div>
             );
             break;

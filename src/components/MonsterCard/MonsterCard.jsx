@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { currentMonster } from '../Battle/Battle'
+// import { currentMonster } from '../Battle/Battle'
 
 import './MonsterCard.scss'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
-function MonsterCard({ currentMonster }) {
+function MonsterCard() {
     // Using hooks we're creating local state for a "heading" variable with
     // a default value of 'Functional Component'
     const store = useSelector((store) => store);
@@ -15,20 +15,14 @@ function MonsterCard({ currentMonster }) {
 
     const monsterArray = store.usersMonsters;
     const user = store.user;
+    const currentMonster = store.currentMonster;
 
-
-    console.log(monsterArray);
-
-    useEffect(() => {
-        dispatch({ type: 'GET_USERS_MONSTERS', payload: user.id });
-    }, []);
 
     return (
         <div className="monsterCardContainer">
-            {/* {monsterArray.map(monster => {
-        return ( */}
-            <div className={`currentMonsterCard ${currentMonster.element}`} 
-                    key={currentMonster.id} >
+
+            <div className={`currentMonsterCard ${currentMonster.element}`}
+                key={currentMonster.id} >
                 <h2 className="monsterName">{currentMonster.name}</h2>
                 <img
                     className="monsterImg"
@@ -36,9 +30,8 @@ function MonsterCard({ currentMonster }) {
                     alt={currentMonster.name}
                 />
                 <h2 className="monsterCulture">{currentMonster.culture}</h2>
-                <h2 className="monsterPower">{currentMonster.power}</h2>
+                <h2 className="monsterPower">power : {currentMonster.power}</h2>
             </div>
-            {/* )})}; */}
         </div>
     );
 }

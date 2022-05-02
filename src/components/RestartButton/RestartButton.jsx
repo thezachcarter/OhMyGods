@@ -1,10 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import {useHistory} from 'react-router-dom'
 import swal from 'sweetalert';
 
 function RestartButton(props) {
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   //deletes users gods/monsters, populates tables with new users gods/monsters resets devotion and display
   const handleRestart = () => {
@@ -17,6 +19,8 @@ function RestartButton(props) {
     dispatch({ type: 'POPULATE_MONSTERS' });
     dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
     dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'intro' });
+    dispatch({ type: 'FETCH_USER'});
+
 
     history.push('/user');
   }
