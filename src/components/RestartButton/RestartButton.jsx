@@ -19,6 +19,8 @@ function RestartButton(props) {
     dispatch({ type: 'POPULATE_MONSTERS' });
     dispatch({ type: 'UPDATE_DEVOTION', payload: updatedDevotion });
     dispatch({ type: 'SET_DISPLAY_REDUCER', payload: 'intro' });
+    dispatch({ type: 'FETCH_USER'});
+
 
     history.push('/user');
   }

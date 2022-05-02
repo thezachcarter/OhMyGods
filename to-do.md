@@ -25,7 +25,7 @@ where power != 0
 [x] Add devotion after battle
 [x] Admin authorization
 [x] Update log in, log out, register pages
-[ ] Update about
+[x] Update about
 [x] Create new account, populate tables (see above)
 [x] Remove LandingPage
 [x] Update log in, log out, register pages
@@ -43,7 +43,7 @@ where power != 0
 
 FIX BUGS
 [ ] 'FETCH_USER' removal causing weirdness.
-[ ] Fix text overflow in god names
+[ ] Fix text overflow in god names - scroll works most of the time, but can cause issues when it randomly expands the element 
 [ ] Fix DEFEAT display race condition bug, remove extra crap like unused reducer.
 [x] send proper data for increasing god power through ^ button and updating monster power 
 [x] fix log out screen, bug occurs when logging out from battle
@@ -61,9 +61,8 @@ STRETCH
 Before Submission
 [ ] TEST! TEST! TEST!
 [ ] Fix Bugs
-[ ] Simple Styling Tweaks? see notes?
-[ ] Simple animation?
+[x] Simple Styling Tweaks? see notes?
 [ ] REFACTOR
 [ ] Remove extra crap: psOne css, LandingPage - component?, 
 [ ] update database.sql
-[ ] find and remove user.id where not needed
+[x] find and remove user.id where not needed

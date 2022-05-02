@@ -54,16 +54,18 @@ function Battle() {
   const checkBattleStatus = () => {
     console.log('********************** checkBattleStatus, currentMonster =', currentMonster);
     if (currentMonster.power < 1) {
+      increaseDevotion(user.id, user.devotion);
       setDisplay('victory');
       renderBattleDisplay('victory');
       dispatch({ type: 'SET_LAST_ATTACK', payload: {id:0} })
       setTimeout(() => {  setDisplay('devotion') }, 1000);
-      increaseDevotion(user.id, user.devotion);
       setTimeout(() => {  history.push('/user') }, 3000);
+      setTimeout(() => {  dispatch({ type: 'FETCH_USER' }) }, 3000);
     } else if (totalGodPower < 1) {
       setDisplay('defeat')
       renderBattleDisplay('defeat');
-      setTimeout(() => {  history.push('/user') }, 2000);
+      setTimeout(() => {  history.push('/user') }, 3000);
+      setTimeout(() => {  dispatch({ type: 'FETCH_USER' }) }, 3000);
     };
   };
 

@@ -8,7 +8,6 @@ import UserDisplay from '../UserDisplay/UserDisplay'
 import './UserPage.scss'
 
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const dispatch = useDispatch()
   const store = useSelector((store) => store);
   const user = store.user;
@@ -37,23 +36,18 @@ function UserPage() {
 
   useEffect(() => {
     dispatch({ type: 'GET_USERS_MONSTERS', payload: user.id });
-    // dispatch({ type: 'FETCH_USER'});
   }, []);
 
 
   const renderUserDisplay = (params) => {
     switch (params) {
       case 'howToPlay':
-        // setDisplay(howToPlay)
         dispatch({ type: 'SET_USER_DISPLAY', payload: 'howToPlay' })
         break;
       case 'displayGodInfo':
-        // setDisplay(wikiText?.toString(wikiText));
-        // console.log('WIKITEXT:', wikiText);
         dispatch({ type: 'SET_USER_DISPLAY', payload: 'godInfo' })
         break;
       case 'replaceGods':
-        // setDisplay(replaceGods)
         dispatch({ type: 'SET_USER_DISPLAY', payload: 'replaceGods' })
         break;
     }
