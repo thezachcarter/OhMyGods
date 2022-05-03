@@ -6,7 +6,9 @@ _Duration: 2 Week Sprint_
 
 OhMyGods is my Prime Digital Academy solo project. For this project I wanted to combine my deep interests in turn-based strategy games and ancient cultures to create an entertaining way to learn a bit about a variety of mythologies. 
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
+* Optimized for desktop. Chrome recommended.
+
+To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://afternoon-badlands-81604.herokuapp.com/)
 
 <img src="./public/images/screenshots/Screen Shot 2022-05-02 at 2.56.42 PM.png" alt="user page" width="250"/>
 <img src="./public/images/screenshots/Screen Shot 2022-05-02 at 2.57.00 PM.png" alt="battle page" width="250"/>
